@@ -1,0 +1,104 @@
+<!-- <div class="accountInfo">{{accountInfo.login}} ({{accountInfo.id}})</div> -->
+
+<div class="card-body leftdiv-HW" #calulateWidth>
+    <ngb-tabset [justify]="'center'" type="pills" (tabChange)="selectJobLocation($event.nextId)">
+        <!--Filter Tab Configuration template  -->
+        <ngb-tab id="Account">
+            <ng-template ngbTabTitle>
+                <b>Account</b>
+            </ng-template>
+            <ng-template ngbTabContent>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab id="Program">
+            <ng-template ngbTabTitle>
+                <b>Program</b>
+            </ng-template>
+            <ng-template ngbTabContent>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab id="Jobsite">
+            <ng-template ngbTabTitle>
+                <b>Jobsite</b>
+            </ng-template>
+            <ng-template ngbTabContent>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab id="Quote">
+            <ng-template ngbTabTitle>
+                <b>Quote</b>
+            </ng-template>
+            <ng-template ngbTabContent>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab id="Order">
+            <ng-template ngbTabTitle>
+                <b>Order</b>
+            </ng-template>
+            <ng-template ngbTabContent>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab id="Pricebook">
+            <ng-template ngbTabTitle>
+                <b>Price Book</b>
+            </ng-template>
+            <ng-template ngbTabContent>
+            </ng-template>
+        </ngb-tab>
+    </ngb-tabset>
+</div>
+
+
+<div class="leftInside-Scroll">
+    <div *ngIf="'Account' == this.isActive">
+        <content-account></content-account>
+    </div>
+    <div *ngIf="'Program' == this.isActive">
+        <content-programs></content-programs>
+    </div>
+    <div *ngIf="'Jobsite' == this.isActive">
+        <content-jobsite></content-jobsite>
+    </div>
+    <div *ngIf="'Quote' == this.isActive">
+        <content-quote></content-quote>
+    </div>
+    <div *ngIf="'Order' == this.isActive">
+        <content-wo></content-wo>
+    </div>
+    <div *ngIf="'Pricebook' == this.isActive">
+        <content-pl></content-pl>
+    </div>
+</div>
+
+<!-- <ngb-tabset type="pills">
+    <ngb-tab title="Account">
+        <ng-template ngbTabContent>
+            <content-account></content-account>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Program">
+        <ng-template ngbTabContent>
+            <content-programs></content-programs>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Jobsite">
+        <ng-template ngbTabContent>
+            <content-jobsite></content-jobsite>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Quote">
+        <ng-template ngbTabContent>
+            <content-quote></content-quote>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Order">
+        <ng-template ngbTabContent>
+            <content-wo></content-wo>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Price Book">
+        <ng-template ngbTabContent>
+            <content-pl></content-pl>
+        </ng-template>
+    </ngb-tab>
+</ngb-tabset> -->

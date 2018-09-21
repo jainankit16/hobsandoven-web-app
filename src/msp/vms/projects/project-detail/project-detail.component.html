@@ -1,0 +1,147 @@
+<div *ngIf="!embeddedView" class="row m-b-15">
+    <div class="col-sm-12 col-md-6 align-self-center">
+        <h3 class="text-themecolor m-b-0 m-t-0">Project: {{title}}</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <h4 class="section-title">Project Details</h4>
+    </div>
+</div>
+
+<div *ngIf="project" class="card-body">
+    <div class="row">
+        <div class="col-sm-6">
+            <strong class="text-muted">Project</strong>
+            <p>{{project?.Project_c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Project Standard</strong>
+            <p>{{project?.Project_Standard__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Name</strong>
+            <p>{{project?.Name}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">APVP Group Num</strong>
+            <p>{{project?.APVP_Group_Number__c }}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">APVP Record Count</strong>
+            <p>{{project?.APVP_Record_Count__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Account</strong>
+            <p>{{project?.Partner?.Name}}&nbsp;</p>
+        </div>
+
+        <div class="col-sm-6">
+            <strong class="text-muted">Customer Service Type</strong>
+            <p>{{project?.Customer_Service_Type__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Deadline</strong>
+            <p>{{project?.Deadline__c | date:'short'}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Description</strong>
+            <p>{{project?.Description__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Duration</strong>
+            <p>{{project?.Duration__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Field Service Program Type</strong>
+            <p>{{project?.Field_Service_Program_Type__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Jobsite Contact Email (Service Desk)</strong>
+            <p>{{project?.Jobsite_Contact_Email_Service_Desk__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Jobsite Contact Email (Technical Esc)</strong>
+            <p>{{project?.Jobsite_Contact_Email_Technical_Esc__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Jobsite Contact Phone (Service Desk)</strong>
+            <p>{{project?.Jobsite_Contact_Name_Service_Desk__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Jobsite Contact Name (Technical Esc)</strong>
+            <p>{{project?.Jobsite_Contact_Name_Technical_Esc__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Jobsite Contact Phone (Service Desk)</strong>
+            <p>{{project?.Jobsite_Contact_Phone_Service_Desk__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Jobsite Contact Phone (Technical Esc)</strong>
+            <p>{{project?.Jobsite_Contact_Phone_Technical_Esc__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Jobsite Contact Selection</strong>
+            <p>{{project?.Jobsite_Contact_Selection__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Kickoff</strong>
+            <p>{{project?.Kick_off__c | date:'short'}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Partner Name</strong>
+            <p>{{project?.Partner_Name_Text__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Partner Pricelist</strong>
+            <p>{{project?.PartnerPricelist?.Name}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Program Activation</strong>
+            <p>{{project?.Program_Activation__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Progress</strong>
+            <p>{{project?.Progress__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Record Type</strong>
+            <p>{{project?.RecordType?.Name}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Resource Pool Type</strong>
+            <p>{{project?.Resource_Pool_Type_Used_for_backfill__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Service Dispatch SLA Priority</strong>
+            <p>{{project?.Service_Dispatch_SLA_Priority__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Service Technical Level</strong>
+            <p>{{project?.Service_Technical_Level__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">SoW Equipment Tracking Vendor</strong>
+            <p>{{project?.SoW_Equipment_Tracking_Vendor__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Vendor Pricelist</strong>
+            <p>{{project?.VendorPricelist?.Name}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Vendor Type</strong>
+            <p>{{project?.Vendor_Type__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Status</strong>
+            <p>{{project?.Status__c }}&nbsp;</p>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="errorMessage">
+    <div class="alert alert-warning m-t-5">
+        {{errorMessage}}
+    </div>
+</div>

@@ -1,0 +1,34 @@
+.btn-group-ver button {
+    background-color: #CCC; 
+    border: 1px solid #bdb9b9;    
+    padding: 4px 8px; 
+    cursor: pointer; 
+    width: 100%; 
+    display: block; 
+    text-align: left;
+}
+
+.btn-group-ver button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+
+.active-button {
+    background-color: #1e88e5 !important;
+    color: #ffff !important;
+}
+.active-button:hover {
+    background-color: #3f9def !important;
+    
+}
+.disabled-button{
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.error-Icon {
+    font-size:23px;color:red;
+}
+.succes-Icon {
+    font-size:23px;color:green;
+}

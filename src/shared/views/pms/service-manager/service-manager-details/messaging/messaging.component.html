@@ -1,0 +1,24 @@
+<div class="border-t">
+  <div class="m-t-5">
+    <ngb-tabset type="pills" justify="justified">
+
+      <ngb-tab title="Case Comments">
+        <ng-template ngbTabContent>
+          <case-comments></case-comments>
+        </ng-template>
+      </ngb-tab>
+
+      <ngb-tab *ngIf="isInternalUser" title="Conversation">
+        <ng-template ngbTabContent>
+          <conversation></conversation>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab *ngIf="isInternalUser" title="Mailbox">
+        <ng-template ngbTabContent>
+          <mailbox></mailbox>
+        </ng-template>
+      </ngb-tab>
+
+    </ngb-tabset>
+  </div>
+</div>

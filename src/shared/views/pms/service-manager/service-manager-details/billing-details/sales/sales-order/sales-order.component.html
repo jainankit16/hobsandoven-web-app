@@ -1,0 +1,35 @@
+<ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0, ngb-panel-1">
+        <ngb-panel id="ngb-panel-0" title="Billing/Sales Order">
+          <ng-template ngbPanelContent>
+            <div class="row">
+                <div class="col-12">Billing/Sales Order</div>
+            </div>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel id="ngb-panel-1" title="Sales Order Details">
+          <ng-template ngbPanelContent>
+            <div class="row">
+              <div class="col-2 text-bold">Sale Order Number</div>
+              <div class="col-4">{{salesData?.OrderNumber}}</div>
+              <div class="col-2 text-bold">Account Name</div>
+              <div class="col-4">{{salesData?.account?.Name}}</div>
+            </div>
+            <div class="row m-t-15">
+              <div class="col-2 text-bold">Case</div>
+              <div class="col-4">{{salesData?.case?.CaseNumber}}</div>
+              <div class="col-2 text-bold">Project</div>
+              <div class="col-4">{{salesData?.project?.Name}}</div>
+            </div>
+            <div class="row  m-t-15">
+              <div class="col-2 text-bold">Jobsite</div>
+              <div class="col-4">{{salesData?.jobsite?.Name}}</div>
+              <div class="col-2 text-bold">SKU</div>
+              <div class="col-4">{{salesData?.product?.Name}}</div>
+            </div>
+            <div class="row  m-t-15">
+              <div class="col-2 text-bold">Project Vendor</div>
+              <div class="col-8">{{salesData?.vendor?.Name}}</div>
+            </div>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>

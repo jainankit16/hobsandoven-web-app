@@ -1,0 +1,186 @@
+<div class="border-t">
+	<div class="btn-group-ver m-t-10" *ngIf="isInternalUser">
+		<button *ngFor="let rtype of this.recordType" class="{{rtype.sfdcId == caseData.RecordTypeId ? 'active-button' : 'disabled-button' }}"
+		 (click)="onClickRecordType(rtype.sfdcId)">
+			{{rtype.Name}}
+		</button>
+	</div>
+	<br>
+	<ngb-accordion #acc="ngbAccordion" activeIds="caseHealth, PMSCaseDetails" [destroyOnHide]="false">
+		<ngb-panel title="Case Dispatch Health Check" id="caseHealth" *ngIf="isInternalUser">
+			<ng-template ngbPanelContent>
+				<div class="row">
+					<div class="col-3">
+						<span>(A) Jobsite Selection Status</span>
+						<i class="{{caseData?.Health_Jobsite_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+					</div>
+					<div class="col-3">
+						<span>(B) Project Selection Status</span>
+						<i class="{{caseData?.Health_Project_status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+					</div>
+					<div class="col-3">
+						<span>(C) Order Item Selection Status</span>
+						<i class="{{caseData?.Health_OrderItem_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+					</div>
+					<div class="col-3">
+						<span>(D) Approved Vendor Check Status</span>
+						<i class="{{caseData?.Health_Vendor_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+					</div>
+				</div>
+				<div class="row m-t-10">
+					<div class="col-3">
+						<span>(E) Customer Pricelist Check Status</span>
+						<i class="{{caseData?.Health_Customer_Pricelist_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+					</div>
+					<div class="col-3">
+						<span>(F) Vendor Pricelist Check Status</span>
+						<i class="{{caseData?.Health_Pricelist_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+					</div>
+					<div class="col-3">
+						<span>(G) Partner Pricelist on Program Status</span>
+						<i class="{{caseData?.Health_Program_Pricelist__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+					</div>
+					<div class="col-3">
+						<span> (H) Asset SKU matchs Case SKU (Assetsite Case Only</span>
+						<i class="{{caseData?.Health_Asset_Sku_Comparison__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+					</div>
+				</div>
+				<div class="row m-t-10">
+					<div class="col-3">
+						<span>(I) Jobsite Contact (Service Desk) Status</span>
+						<i class="{{caseData?.Health_SDesk_Contact__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+					</div>
+					<div class="col-3">
+						<span>(J) Jobsite Contact (Technical Escalation) Status</span>
+						<i class="{{caseData?.Health_TEsc_Contact__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+					</div>
+					<div class="col-3">
+						<span>(K) SKU Price availability in Pricelist</span>
+						<i class="{{caseData?.Health_SKU_Price_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+					</div>
+				</div>
+			</ng-template>
+		</ngb-panel>
+		<ngb-panel title="Order (PMS Case Details)" id="PMSCaseDetails">
+			<ng-template ngbPanelContent>
+				<ngb-accordion #acc="ngbAccordion" activeIds="caseAccount,caseContact,caseDetails,workOrderLineDetails,salesOrderLineDetails"
+				 [destroyOnHide]="false">
+					<ngb-panel title="(1) Account & Program Information" id="caseAccount">
+						<ng-template ngbPanelContent>
+							<div class="row">
+								<div class="col-2 text-bold">Account Name</div>
+								<div class="col-4">{{caseData?.Account?.Name}}</div>
+								<div class="col-2 text-bold">Program</div>
+								<div class="col-4">{{caseData?.program?.Name}}</div>
+							</div>
+						</ng-template>
+					</ngb-panel>
+					<ngb-panel title="(2) Case Contact" id="caseContact">
+						<ng-template ngbPanelContent>
+							<div class="row">
+								<div class="col-3 text-bold">JobSite/Ship Contact (Name)</div>
+								<div class="col-3">{{caseData?.Ship_to_Contact_Name__c}}</div>
+								<div class="col-3 text-bold">JobSite/Ship Contact (Email Address)</div>
+								<div class="col-3">{{caseData?.Ship_To_Contact_Email_Address__c}}</div>
+							</div>
+							<div class="row m-t-5">
+								<div class="col-3 text-bold"> JobSite/Ship Contact (Phone Number) </div>
+								<div class="col-3">{{caseData?.Ship_to_Contact_Phone_Number__c}} </div>
+								<div class="col-3 text-bold"> JobSite/Ship to Company Name </div>
+								<div class="col-3">{{caseData?.Ship_to_Company_Name__c}}</div>
+							</div>
+						</ng-template>
+					</ngb-panel>
+					<ngb-panel title="(3a) Case Details" id="caseDetails">
+						<ng-template ngbPanelContent>
+							<div class="row">
+								<div class="col-3 text-bold">Case Number</div>
+								<div class="col-3">{{caseData?.CaseNumber}}</div>
+								<div class="col-3 text-bold">Status</div>
+								<div class="col-3">{{caseData?.Status}}</div>
+
+								<div class="col-3 m-t-10 text-bold">Case Origin</div>
+								<div class="col-3 m-t-10">{{caseData?.Origin}}</div>
+								<div class="col-3 m-t-10 text-bold">Case Summary</div>
+								<div class="col-3 m-t-10">{{caseData?.Case_Summary__c}}</div>
+
+								<div class="col-3 m-t-10 text-bold">Case Subject</div>
+								<div class="col-3 m-t-10">{{caseData?.Subject}}</div>
+								<div class="col-3 m-t-10 text-bold">Custom work order instructions</div>
+								<div class="col-3 m-t-10" [innerHTML]="caseData?.Custom_work_order_instructions__c"></div>
+
+								<div class="col-3 m-t-10 text-bold">IRON PMS Case Number</div>
+								<div class="col-3 m-t-10">{{caseData?.Iron_Case_Number__c}}</div>
+								<div class="col-3 m-t-10 text-bold">Partner Case Number</div>
+								<div class="col-3 m-t-10">{{caseData?.Partner_Case_Number__c}}</div>
+
+								<div class="col-3 m-t-10 text-bold" *ngIf="isInternalUser">Case RecordType</div>
+								<div class="col-3 m-t-10" *ngIf="isInternalUser">{{caseData?.RecordType?.Name}}</div>
+								<div class="col-3 m-t-10 text-bold">Work Order#</div>
+								<div class="col-3 m-t-10">{{caseData?.workOrder?.Name}}</div>
+
+								<div class="col-3 m-t-10 text-bold">Jobsite #</div>
+								<div class="col-3 m-t-10">{{caseData?.Jobsite?.Name}}</div>
+								<div class="col-3 m-t-10 text-bold">Jobsite Country</div>
+								<div class="col-3 m-t-10">{{caseData?.Jobsite?.Country__c}}</div>
+
+								<div class="col-3 m-t-10 text-bold">Talent Type</div>
+								<div class="col-3 m-t-10">{{caseData?.talentType?.Name}}</div>
+								<div class="col-3 m-t-10 text-bold">Service Technical Level</div>
+								<div class="col-3 m-t-10">{{caseData?.program?.Service_Technical_Level__c}}</div>
+
+								<div class="col-3 m-t-10 text-bold">Service Dispatch SLA Priority</div>
+								<div class="col-3 m-t-10">{{caseData?.Dispatch_SLA_Priority__c}}</div>
+								<div class="col-3 m-t-10 text-bold" *ngIf="isInternalUser">SKU</div>
+								<div class="col-3 m-t-10" *ngIf="isInternalUser">{{caseData?.product?.Name}}</div>
+							</div>
+						</ng-template>
+					</ngb-panel>
+					<ngb-panel title="Work Order Line Details" id="workOrderLineDetails">
+						<ng-template ngbPanelContent>
+							<app-wo-line-details [woLineData]="workOrderLine"></app-wo-line-details>
+						</ng-template>
+					</ngb-panel>
+					<ngb-panel title="Sales Order Line Details" id="salesOrderLineDetails" *ngIf="isInternalUser">
+						<ng-template ngbPanelContent>
+							<app-so-line-details [soLineData]="salesOrderLine"></app-so-line-details>
+						</ng-template>
+					</ngb-panel>
+				</ngb-accordion>
+			</ng-template>
+		</ngb-panel>
+	</ngb-accordion>
+
+	<div class="text-center">
+		<input class="btn btn-primary mRight" (click)="onClickPrint()" type="button" value="Print">
+		<input class="btn btn-primary" (click)="onClickEmail(emailPop,'lg')" type="button" value="Email">
+		<div *ngIf="message" class="alert m-t-10" [ngClass]="msgClass">
+			{{message}}
+		</div>
+	</div>
+</div>
+
+<ng-template #emailPop let-c="close" let-d="dismiss">
+	<div class="modal-header ">
+		<h3 class="modal-title">Case Email</h3>
+		<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body scroll-vertical740">
+		<p>Enter Email Address</p>
+		<input class="form-control" name="email" [(ngModel)]="txtEmail" email #email="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+		<div [hidden]="email.valid || email.pristine" class="alert-warning">
+			<span [hidden]="!email.hasError('required')">Email is required</span>
+			<span [hidden]="!email.hasError('pattern')">Email format should be
+				<small>
+					<b>test@abc.com</b>
+				</small>
+			</span>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary mRight" [disabled]="!email.valid" (click)="sendMail()">Send Email</button>
+		<button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+	</div>
+</ng-template>

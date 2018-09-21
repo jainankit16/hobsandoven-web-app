@@ -1,0 +1,171 @@
+<div *ngIf="job">
+    <div class="card">
+        <div class="card-header bg-info text-white">
+            <strong>JOB PROGRESS UPDATE TRACKER</strong>
+        </div>
+        <div class="card-body p-t-0" *ngIf="job.statusTracker.length === 0">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="alert alert-warning" role="alert">
+                        No Status Tracker Available for this Job.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-t-0" *ngIf="job.statusTracker.length > 0">
+            <div class="row p-b-5" *ngFor="let status of job.statusTracker">
+                <div class="col-sm-12 text-muted" *ngIf="status.value">
+                    <i class="fa fa-check-circle text-success"></i>
+                    <span>&nbsp;{{status.label}}</span>
+                </div>
+                <div class="col-sm-12 text-muted" *ngIf="!status.value">
+                    <i class="fa fa-times-circle text-danger"></i>
+                    <span>&nbsp;{{status.label}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-2" style="height:auto">
+        <div class="card-header bg-info text-white">
+            <strong>CUSTOMER VISIT PLAN</strong>
+        </div>
+        <div class="card-body p-t-0">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="section-title">Job Summary</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <strong class="text-muted">Job Dispatch Status</strong>
+                    <br/> {{job.Job_Status_Internal__c}}
+                    <br/>
+                    <strong class="text-muted">Worker Expertise Type</strong>
+                    <br/> {{job.Technical_Level__c}}
+                    <br/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="section-title">Worker Information</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <strong class="text-muted">Worker Name</strong>
+                    <br/> {{(job.worker) ? job.worker.Name : ''}}
+                    <br/>
+                    <strong class="text-muted">Worker Phone</strong>
+                    <br/> {{job.Dispatch_Worker_Phone__c}}
+                    <br/>
+                    <strong class="text-muted">Worker Visit Status</strong>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="section-title">Appointment Information</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <strong class="text-muted">Customer Appointment Setup Required</strong>
+                    <br/> {{(job.appointment?.Customer_Appointment_Setup_Required__c == 1) ? 'Yes': "No"}}
+                    <br/>
+                    <strong class="text-muted">Customer Appointment Schedule (Start)</strong>
+                    <br/> {{(job.appointment?.Customer_Appointment_DateTime_Scheduled__c) ? (job.appointment.Customer_Appointment_DateTime_Scheduled__c
+                    | date:'short') : ''}}
+                    <br/>
+                    <strong class="text-muted">Customer Appointment Schedule (End)</strong>
+                    <br/> {{(job.appointment?.Customer_Appointment_Start_Scheduled__c) ? (job.appointment.Customer_Appointment_Start_Scheduled__c
+                    | date:'short') : ''}}
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="section-title">Jobsite Information</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <strong class="text-muted">Location Address</strong>
+                    <br/> {{direction?.destination}}
+                    <br/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="section-title">Jobsite Route</h3>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-12" *ngIf="!job.origin">
+                    <div class="alert alert-warning" role="alert">
+                        <Span>Origin Address is Missing.</Span>
+                    </div>
+                </div>
+                <div class="col-sm-12" *ngIf="!job.destination">
+                    <div class="alert alert-warning" role="alert">
+                        <Span>Destination Address is Missing.</Span>
+                    </div>
+                </div>
+                <div class="col-sm-12" *ngIf="direction?.destination">
+                    <ngui-map zoom="14" center="{{direction.destination}}">
+                        <directions-renderer [draggable]="true" panel="#my-panel" [directions-request]="direction" [suppressMarkers]=false>
+                        </directions-renderer>
+                    </ngui-map>
+                    <div id="my-panel" style="height: 250px; overflow-y: scroll;overflow-x:hidden"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-info text-white">
+            <strong>CONTACT INFORMATION</strong>
+        </div>
+        <div class="card-body p-t-0">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="section-title">Contact Information</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <strong class="text-muted">Customer Name</strong>
+                    <br/> {{job.Jobsite_Contact_Technical_Escalation__c}}
+                    <br/>
+                    <strong class="text-muted">Customer Phone</strong>
+                    <br/> {{job.Jobsite_Contact_SDesk_Name_phone_email__c}}
+                    <br/>
+                    <strong class="text-muted">Customer Help Desk Phone (Escalation 1)</strong>
+                    <br/>
+                    <br/>
+                    <strong class="text-muted">IRON Service Global Help Desk Phone (Escalation 2)</strong>
+                    <br/> 001-408-940-0940
+                    <br/>
+                    <p class="font-italic m-t-15">Please review Summary tab for additional Contact Details</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header bg-info text-white">
+            <strong>PRIVATE INSTRUCTIONS</strong>
+        </div>
+        <div class="card-body p-t-0">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p>{{job.Special_Instruction_from_PMS_Case_Auto__c}}&nbsp;</p>
+                    <p class="font-italic">Please review Instructions tab for important details.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

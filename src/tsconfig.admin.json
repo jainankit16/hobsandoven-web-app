@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/admin",
+    "module": "es2015",
+    "baseUrl": "",
+    "types": []
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts",
+    "msp/*",
+    "community/*",
+    "main.msp.ts",
+    "main.community.ts",
+    "tsconfig.community.json",
+    "tsconfig.msp.json"
+  ]
+}

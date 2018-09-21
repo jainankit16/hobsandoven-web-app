@@ -1,0 +1,751 @@
+<div class="divListView">
+    <!-- left filter panel -->
+    <dashboard-sidebar (notifyDashboard)='fromFilterNotify($event)'></dashboard-sidebar>
+    <!-- contents panel -->
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <!-- Programs -->
+            <div class="row" *ngIf="programsCount > 0">
+                <div class="col-md-12">
+                    <div class="row">
+                        <h2 class="col-md-6">Programs</h2>
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-secondary mRight" (click)="open(program,'xxl')"> View all {{programsCount}} Programs</button>
+                            <button class="btn btn-secondary" *ngIf="isInternalUser" routerLink='/pms/configure/program'>Create a New Program</button>
+                        </div>
+                    </div>
+                    <table class="table color-table info-table">
+                        <thead>
+                            <tr>
+                                <th>Account</th>
+                                <th>Program #</th>
+                                <th>Program Name</th>
+                                <th>Price Book Name</th>
+                                <th>Program Status</th>
+                                <th># of Quotes</th>
+                                <th># of Job Sites</th>
+                                <th>Last Modified Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let program of programs">
+                                <td>{{program.AccountName}}</td>
+                                <td>
+                                    <a href="javascript:void(0);" (click)="openDetailPage(programDetail, 'xxl', program)">{{program.Project__c}}</a>
+                                </td>
+                                <td>{{program.Name}}</td>
+                                <td>
+                                    <a href="javascript:void(0);" (click)="openDetailPage(pricebookdetail, 'xxl', program.PriceBookId)">{{program.PriceBookName}}</a>
+                                </td>
+                                <td>{{program.Status__c}}</td>
+                                <td>{{program.quoteCount}}</td>
+                                <td>{{program.jobsiteCount}}</td>
+                                <td>{{program.updatedAt | date:'shortDate'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <!-- Price Books (Service Catalog (Price List)) -->
+            <div class="row" *ngIf="priceListsCount > 0">
+                <div class="col-md-12">
+                    <div class="row">
+                        <h2 class="col-md-6">Service Catalog (Price List)</h2>
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-secondary" (click)="open(pricebook,'xxl')">View all {{priceListsCount}} Service Catalog (Price List)</button>
+                        </div>
+                    </div>
+                    <table class="table color-table info-table">
+                        <thead>
+                            <tr>
+                                <th>Service Catalog (Price List) Name</th>
+                                <th>Status</th>
+                                <th>Is Standard?</th>
+                                <th>Number of Price List Items</th>
+                                <th>Last Modified Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of priceLists">
+                                <td>
+                                    <a href="javascript:void(0);" (click)="openDetailPage(pricebookdetail, 'xxl', item)">{{item.Name}}</a>
+                                </td>
+                                <td>{{item.IsActive ? 'Active' : item.IsActive == null ? '' : 'Inactive'}}</td>
+                                <td>{{item.IsStandard ? 'Yes' : 'No'}}</td>
+                                <td>{{item.PricelistItems.length}}</td>
+                                <td>{{item.updatedAt | date:'shortDate'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <!-- Quotes -->
+            <div class="row" *ngIf="quotesCount > 0">
+                <div class="col-md-12">
+                    <div class="row">
+                        <h2 class="col-md-6">Quotes</h2>
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-secondary mRight" (click)="open(quote,'xxl')">View all {{quotesCount}} Quotes</button>
+                            <button class="btn btn-secondary" *ngIf="isInternalUser" routerLink='/pms/configure/pricing'>Create a Quote</button>
+                        </div>
+                    </div>
+                    <table class="table color-table info-table">
+                        <thead>
+                            <tr>
+                                <th>Quote Number</th>
+                                <th>Quote Version</th>
+                                <th>Quote Created on</th>
+                                <th>Program #</th>
+                                <th>Program Name</th>
+                                <th># of Job Sites</th>
+                                <th>Quote Currency</th>
+                                <th>Quote Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let quote of quotes">
+                                <td>
+                                    <a href="javascript:void(0);" (click)="openDetailPage(quoteDetail,'xxl',quote)">{{quote.Name}}</a>
+                                </td>
+                                <td>{{quote.Quote_Version__c}}</td>
+                                <td>{{quote.createdAt | date:'shortDate'}}</td>
+                                <td>
+                                    <a href="javascript:void(0);" (click)="openDetailPage(programDetail,'xxl',quote.Project.sfdcId)">{{quote.Project?.Project__c}}</a>
+                                </td>
+                                <td>{{quote.Program}}</td>
+                                <td>{{quote.Jobsites}}</td>
+                                <td>{{quote.CurrencyIsoCode}}</td>
+                                <td>{{quote.Total_Amount__c}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <!-- Work Orders -->
+            <div class="row" *ngIf="workOrdersCount > 0">
+                <div class="col-md-12">
+                    <div class="row">
+                        <h2 class="col-md-6">Work Orders</h2>
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-secondary mRight" routerLink="./service-manager/orders-list" [queryParams]="{'q': 'w'}">View all {{workOrdersCount}} Work Orders</button>
+                            <button class="btn btn-secondary" *ngIf="isInternalUser" routerLink='/pms/configure/schedule'>Create a Work Order</button>
+                        </div>
+                    </div>
+                    <table class="table color-table info-table">
+                        <thead>
+                            <tr>
+                                <th>Work Order Number</th>
+                                <th>Work Order Created Date</th>
+                                <th>PMS Case Number</th>
+                                <th>PMS Case Status</th>
+                                <th>Program #</th>
+                                <th>Program Name</th>
+                                <th>Job Site</th>
+                                <th>Work Order Amount</th>
+                                <th>Work Order Start Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let workOrder of workOrders">
+                                <td>
+                                    <a href="javascript:void(0);" (click)="openDetailPage(workorderdetail,'xxl',workOrder)">{{workOrder.Name}}</a>
+                                </td>
+                                <td>{{workOrder.createdAt | date:'shortDate'}}</td>
+                                <td>{{workOrder.Case?.Partner_Case_Number__c}}</td>
+                                <td>{{workOrder.Status__c}}</td>
+                                <td>
+                                    <a href="javascript:void(0);" (click)="openDetailPage(programDetail,'xxl',workOrder.program.sfdcId)">{{workOrder.program?.Project__c}}</a>
+                                </td>
+                                <td>{{workOrder.program?.Name}}</td>
+                                <td>{{workOrder.JobsiteProject?.Name}}</td>
+                                <td>{{workOrder.Total_Amount__c | number:'1.2-2'}}</td>
+                                <td>{{workOrder.Work_Order_Start_Date_Time__c | date:'shortDate'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <!-- Cases -->
+            <div class="row" *ngIf="casesCount > 0">
+                <div class="col-md-12">
+                    <div class="row">
+                        <h2 class="col-md-6">Cases</h2>
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-secondary mRight" routerLink="./service-manager/orders-list" [queryParams]="{'q': 'c'}">View all {{casesCount}} Cases</button>
+                            <button class="btn btn-secondary" routerLink='/pms/custom-case/create'>Create a Case</button>
+                        </div>
+                    </div>
+                    <table class="table color-table info-table">
+                        <thead>
+                            <tr>
+                                <th>Case Number</th>
+                                <th>Case Type</th>
+                                <th>Case Created Date</th>
+                                <th>Program #</th>
+                                <th>Program Name</th>
+                                <th>Jobsite Name</th>
+                                <th>Case Status</th>
+                                <th>Dispatch Service Resolution Status - FSE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let case of cases">
+                                <td>
+                                    <a href="javascript:void(0);" (click)="openDetailPage(casedetail,'xxl',case)">{{case.CaseNumber}}</a>
+                                </td>
+                                <td>{{case.Type}}</td>
+                                <td>{{case.createdAt | date:'shortDate'}}</td>
+                                <td>
+                                    <a href="javascript:void(0);" (click)="openDetailPage(programDetail,'xxl',case.program.sfdcId)">{{case.program?.Project__c}}</a>
+                                </td>
+                                <td>{{case.program?.Name}}</td>
+                                <td>{{case.Jobsite?.Name}}</td>
+                                <td>{{case.Status}}</td>
+                                <td>{{case.Dispatch_Service_Resolution_Status__c}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <!-- Jobsites -->
+            <div class="row" *ngIf="jobsitesCount > 0">
+                <div class="col-md-12">
+                    <div class="row">
+                        <h2 class="col-md-6">Jobsites</h2>
+                        <div class="col-md-6 text-right">
+                            <!-- <button class="btn btn-secondary" (click)="open(jobsite,'xxl')">View all {{jobsitesCount}} Jobsites</button> -->
+                            <button class="btn btn-secondary" routerLink='/pms/jobsite-setup'>All Jobsites (Number of Jobsites : {{jobsitesCount}})</button>
+                            <!-- <button class="btn btn-secondary" routerLink='/pms/jobsite-setup'>Create a Jobsite</button> -->
+                        </div>
+                    </div>
+                    <table class="table color-table info-table">
+                        <thead>
+                            <tr>
+                                <th>Jobsite ID</th>
+                                <th>Jobsite Name</th>
+                                <th>Service Zone</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Zip Code</th>
+                                <th>Country</th>
+                                <th>Jobsite Status</th>
+                                <th>Jobsite Key Contact</th>
+                                <th>Technical Escalation</th>
+                                <th>Service Desk</th>
+                                <th>Admin Escalation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let jobsite of jobsites">
+                                <td>
+                                    <a href="javascript:void(0);" (click)="openDetailPage(jobsitedetail,'xxl',jobsite)">{{jobsite.Jobsite_ID__c}}</a>
+                                </td>
+                                <td>{{jobsite.Name}}</td>
+                                <td>{{jobsite.GeoMetro?.Name}}</td>
+                                <td>{{jobsite.Street__c | comma}}{{jobsite.City__c | comma}}{{jobsite.State__c | comma}}{{jobsite.Country__c | comma}}{{jobsite.Zip__c | comma}}</td>
+                                <td>{{jobsite.City__c}}</td>
+                                <td>{{jobsite.State__c}}</td>
+                                <td>{{jobsite.Zip__c}}</td>
+                                <td>{{jobsite.Country__c}}</td>
+                                <td>{{jobsite.Jobsite_Status__c}}</td>
+                                <td>{{jobsite.jobsiteKeyContact?.LastName}}</td>
+                                <td>{{jobsite.Count_of_Technical_Escalation_Contacts__c}}</td>
+                                <td>{{jobsite.Count_of_Service_Desk_Contacts__c}}</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+
+            <!-- Sales Orders -->
+            <div class="row" *ngIf="salesOrdersCount > 0">
+                <div class="col-md-12">
+                    <div class="row">
+                        <h2 class="col-md-6">Sales Order</h2>
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-secondary" (click)="open(salesOrder,'xxl')">View all {{salesOrdersCount}} Sales Orders</button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table color-table info-table">
+                            <thead>
+                                <tr>
+                                    <th>Sales Order Number</th>
+                                    <th>Sales Order Start Date</th>
+                                    <th>Currency</th>
+                                    <th>Count of Line Items (SO)</th>
+                                    <th>PPE Hours (SO)</th>
+                                    <th>PPE Hour(s) Price (SO)</th>
+                                    <th>Hours per Visit (Overage)</th>
+                                    <th>Total Visit Hours Ref (Overage)</th>
+                                    <th>Total Visit Hours Ref (PPE + Overage)</th>
+                                    <th>TM Hourly Price (Overage)</th>
+                                    <th>Helpdesk Price</th>
+                                    <th>VAT %</th>
+                                    <th>VAT Amount</th>
+                                    <th>Total Sales Order Amt Ref</th>
+                                    <th>Total Sales Order Amt Ref (Open)</th>
+                                    <th>Sales Order Closed Date</th>
+                                    <th>Total Invoice Amt Ref (Billed)</th>
+                                    <th>Total Invoice Hours Ref (Billed)</th>
+                                    <th>Visit Hours Approval Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let salesOrder of salesOrders">
+                                    <td width="150">
+                                        <a href="javascript:void(0);" (click)="openDetailPage(saleorderdetail,'xxl',salesOrder)">{{salesOrder.Sales_Order_Number__c}}</a>
+                                    </td>
+                                    <td>{{salesOrder.Sales_Order_Start_Date__c | date:'shortDate'}}</td>
+                                    <td>{{salesOrder.CurrencyIsoCode}}</td>
+                                    <td>{{salesOrder.Count_of_Order_Items__c}}</td>
+                                    <td>{{salesOrder.SO_PPE_Hours__c | number:'1.2-2'}}</td>
+                                    <td>{{salesOrder.SO_PPE_Hours_Price__c | number:'1.2-2'}}</td>
+                                    <td>{{salesOrder.SO_Additional_Hours__c| number:'1.2-2'}}</td>
+                                    <td>{{salesOrder.Vendor_Time_Card_Total_Hours_All_Visits__c| number:'1.2-2'}}</td>
+                                    <td>{{salesOrder.SO_Already_Invoiced_Hours__c| number:'1.2-2'}}</td>
+                                    <td>{{salesOrder.SO_Roll_up_Additional_Rate__c| number:'1.2-2'}}</td>
+                                    <td>{{salesOrder.Roll_up_helpdesk_Price__c| number:'1.2-2'}}</td>
+                                    <td>{{salesOrder.Roll_up_VAT__c| number:'1.2-2'}}</td>
+                                    <td>{{salesOrder.Actual_VAT_Tax__c | number:'1.2-2'}}</td>
+                                    <td>{{salesOrder.SO_Already_Invoiced_Amount__c| number:'1.2-2'}}</td>
+                                    <td>{{salesOrder.Total_Un_Invoiced_Amount__c| number:'1.2-2'}}</td>
+                                    <td>{{salesOrder.Sales_Order_End_Date__c | date:'EE MMMM d h:mm:ss zzzz y'}}</td>
+                                    <td>{{salesOrder.SO_Already_Invoiced_Amount__c| number:'1.2-2'}}</td>
+                                    <td>{{salesOrder.SO_Already_Invoiced_Hours__c| number:'1.2-2'}}</td>
+                                    <td>{{salesOrder.Roll_up_Timecard_s_IRON_Approval_Status__c}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!-- Timecards -->
+            <div class="row" *ngIf="timecardsCount > 0">
+                <div class="col-md-12">
+                    <div class="row">
+                        <h2 class="col-md-6">Timecard</h2>
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-secondary" (click)="open(timecard,'xxl')">View all {{timecardsCount}} Timecards</button>
+                        </div>
+                    </div>
+                    <table class="table color-table info-table">
+                        <thead>
+                            <tr>
+                                <th>Timecard #</th>
+                                <th>Visit Number</th>
+                                <th>Final Visit?</th>
+                                <th>Customer Sign-off Name (POD)</th>
+                                <th>Dispatch Service Resolution Status - FSE</th>
+                                <th>Worker Name</th>
+                                <th>Visit Task(s) Performed</th>
+                                <th>Visit Oberservation/Suggestion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let timecard of timecards">
+                                <td>
+                                    <a href="javascript:void(0);" (click)="openDetailPage(timecardDetail,'xl',timecard)">{{timecard.timecard.Name}}</a>
+                                </td>
+                                <td>{{timecard.Total_Visit_Hours__c}}</td>
+                                <td>{{timecard.Timecard_Received_Final__c}}</td>
+                                <td>{{timecard.Vendor_Timecard_Cust_Site_Sign_off_Name__c}}</td>
+                                <td>{{timecard.Job_Status__c}}</td>
+                                <td>{{timecard.Job_Worker__c}}</td>
+                                <td>{{timecard.Vendor_Time_Card_Notes_Tasks_Performed__c}}</td>
+                                <td>{{timecard.Vendor_Time_Card_Observation_Suggestion__c}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <!-- Invoices -->
+            <div class="row" *ngIf="invoicesCount > 0">
+                <div class="col-md-12">
+                    <div class="row">
+                        <h2 class="col-md-6">Invoice</h2>
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-secondary" (click)="open(invoice,'xxl')">View all {{invoicesCount}} Invoices</button>
+                        </div>
+                    </div>
+                    <table class="table color-table info-table">
+                        <thead>
+                            <tr>
+                                <th>Sales Invoice Number</th>
+                                <th>Currency</th>
+                                <th>Invoice Amount</th>
+                                <th>Invoice Amount (Paid)</th>
+                                <th>Balance Invoice Amount</th>
+                                <th>Invoice Due Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let invoice of invoices">
+                                <td>
+                                    <a href="javascript:void(0);" (click)="openDetailPage(invoicedetail,'xl',invoice)">{{invoice.Name}}</a>
+                                </td>
+                                <td>{{invoice.CurrencyIsoCode}}</td>
+                                <td>{{invoice.Amount__c | number:'1.2-2'}}</td>
+                                <td>{{invoice.Total_Paid__c | number:'1.2-2'}}</td>
+                                <td>{{invoice.Balance__c | number:'1.2-2'}}</td>
+                                <td>{{invoice.Due_Date__c | date:'shortDate'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <!-- Payments -->
+            <div class="row" *ngIf="paymentsCount > 0">
+                <div class="col-md-12">
+                    <div class="row">
+                        <h2 class="col-md-6">Payment</h2>
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-secondary" (click)="open(payment,'xxl')">View all {{paymentsCount}} Payments</button>
+                        </div>
+                    </div>
+                    <table class="table color-table info-table">
+                        <thead>
+                            <tr>
+                                <th>Payment #</th>
+                                <th>Local Currency Payment Amount</th>
+                                <th>Method of Payment</th>
+                                <th>Payment Date</th>
+                                <th>Payment Status</th>
+                                <th>Currency</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr *ngFor="let payment of payments">
+                                <td>
+                                    <a href="javascript:void(0);" (click)="openDetailPage(paymentdetail,'xl',payment)">{{payment.Name}}</a>
+                                </td>
+                                <td>{{payment.Amount__c}}</td>
+                                <td>{{payment.Method_of_Payment__c}}</td>
+                                <td>{{payment.Payment_Date__c | date: 'shortDate'}}</td>
+                                <td>{{payment.Payment_Status__c}}</td>
+                                <td>{{payment.CurrencyIsoCode}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- programs -->
+<ng-template #program let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">All Programs</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <project-list-modal></project-list-modal>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- jobsites -->
+<ng-template #jobsite let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">All Jobsite</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <jobsite-list-modal></jobsite-list-modal>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- quotes -->
+<ng-template #quote let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">All Quotes</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <quote-list-modal></quote-list-modal>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- workorders -->
+<ng-template #workorder let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">All Work Order</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <workorder-list-modal></workorder-list-modal>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- pricebooks -->
+<ng-template #pricebook let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">All Price Book</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <pricebook-list-modal></pricebook-list-modal>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- cases -->
+<ng-template #case let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">All Cases</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <case-list-modal></case-list-modal>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- salesorders -->
+<ng-template #salesOrder let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">All Sales Orders</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <sales-order-list-modal></sales-order-list-modal>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- invoices -->
+<ng-template #invoice let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">All Invoices</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <invoice-list-modal></invoice-list-modal>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- payments -->
+<ng-template #payment let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">All Payment</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <payment-list-modal></payment-list-modal>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- timecards -->
+<ng-template #timecard let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">All Timecards</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <timecard-list-modal></timecard-list-modal>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+
+
+<!-- program details -->
+<ng-template #programDetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Project Detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+        <program-detail [program]="contentData"></program-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- quote details -->
+<ng-template #quoteDetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Quote Manager Detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <quote-detail [quote]="contentData"></quote-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- work order details -->
+<ng-template #workorderdetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Work Order Detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <workorder-detail [workorder]="contentData"></workorder-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- pricebook details -->
+<ng-template #pricebookdetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Price Book Detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <pricebook-detail [pricebook]="contentData"></pricebook-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- case details -->
+<ng-template #casedetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Case Detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body  scroll-vertical740">
+        <case-detail [case]="contentData"></case-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- jobsite details -->
+<ng-template #jobsitedetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Manage Jobsite</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+        <jobsite-detail [jobsite]="contentData"></jobsite-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- sales order details -->
+<ng-template #saleorderdetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Sales Order Detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <salesorder-detail [saleOrder]="contentData"></salesorder-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- invoice details -->
+<ng-template #invoicedetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Invoice Detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <invoice-detail [invoice]="contentData"></invoice-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+
+<!-- payments -->
+<ng-template #paymentdetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Payment Detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <payment-detail [payment]="contentData"></payment-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+
+<!-- time details -->
+<ng-template #timecardDetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Timecard Detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+        <timecard-detail [TimeCardData]="contentData"></timecard-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>

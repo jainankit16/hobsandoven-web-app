@@ -1,0 +1,40 @@
+<div class="modal-body">
+    <alert></alert>
+    <!-- <div *ngIf="error" class="alert alert-info alert-dismissable">
+                    {{error}}
+            </div>  -->
+    <form novalidate [formGroup]="userSkillForm" (ngSubmit)="manageSkill()" class="form-horizontal form-material">
+        <div class="col-md-6 float-left">
+            <div class="form-group">
+                <h3>Manage Skill</h3>
+                <div style="overflow-y:scroll; height:400px">
+                    <div class="col-sm-12 m-t-15" *ngFor="let skill of skillLists ;let i=index">
+                        <div class="checkbox">
+                            <input type="checkbox" name="SkillId" id="check{{i}}" (change)="setSkillID(skill.id, $event.target.checked)" [attr.checked]="skill.isChecked==true ? true : null">
+                            <label for="check{{i}}"> {{skill.Name}} </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 m-b-20">
+                <input type="submit" class="btn btn-info" value="Submit" [disabled]="!userSkillForm.valid">
+            </div>
+        </div>
+    </form>
+    <form novalidate [formGroup]="addSkillForm" (ngSubmit)="addSkill()" class="form-horizontal form-material">
+        <div class="col-md-6 float-right">
+            <h3>Add Skill</h3>
+            <div class="col-sm-12 m-t-15">
+                <div class="form-group" [ngClass]="{'has-danger': addSkillForm.controls['Name'].invalid && addSkillForm.controls['Name'].touched}">
+                    <label>Name</label>
+                    <input class="form-control" formControlName="Name">
+                    <i>* Add skill if not listed under Manage Skill</i>
+                    <div class="form-control-feedback text-danger" *ngIf="addSkillForm.get('Name').invalid && addSkillForm.get('Name').touched">Name is required</div>
+                </div>
+            </div>
+            <div class="col-sm-12 m-b-20">
+                <input type="submit" class="btn btn-info" value="Add New Skill" [disabled]="!addSkillForm.valid">
+            </div>
+        </div>
+    </form>
+</div>

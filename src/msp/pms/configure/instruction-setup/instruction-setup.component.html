@@ -1,0 +1,87 @@
+<ngb-accordion #acc="ngbAccordion" activeIds="select-program,pre-selected-jobsites,global-program-instructions,jobsite-instructions,jobsite-contact-information,files"
+    [destroyOnHide]="false">
+    <!--Select Program type start here-->
+    <ngb-panel id="select-program" title="(1) Select Program">
+        <ng-template ngbPanelContent>
+            <div class="col-md-12">
+                <div *ngIf="successMsg !='' " class="alert alert-success m-t-5">
+                    {{successMsg}}
+                </div>
+
+                <select-program></select-program>
+            </div>
+        </ng-template>
+    </ngb-panel>
+
+    <!--Select Pre Select Job Sites type start here-->
+    <ngb-panel id="pre-selected-jobsites" title="(2) Pre-selected Jobsites" *ngIf="ProgramIstrue">
+        <ng-template ngbPanelContent>
+            <div class="col-md-12">
+                <selected-jobsites></selected-jobsites>
+            </div>
+        </ng-template>
+    </ngb-panel>
+     <!--Global Program Instructions start here-->
+     <ngb-panel id="global-program-instructions" title="" *ngIf="ProgramIstrue">
+        <ng-template ngbPanelContent>
+            <div class="col-md-12">
+               
+                <hr/>
+                <label>Global Program Instructions Setup (All Jobsites)- Service Deliverable List</label>
+                <br>
+                <textarea [(ngModel)]="serviceDeliverables" class="form-control"></textarea>
+                <br>
+                <label>Global Program Instructions Setup (All Jobsites) - Training Documents</label>
+                <br>
+                <textarea [(ngModel)]="trainingDocuments" class="form-control"></textarea>
+                <br>
+                <label>Global Program Instructions Setup (All Jobsites) - Required Tools</label>
+                <br>
+                <textarea [(ngModel)]="recquiredTools" class="form-control"></textarea>
+                <br>
+            </div>
+        </ng-template>
+    </ngb-panel>
+    <!-- Job Site Instructions-->
+    <ngb-panel id="jobsite-instructions" title="(3) Jobsite Project" *ngIf="ProgramIstrue">
+        <ng-template ngbPanelContent>
+            <div class="col-md-12">
+                <jobsite-instructions [jobSiteInstructions]="jobSiteInstructions" *ngIf="jobSiteInstructions.length > 0"></jobsite-instructions>
+            </div>
+        </ng-template>
+    </ngb-panel>
+    <!-- Job Site contact Info -->
+    <ngb-panel id="jobsite-contact-information" title="(4) Jobsite Contact information" *ngIf="ProgramIstrue">
+        <ng-template ngbPanelContent>
+            <div class="col-md-12">
+                <jobsite-contact-info [jobsiteContacts]="jobsiteContacts" *ngIf="jobsiteContacts.length > 0"></jobsite-contact-info>
+            </div>
+        </ng-template>
+    </ngb-panel>
+    <!-- Files   -->
+    <ngb-panel id="files" title="(5) Files" *ngIf="ProgramIstrue">
+        <ng-template ngbPanelContent>
+            <jobsite-files></jobsite-files>
+        </ng-template>
+    </ngb-panel>
+
+
+</ngb-accordion>
+<!--End here-->
+<br/>
+<!--Bind all footer button start here-->
+<div class="row button-box">
+    <div *ngIf="errorMsg !=''" class="col-lg-12 ">
+        <div class="alert alert-warning">
+            {{errorMsg}}
+        </div>
+    </div>
+    <div class="col-lg-6 text-left">
+        <button type="button" class="btn btn-success" [disabled]="(!ProgramIstrue) || selectedJobsites.length == 0" (click)="saveInstructions('save')">Save Instructions</button>
+    </div>
+    <div class="col-lg-6 text-right">
+        <button type="submit" (click)="goBack()" class="btn btn-primary mRight">&laquo; Previous </button>
+        <button type="submit" [disabled]="(!ProgramIstrue) || selectedJobsites.length == 0" class="btn btn-primary" (click)="saveInstructions('next')">Next &raquo;</button>
+    </div>
+</div>
+<!--End here-->

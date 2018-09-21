@@ -1,0 +1,25 @@
+<div class="row" *ngIf="headTitle">
+    <div class="col-md-12">
+        <div class="headermsg">
+            <b>{{headTitle}}</b>
+        </div>
+
+    </div>
+    <br>
+</div>
+<div class="card m-t-0" *ngIf="isLoadProgressBar">
+    <div class="card-content">
+        <div class="tab-wizard wizard-circle wizard clearfix">
+            <div class="steps clearfix">
+                <ul class="clearfix bootstrapWizard form-wizard" role="tablist">
+                    <li role="tab" *ngFor="let item of wizardsteparr; index as i" (click)="navigate(item)" [ngClass]="{'current': active==i+1? true : false,'done':active>i+1? true : false}">
+                        <a href="javascript:;">
+                            <span class="step">{{i+1}}</span>
+                            <span class="title">{{item.name}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

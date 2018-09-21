@@ -1,0 +1,95 @@
+<ngb-accordion #acc="ngbAccordion" activeIds="jobSummary, workerInformation, appointmentInformation, contactInformation"
+    [destroyOnHide]="false">
+    <ngb-panel title="Job Summary" id="jobSummary">
+        <ng-template ngbPanelContent>
+            <div class="row">
+                <div class="col-6 font-weight-bold">Job Dispatch Status:</div>
+                <div class="col-6">{{summaryStatus?.jobInfo?.jobDispatchStatus}}</div>
+            </div>
+
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Worker Expertise Type:</div>
+                <div class="col-6">{{summaryStatus?.jobInfo?.workerExpertiseType}}</div>
+            </div>
+        </ng-template>
+    </ngb-panel>
+    <br>
+    <ngb-panel title="Worker Information" id="workerInformation">
+        <ng-template ngbPanelContent>
+            <div class="row">
+                <div class="col-6 font-weight-bold">Worker Name:</div>
+                <div class="col-6">{{summaryStatus?.workerInfo?.workerName}}</div>
+            </div>
+
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Worker Phone:</div>
+                <div class="col-6">{{summaryStatus?.workerInfo?.workerPhone}}</div>
+            </div>
+
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Worker Visit Status:</div>
+                <div class="col-6">{{summaryStatus?.workerInfo?.workerVisitStatus}}</div>
+            </div>
+        </ng-template>
+    </ngb-panel>
+    <br>
+
+    <ngb-panel title="Appointment Information" id="appointmentInformation">
+        <ng-template ngbPanelContent>
+            <div class="row">
+                <div class="col-6 font-weight-bold">Worker Arrival DateTime (Cust Requested):</div>
+                <div class="col-6">{{summaryStatus?.appointmentInfo?.workerArrivalDateTimeCR | date:'short'}}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Customer Appointment DateTime(Scheduled):</div>
+                <div class="col-6">{{summaryStatus?.appointmentInfo?.CustAppointmentDTScheduledC | date:'short'}}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Worker Arrival DateTime (Scheduled) :</div>
+                <div class="col-6">{{summaryStatus?.appointmentInfo?.workerArrivalDTScheduledC | date:'short'}}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Worker End DateTime (Scheduled):</div>
+                <div class="col-6">{{summaryStatus?.appointmentInfo?.workerEndDTScheduledC | date:'short'}}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Worker Arrival Date/Time (Actual):</div>
+                <div class="col-6">{{summaryStatus?.appointmentInfo?.Worker_Arrival_Date_Time_Actual__c | date:'short'}}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Worker Finish Date/Time (Actual) :</div>
+                <div class="col-6">{{summaryStatus?.appointmentInfo?.Worker_Finish_Date_Time_Actual__c | date:'short'}}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Worker InProgress Start DateTime(Actual):</div>
+                <div class="col-6">{{summaryStatus?.appointmentInfo?.Worker_InProgress_Start_DateTime_Actual__c | date:'short'}}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Worker Departure DateTime(Actual):</div>
+                <div class="col-6">{{summaryStatus?.appointmentInfo?.Worker_Departure_Date_Time_Actual__c | date:'short'}}</div>
+            </div>
+        </ng-template>
+    </ngb-panel>
+    <br>
+
+    <ngb-panel title="Contact Information" id="contactInformation">
+        <ng-template ngbPanelContent>
+            <div class="row">
+                <div class="col-6 font-weight-bold">Customer Name:</div>
+                <div class="col-6">{{summaryStatus?.contactInfo?.customerName }}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Customer Phone:</div>
+                <div class="col-6">{{summaryStatus?.contactInfo?.customerPhone }}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Customer Help Desk Phone (Escalation 1):</div>
+                <div class="col-6"></div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold"> IRON Service Global Help Desk Phone (Escalation 2):</div>
+                <div class="col-6"></div>
+            </div>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>

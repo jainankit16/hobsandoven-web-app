@@ -1,0 +1,27 @@
+<div>
+    <div class="container-fluid containerWidth">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <top-progress-bar (isFirstStep)="isFirstStep($event)"></top-progress-bar>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3" *ngIf="!isServiceSetup">
+                <div class="row">
+                    <div class="table-wrapper-top-Account" (scroll)="onWindowsScrollTop1()">
+                        <div class="scroll-top-Account" [style.width]="calulatedWidthForScroll1"> </div>
+                    </div>
+                    <div class="table-wrapper-bottom-Account" (scroll)="onWindowsScrollBottom1()">
+                        <left-tab-content (scrollWidth)="scrollWidth($event)"></left-tab-content>
+                    </div>
+                </div>
+            </div>
+            <div [ngClass]="{'col-md-12': isServiceSetup, 'col-md-6': !isServiceSetup}">
+                <router-outlet></router-outlet>
+            </div>
+            <div class="col-md-3" *ngIf="!isServiceSetup">
+                <app-right-content></app-right-content>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,145 @@
+<ngb-accordion #acc="ngbAccordion" activeIds="listJobSites, selectedJobsite" *ngIf="jobsiteLocations && jobsiteLocations.length"
+    [destroyOnHide]="false">
+    <ngb-panel id="listJobSites" title="List of all available Jobsites">
+        <ng-template ngbPanelContent>
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link" (click)="filterJobLocation('Active')" [class.active]="getActiveNavBarStatus('Active')" href="javascript:;">Active</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="filterJobLocation('Passive')" [class.active]="getActiveNavBarStatus('Passive')" href="javascript:;">Passive</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="filterJobLocation('Archived')" [class.active]="getActiveNavBarStatus('Archived')" href="javascript:;">Archived</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="filterJobLocation('All')" [class.active]="getActiveNavBarStatus('All')" href="javascript:;">All</a>
+                </li>
+            </ul>
+            <br/>
+            <div class="table-responsive scroll-div">
+                <table class="table color-table info-table">
+                    <thead>
+                        <tr>
+                            <th>Select</th>
+                            <th>Edit</th>
+                            <th>Program#</th>
+                            <th>Jobsite#</th>
+                            <th>Country</th>
+                            <th>City</th>
+                            <th>Address</th>
+                            <th>Service Zone</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="!errorMessage">
+                        <tr *ngFor="let jobLoc of filteredJL, let i = index">
+                            <td>
+                                <input [id]="'jobL' + i" [name]="'jobL' + i" type="checkbox" [checked]="isChecked(jobLoc.Jobsite_ID__c)" [disabled]="isChecked(jobLoc.Jobsite_ID__c)"
+                                    (change)="toggleSelection($event)" [value]="jobLoc.Jobsite_ID__c">
+                                <label [for]="'jobL' + i"></label>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0);" style="cursor: pointer;" (click)="openDetailPage(jobsitedetail,'xl',jobLoc)">Edit</a>
+                            </td>
+                            <td>{{programID}}</td>
+                            <td>{{jobLoc.Jobsite_ID__c}}</td>
+                            <td>{{jobLoc.Country__c}}</td>
+                            <td>{{jobLoc.City__c}}</td>
+                            <td>{{jobLoc.Street__c}}</td>
+                            <td>{{jobLoc?.GeoMetro?.Name}}</td>
+                            <td>{{jobLoc.Jobsite_Status__c}}</td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="errorMessage">
+                        <tr class="alert alert-warning m-t-5">
+                            <td colspan="9">
+                                <p>
+                                    {{errorMessage}}
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </ng-template>
+    </ngb-panel>
+    <br>
+    <ngb-panel id="selectedJobsite" title="Selected Jobsites" *ngIf="this.selectedjoblist && this.selectedjoblist.length">
+        <ng-template ngbPanelContent>
+            <div class="pull-right">
+                <span class="text-primary expanded-view">
+                    <a href="javascript:void(0);" (click)="openExpandedViewModal(expandedViewTemplate, 'lg', false)">Expanded View</a>
+                </span>
+            </div>
+            <selected-jobsites></selected-jobsites>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>
+<ng-template #jobsitedetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Manage Jobsite</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+        <jobsite-detail [jobsite]="contentData"></jobsite-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+
+<!-- Jobsite expanded view modal -->
+<ng-template #expandedViewTemplate let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Selected Jobsite</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table color-table info-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Program #</th>
+                            <th>Jobsite #</th>
+                            <th>Jobsite Name</th>
+                            <th>Country</th>
+                            <th>State</th>
+                            <th>Zip</th>
+                            <th>City</th>
+                            <th>Street</th>
+                            <th>Job Description</th>
+                            <th>Service Zone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let jobLoc of selectedJobsiteModal, let i = index">
+                            <td>{{i +1}}</td>
+                            <td>{{programID}}</td>
+                            <td>{{jobLoc.Jobsite?.Jobsite_ID__c}}</td>
+                            <td>{{jobLoc.Jobsite?.Name}}</td>
+                            <td>{{jobLoc.Jobsite?.Country__c}}</td>
+                            <td>{{jobLoc.Jobsite?.State__c}}</td>
+                            <td>{{jobLoc.Jobsite?.Zip__c}}</td>
+                            <td>{{jobLoc.Jobsite?.City__c}}</td>
+                            <td>{{jobLoc.Jobsite?.Street__c}}</td>
+                            <td>{{jobLoc.Jobsite?.Jobsite_Description__c}}</td>
+                            <td>{{jobLoc.Jobsite?.GeoMetro?.Name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default mRight" (click)="exportToCsv()">Export</button>
+        <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- Jobsite expanded view modal Ends -->

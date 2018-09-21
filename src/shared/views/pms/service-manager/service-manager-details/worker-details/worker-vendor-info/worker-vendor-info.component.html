@@ -1,0 +1,49 @@
+<div class="m-t-10">
+    <ngb-accordion #acc="ngbAccordion" activeIds="vendorInfo">
+        <ngb-panel id="vendorInfo" title="Vendor Info">
+            <ng-template ngbPanelContent>
+                <div class="row">
+                    <div class="col-3">
+                        <label>Vendor Name:</label>
+                    </div>
+                    <div class="col-3">{{vendorInfo?.worker?.vendorsite?.Account?.Name}}</div>
+
+                    <div class="col-3">
+                        <label>Service Global Account Name:</label>
+                    </div>
+                    <div class="col-3">{{vendorInfo?.worker?.vendorsite?.Account?.Webcase_Account_Name__c}}</div>
+
+                    <div class="col-3 m-t-10">
+                        <label>Service Global Account ID:</label>
+                    </div>
+                    <div class="col-3 m-t-10">{{vendorInfo?.worker?.vendorsite?.Account?.Service_Global_Ref__c}}</div>
+
+                    <div class="col-3 m-t-10">
+                        <label>Default Pricelist:</label>
+                    </div>
+                    <div class="col-3 m-t-10">{{vendorInfo?.worker?.vendorsite?.Account?.pricelist?.Name}}</div>
+
+                    <div class="col-3 m-t-10">
+                        <label>Shipping Street:</label>
+                    </div>
+                    <div class="col-3 m-t-10">{{vendorInfo?.worker?.vendorsite?.Account?.ShippingStreet}}</div>
+
+                    <div class="col-3 m-t-10">
+                        <label>Shipping City:</label>
+                    </div>
+                    <div class="col-3 m-t-10">{{vendorInfo?.worker?.vendorsite?.Account?.ShippingCity}}</div>
+
+                    <div class="col-3 m-t-10">
+                        <label>Shipping State:</label>
+                    </div>
+                    <div class="col-3 m-t-10">{{vendorInfo?.worker?.vendorsite?.Account?.ShippingState}}</div>
+
+                    <div class="col-3 m-t-10">
+                        <label>Shipping Country:</label>
+                    </div>
+                    <div class="col-3 m-t-10">{{vendorInfo?.worker?.vendorsite?.Account?.ShippingCountry}}</div>
+                </div>
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
+</div>

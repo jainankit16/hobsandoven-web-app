@@ -1,0 +1,376 @@
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-6">
+                <h3 class="text-themecolor"> {{headerTxt}} </h3>
+            </div>
+            <div class="col-6 text-right">
+                <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" [routerLink]="['/pms/user-management']" class="btn btn-primary mRight">
+                    <span class="fa fa-arrow-left"></span> Back to user list</a>
+                <button *ngIf="viewMode === 'view'" class="btn btn-primary" (click)="onEditClick()">
+                    <span class="fa fa-edit"></span> Edit</button>
+            </div>
+        </div>
+        <form #userForm="ngForm" [formGroup]="registrationForm" (ngSubmit)="onClickSave()" class="form-material" name='userForm'>
+            <ngb-accordion #acc="ngbAccordion" activeIds="userId,funcationalId,departmentId,teamId,regionalId,workshiftId,programId"
+                [destroyOnHide]="false">
+
+                <ngb-panel title="User Information" id="userId">
+                    <ng-template ngbPanelContent>
+                        <!-- Account ID & Name -->
+                        <div class="row">
+                            <div class="col-6" *ngIf="currentAccessType === 'internal'">
+                                <span class="font-weight-bold">Account
+                                    <span class="text-danger">*</span>
+                                </span>
+                                <select formControlName="account_Type" class="form-control" (change)="onAccountChanged($event)">
+                                    <option Value="" selected="true">--None--</option>
+                                    <option *ngFor="let account of modelList.account" [value]="account.sfdcId">{{account.Name}}</option>
+                                </select>
+                                <small *ngIf="formErrors.account_Type" class="help-block text-danger">{{ formErrors.account_Type }}</small>
+                            </div>
+                            <div class="col-6" *ngIf="currentAccessType !== 'internal'">
+                                <div class="row">
+                                    <label class="form-group col-md-4 font-weight-bold">Account</label>
+                                    <div class="col-md-8 ">{{selectedAccount?.Name}}</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <label class="form-group col-md-4 font-weight-bold">Account ID</label>
+                                    <div class="col-md-8 ">{{selectedAccount?.Service_Global_Ref__c}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- First & Last Name -->
+                        <div class="row m-t-10">
+                            <!-- First Name -->
+                            <div class="col-6">
+                                <span class="font-weight-bold">First Name
+                                    <span class="text-danger">*</span>
+                                </span>
+                                <input type="text" formControlName="first_Name" name="first_Name" class="form-control">
+                                <small *ngIf="formErrors.first_Name" class="help-block text-danger">{{ formErrors.first_Name }}</small>
+                            </div>
+                            <!-- Last Name -->
+                            <div class="col-6">
+                                <span class="font-weight-bold">Last Name
+                                    <span class="text-danger">*</span>
+                                </span>
+                                <input type="text" formControlName="last_Name" name="last_Name" class="form-control">
+                                <small *ngIf="formErrors.last_Name" class="help-block text-danger">{{ formErrors.last_Name }}</small>
+                            </div>
+                        </div>
+                        <!-- Phone & Email -->
+                        <div class="row m-t-10">
+                            <!-- Phone -->
+                            <div class="col-6">
+                                <span class="font-weight-bold">Phone
+                                    <span class="text-danger">*</span>
+                                </span>
+                                <input formControlName="phone_number" type="text" class="form-control">
+                                <small *ngIf="formErrors.phone_number" class="help-block text-danger">{{ formErrors.phone_number }}</small>
+                            </div>
+                            <!-- Email -->
+                            <div class="col-6">
+                                <span class="font-weight-bold">Email
+                                    <span class="text-danger">*</span>
+                                </span>
+                                <input formControlName="email" type="text" class="form-control">
+                                <small *ngIf="formErrors.email" class="help-block text-danger">{{ formErrors.email }}</small>
+                            </div>
+                        </div>
+                        <!-- Job Title & Department -->
+                        <div class="row m-t-10">
+                            <!-- Job Title -->
+                            <div class="col-6">
+                                <span class="font-weight-bold">Job Title
+                                    <span class="text-danger">*</span>
+                                </span>
+                                <input formControlName="job_title" type="text" class="form-control">
+                                <small *ngIf="formErrors.job_title" class="help-block text-danger">{{ formErrors.job_title }}</small>
+                            </div>
+                            <!-- Department -->
+                            <div class="col-6">
+                                <span class="font-weight-bold">Department
+                                    <span class="text-danger">*</span>
+                                </span>
+                                <select formControlName="department" class="form-control" (change)="onDepartmentChanged($event)">
+                                    <option Value="" selected="true">--None--</option>
+                                    <option *ngFor="let type of modelList.department" [value]="type.sfdcId">{{type.Name}}</option>
+                                </select>
+                                <small *ngIf="formErrors.department" class="help-block text-danger">{{ formErrors.department }}</small>
+                            </div>
+                        </div>
+                        <!-- Country & User Type -->
+                        <div class="row m-t-10">
+                            <!-- Country -->
+                            <div class="col-6">
+                                <span class="font-weight-bold">Country
+                                    <span class="text-danger">*</span>
+                                </span>
+                                <select formControlName="country" class="form-control">
+                                    <option Value="" selected="true">--None--</option>
+                                    <option *ngFor="let type of modelList.country" [value]="type.Country__c">{{type.Country__c}}</option>
+                                </select>
+                                <small *ngIf="formErrors.country" class="help-block text-danger">{{ formErrors.country }}</small>
+                            </div>
+                            <!-- User Type -->
+                            <div class="col-6" *ngIf="viewType === 'user'">
+                                <span class="font-weight-bold">User Type
+                                    <span class="text-danger">*</span>
+                                </span>
+                                <select formControlName="user_Type" class="form-control">
+                                    <option Value="" selected="true">--None--</option>
+                                    <option *ngFor="let type of modelList.userType" [value]="type.id">{{type.name}}</option>
+                                </select>
+                                <small *ngIf="formErrors.user_Type" class="help-block text-danger">{{ formErrors.user_Type }}</small>
+                            </div>
+                        </div>
+                        <!-- Password & Confirm Password -->
+                        <div class="row m-t-10" *ngIf="viewMode === 'add' && viewType === 'user'">
+                            <!-- Password -->
+                            <div class="col-6">
+                                <span class="font-weight-bold">Password
+                                    <span class="text-danger">*</span> &nbsp;&nbsp;
+                                    <small class="help-block text-danger">
+                                        <a href="javascript:void(0)" title="Do you want to generate password?" (click)="generatePassword()">Generate password</a>
+                                    </small>
+                                </span>
+                                <input formControlName="password" type="password" class="form-control" (change)="clearConfirmPass()">
+                                <small *ngIf="formErrors.password" class="help-block text-danger">{{ formErrors.password }}</small>
+                            </div>
+                            <!-- Confirm Password -->
+                            <div class="col-6">
+                                <span class="font-weight-bold">Confirm Password
+                                    <span class="text-danger">*</span>
+                                </span>
+                                <input formControlName="confirm_password" type="password" class="form-control">
+                                <small *ngIf="formErrors.confirm_password" class="help-block text-danger">{{ formErrors.confirm_password }}</small>
+                            </div>
+                        </div>
+                        <!-- Member Type -->
+                        <div class="row m-t-15" *ngIf="viewType === 'user'">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <label class="form-group col-md-4 font-weight-bold">Member Type</label>
+                                    <div class="col-md-8">{{currentMemberType}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-panel>
+
+                <ngb-panel title="Functional Role" id="funcationalId">
+                    <ng-template ngbPanelContent>
+                        <div class="row">
+                            <!-- Functional Role -->
+                            <div class="col-6">
+                                <span class="font-weight-bold">Functional Role
+                                    <span class="text-danger">*</span>
+                                </span>
+                                <select formControlName="functional_role" class="form-control">
+                                    <option Value="" selected="true">--None--</option>
+                                    <option *ngFor="let type of modelList.functionalRole" [value]="type.id">{{type.name}}</option>
+                                </select>
+                                <small *ngIf="formErrors.functional_role" class="help-block text-danger">{{ formErrors.functional_role }}</small>
+                            </div>
+                            <!-- Functional Role Level -->
+                            <div class="col-6">
+                                <span class="font-weight-bold">Functional Role Level
+                                    <span class="text-danger">*</span>
+                                </span>
+                                <select formControlName="functional_level" class="form-control">
+                                    <option Value="" selected="true">--None--</option>
+                                    <option *ngFor="let type of modelList.functionalRoleLevel" [value]="type.id">{{type.name}}</option>
+                                </select>
+                                <small *ngIf="formErrors.functional_level" class="help-block text-danger">{{ formErrors.functional_level }}</small>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-panel>
+
+                <ngb-panel title="Department Role" id="departmentId">
+                    <ng-template ngbPanelContent>
+                        <div formArrayName="department_role" class="vertical-scroll-user">
+                            <table *ngIf="modelList.departmentRole.length && viewMode !== 'view'">
+                                <tr class="m-t-5" *ngFor="let role of modelList.departmentRole; let i=index" [formGroupName]="i">
+                                    <td>
+                                        <span>{{i+1}}.</span>
+                                        <span>{{role.Name}}</span>
+                                        <span class="text-danger">*</span>
+                                    </td>
+                                    <td>
+                                        <input type="radio" id="{{'active-' + i}}" value="Active" formControlName="selectedArr" class="radio-col-light-blue">
+                                        <label for="{{'active-' + i}}">Active</label>
+                                    </td>
+                                    <td>
+                                        <input type="radio" id="{{'passive-' + i}}" value="Passive" formControlName="selectedArr" class="radio-col-light-blue">
+                                        <label for="{{'passive-' + i}}">Passive</label>
+                                    </td>
+                                    <td>
+                                        <input type="radio" id="{{'none-' + i}}" value="" formControlName="selectedArr" class="radio-col-light-blue">
+                                        <label for="{{'none-' + i}}">None</label>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table cellpadding="10" *ngIf="modelList.departmentRole.length && viewMode === 'view'">
+                                <tr class="m-t-5" *ngFor="let role of modelList.departmentRole; let i=index">
+                                    <td>
+                                        <span>{{role.Name}}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{role.selectedArr}}</span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="row" *ngIf="!modelList.departmentRole.length">
+                                <div class="col-md-12">
+                                    <div class="col-md-8 ">No records found!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-panel>
+
+                <ngb-panel title="Teams" id="teamId">
+                    <ng-template ngbPanelContent>
+                        <div class="row vertical-scroll-user">
+                            <div class="col-md-12">
+                                <table class="table color-table muted-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Select </th>
+                                            <th>Team Name </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        No records found!
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-panel>
+
+                <ngb-panel title="Regional Role" id="regionalId">
+                    <ng-template ngbPanelContent>
+                        <div class="row">
+                            <div class="col-6">
+                                <span class="font-weight-bold">Regional Role
+                                    <span class="text-danger">*</span>
+                                </span>
+                                <ng-select [items]="modelList.region" bindLabel="name" bindValue="name" formControlName="regional_role" placeholder="Select region"
+                                    [multiple]="true" highlightColor="#1E88E5"> </ng-select>
+                                <small *ngIf="formErrors.regional_role" class="help-block text-danger">{{ formErrors.regional_role }}</small>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-panel>
+
+                <ngb-panel id="workshiftId">
+                    <ng-template ngbPanelTitle>
+                        Shift Work Hours - Global Shift Equivalent Schedule (GSES)
+                        <span class="text-danger">*</span>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                        <div class="row vertical-scroll-user">
+                            <div class="col-md-12">
+                                <table class="table color-table muted-table">
+                                    <thead>
+                                        <tr>
+                                            <th *ngIf="viewMode !== 'view'">Select </th>
+                                            <th>Shift Code </th>
+                                            <th>Description </th>
+                                            <th>Start</th>
+                                            <th>Finish</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="modelList.workerShift.length">
+                                        <tr *ngFor="let shift of modelList.workerShift">
+                                            <td *ngIf="viewMode !== 'view'">
+                                                <input name="shift_work_hours" formControlName="shift_work_hours" type="radio" value="{{shift.sfdcId}}" id="{{shift.sfdcId}}"
+                                                    class="radio-col-light-blue">
+                                                <label for="{{shift.sfdcId}}"></label>
+                                            </td>
+                                            <td>{{shift.Worker_Shift_Code__c}}</td>
+                                            <td>{{shift.Description__c}}</td>
+                                            <td>{{shift.Start_Time__c + '' + shift.Start_AM_PM__c + ' ' + shift.Start_Time_zone__c}}</td>
+                                            <td>{{shift.End_Time__c + '' + shift.End_AM_PM__c + ' ' + shift.End_Time_zone__c}}</td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody *ngIf="!modelList.workerShift.length">
+                                        No records found!
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-panel>
+
+                <ngb-panel id="programId">
+                    <ng-template ngbPanelTitle>
+                        Program Access
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                        <div class="row" *ngIf="currentAccessType === 'internal' && viewMode !== 'view'">
+                            <div class="col-4">
+                                <span class="font-weight-bold"> Partner Account</span>
+                                <select class="form-control" (change)="onPartnerChanged($event)">
+                                    <option *ngFor="let partn of modelList.partner" [value]="partn.sfdcId">{{partn.Name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div formArrayName="program" class="m-t-10 ">
+                            <table class="table color-table muted-table">
+                                <thead>
+                                    <tr>
+                                        <th *ngIf="viewMode !== 'view'">Select</th>
+                                        <th>Program Number </th>
+                                        <th>Program Name </th>
+                                        <th>Program Status </th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngIf="modelList.Program.length">
+                                    <tr *ngFor="let program of modelList.Program; let i=index" [formGroupName]="i">
+                                        <td *ngIf="viewMode !== 'view'">
+                                            <input type="checkbox" id="{{i}}" [checked]="memberRoleIds.indexOf(program.sfdcId) != -1" value="{{program.sfdcId}}" formControlName="selectedArr"
+                                                class="filled-in chk-col-light-blue">
+                                            <label for="{{i}}"></label>
+                                        </td>
+                                        <td>{{program.Project__c}}</td>
+                                        <td>{{program.Name}}</td>
+                                        <td>{{program.Status__c}}</td>
+                                    </tr>
+                                </tbody>
+                                <tbody *ngIf="!modelList.Program.length">
+                                    <div style="width: 500px;">No records found!</div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion>
+
+            <div class="row" *ngIf="viewMode !== 'view'">
+                <div class="col-6">
+                    <div class="m-t-15">
+                        <input type="checkbox" formControlName="notify_user" class="filled-in chk-col-light-blue" id="notify_user">
+                        <label for="notify_user">Send a notification to user</label>
+                    </div>
+                    <div class="m-t-5">
+                        <input type="checkbox" formControlName="password_reset" class="filled-in chk-col-light-blue" id="password_reset">
+                        <label for="password_reset">Password reset</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="viewMode !== 'view'">
+                <div class="col-12 text-center">
+                    <button class="btn btn-primary mRight" [disabled]="!registrationForm.valid" type="submit">Save</button>
+                    <button class="btn btn-primary" type="button" (click)="reset()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

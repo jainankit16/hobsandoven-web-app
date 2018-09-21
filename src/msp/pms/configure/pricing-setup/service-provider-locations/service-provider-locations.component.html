@@ -1,0 +1,31 @@
+<div class="table-responsive scroll-div">
+    <table class="table color-table info-table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Vendor Name</th>
+                <th>Street</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Country</th>
+                <th>Zip</th>
+                <th>Service Zone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let spl of serviceProviderLocations, let i = index">
+                <td>{{i +1}}</td>
+                <td>{{spl?.Name}} </td>
+                <td>{{spl?.Street__c}}</td>
+                <td>{{spl?.City__c}}</td>
+                <td>{{spl?.State__c}}</td>
+                <td>{{spl?.Country__c}}</td>
+                <td>{{spl?.Postal_Zip_Code__c}}</td>
+                <td>{{spl?.GeoMetro?.Name}}</td>
+            </tr>
+            <tr *ngIf="serviceProviderLocations.length == 0" class="alert alert-warning m-t-5">
+                <td colspan="8">No record found.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

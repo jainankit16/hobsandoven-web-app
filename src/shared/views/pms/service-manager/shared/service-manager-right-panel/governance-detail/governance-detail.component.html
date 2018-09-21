@@ -1,0 +1,280 @@
+<ngb-accordion #acc="ngbAccordion" activeIds="workOrderHealthplanStatus, pmsCaseDispatchHealthCheck, iccCaseDispatchHealthCheck, jobHealthStatus"
+    [destroyOnHide]="false">
+    <ngb-panel *ngIf="governanceDetail?.workOrderHealth?.isAvailable" title="Work Order Healthplan Status" id="workOrderHealthplanStatus">
+        <ng-template ngbPanelContent>
+            <div class="row">
+                <div class="col-sm-6 col-block">
+                    <span>Program Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.workOrderHealth?.Health_SOP_Profile_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+                <div class="col-sm-6 col-block">
+                    <span>Customer Pricelist Available</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.workOrderHealth?.Health_Pricelist_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-block">
+                    <span>Customer Price Available in Pricelist</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.workOrderHealth?.Health_Customer_Price_Available__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+                <div class="col-sm-6 col-block">
+                    <span>Vendor Price Available in Pricelist </span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.workOrderHealth?.Health_Vendor_Price_Available__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <span>Appointment/Job Schedule Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.workOrderHealth?.Health_Appointment_status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+            </div>
+        </ng-template>
+    </ngb-panel>
+    <br>
+    <ngb-panel title="PMS Case Dispatch Health Check" id="pmsCaseDispatchHealthCheck">
+        <ng-template ngbPanelContent>
+            <div class="row">
+                <div class="col-sm-6 col-block">
+                    <span>(A) Jobsite Selection Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.pmsHealthCheck?.Health_Jobsite_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+                <div class="col-6 col-block">
+                    <span>(B) Project Selection Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.pmsHealthCheck?.Health_Project_status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-block">
+                    <span>(C) Order Item Selection Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.pmsHealthCheck?.Health_OrderItem_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+                <div class="col-sm-6 col-block">
+                    <span>(D) Approved Vendor Check Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.pmsHealthCheck?.Health_Vendor_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-block">
+                    <span>(E) Customer Pricelist Check Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.pmsHealthCheck?.Health_Customer_Pricelist_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+                <div class="col-sm-6 col-block">
+                    <span> (F) Vendor Pricelist Check Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.pmsHealthCheck?.Health_Pricelist_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-sm-6 col-block">
+                    <span>(G) Partner Pricelist on Program Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.pmsHealthCheck?.Health_Program_Pricelist__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+                <div class="col-sm-6 col-block">
+                    <span>(H) Asset SKU matchs Case SKU (Assetsite Case Only)</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.pmsHealthCheck?.Health_Asset_Sku_Comparison__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-block">
+                    <span>(I) Jobsite Contact (Service Desk) Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.pmsHealthCheck?.Health_SDesk_Contact__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+                <div class="col-sm-6 col-block">
+                    <span>(J) Jobsite Contact (Technical Escalation) Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.pmsHealthCheck?.Health_TEsc_Contact__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-block">
+                    <span>(K) SKU Price availability in Pricelist</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.pmsHealthCheck?.Health_SKU_Price_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+            </div>
+        </ng-template>
+    </ngb-panel>
+    <br>
+
+    <ngb-panel *ngIf="governanceDetail?.iccHealthCheck?.isAvailable" title="ICC Case Dispatch Health Check" id="iccCaseDispatchHealthCheck">
+        <ng-template ngbPanelContent>
+            <div class="row">
+                <div class="col-sm-6 col-block">
+                    <span>(A) Jobsite Selection Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.iccHealthCheck?.Health_Jobsite_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+                <div class="col-sm-6 col-block">
+                    <span>(B) Project Selection Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.iccHealthCheck?.Health_Project_status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-block">
+                    <span>(C) Order Item Selection Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.iccHealthCheck?.Health_OrderItem_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+                <div class="col-sm-6 col-block">
+                    <span>(D) Approved Vendor Check Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.iccHealthCheck?.Health_Vendor_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-block">
+                    <span>(E) Customer Pricelist Check Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.iccHealthCheck?.Health_Customer_Pricelist_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+                <div class="col-sm-6 col-block">
+                    <span> (F) Vendor Pricelist Check Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.iccHealthCheck?.Health_Pricelist_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-block">
+                    <span>(G) Partner Pricelist on Program Status</span>
+
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.iccHealthCheck?.Health_Program_Pricelist__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+                <div class="col-sm-6 col-block">
+                    <span>(H) Asset SKU matchs Case SKU (Assetsite Case Only)</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.iccHealthCheck?.Health_Asset_Sku_Comparison__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-block">
+                    <span>(I) Jobsite Contact (Service Desk) Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.iccHealthCheck?.Health_SDesk_Contact__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+                <div class="col-sm-6 col-block">
+                    <span>(J) Jobsite Contact (Technical Escalation) Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.iccHealthCheck?.Health_TEsc_Contact__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-block">
+                    <span>(K) SKU Price availability in Pricelist</span>
+                </div>
+                <span class="text-right">
+                    <i class="{{governanceDetail?.iccHealthCheck?.Health_SKU_Price_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                </span>
+            </div>
+        </ng-template>
+    </ngb-panel>
+    <br>
+
+    <ngb-panel title="Job Health Status" id="jobHealthStatus">
+        <ng-template ngbPanelContent>
+            <div class="row">
+                <div class="col-sm-6 col-block">
+                    <span>(A) Vendor Assignment Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.jobHealthStatus?.Health_Vendor_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+                <div class="col-sm-6 col-block">
+                    <span>(B) Project Availability Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.jobHealthStatus?.Health_Project_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-block">
+                    <span>(C) Case Availability Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.jobHealthStatus?.Health_Case_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+                <div class="col-sm-6 col-block">
+                    <span>(D) Jobsite Availability Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.jobHealthStatus?.Health_Jobsite_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-block">
+                    <span>(E) Worker Assignment Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.jobHealthStatus?.Health_Worker_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+                <div class="col-sm-6 col-block">
+                    <span> (F) List Price Availability Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.jobHealthStatus?.Health_List_Price_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-block">
+                    <span>(G) FMS Submission Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.jobHealthStatus?.Health_FMS_Submission_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+                <div class="col-sm-6 col-block">
+                    <span> (H) Job Completion Status</span>
+                    <span class="text-right">
+                        <i class="{{governanceDetail?.jobHealthStatus?.Health_Completion_Status__c == 'ok' ? 'fa fa-check-circle succes-Icon' : 'fa fa-exclamation-circle error-Icon' }}"></i>
+                    </span>
+                </div>
+            </div>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>

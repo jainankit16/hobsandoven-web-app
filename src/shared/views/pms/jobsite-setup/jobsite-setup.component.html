@@ -1,0 +1,83 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <top-wizard-panel [headTitle]="headTitle"></top-wizard-panel>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header text-center text-white">
+                    <b class="">Account</b>
+                </div>
+                <div class="card-body content-padding leftScrollDiv posRelative">
+                    <content-account></content-account>
+                </div>
+            </div>
+        </div>
+        <div [ngClass]="{'col-md-12': isServiceSetup, 'col-md-6': !isServiceSetup}">
+            <router-outlet *ngIf="showContent"></router-outlet>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header text-center text-white">
+                    <b class="">Summary</b>
+                </div>
+                <div class="card-body content-padding leftScrollDiv">
+                    <ngb-accordion #acc="ngbAccordion" activeIds="program" [destroyOnHide]="false">
+                        <ngb-panel id="program" title="Program Information">
+                            <ng-template ngbPanelContent>
+                                <quote-progress></quote-progress>
+                            </ng-template>
+                        </ngb-panel>
+                    </ngb-accordion>
+                    <ngb-accordion #acc="ngbAccordion" activeIds="jobsiteMap" [destroyOnHide]="false">
+                        <ngb-panel id="jobsiteMap" title="Jobsite Location Map">
+                            <ng-template ngbPanelContent>
+                                <div class="pull-right">
+                                    <span class="text-primary expanded-view">
+                                        <a href="javascript:;" (click)="openDetailPage(JobsiteLocationMapDetail,'full');">Expanded View</a>
+                                    </span>
+                                </div>
+                                <jobsite-location-map></jobsite-location-map>
+                            </ng-template>
+                        </ngb-panel>
+                    </ngb-accordion>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JobsiteLocationMap details -->
+<ng-template #JobsiteLocationMapDetail let-c="close" let-d="dismiss" class="modal-full">
+    <div class="modal-header">
+        <h4 class="modal-title">Jobsite Location Map</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <jobsite-location-map [modal]='true'></jobsite-location-map>
+            </div>
+            <div class="col-md-6" style="height: 700px;">
+                <ngb-accordion #acc="ngbAccordion" activeIds="createprogrampanel1,existpanel1" [destroyOnHide]="false">
+                    <ngb-panel id="existpanel1">
+                        <ng-template ngbPanelTitle>
+                            <div class="row" style="margin-top: -25px; margin-left: 10px;">
+                                <div class="col-md-6">All Jobsites</div>
+                                <div class="col-md-6 text-right">Total Number of Jobsites : {{jobsiteCount}}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template ngbPanelContent>
+                            <jobsite-list-modal (jobsiteCount)="updateJobsiteCount($event)"></jobsite-list-modal>
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>

@@ -1,0 +1,57 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-body form-material">
+				<div class="text-right m-b-5">
+					<button type="button" class="btn btn-sm mRight editColumn" i18n>
+						<i class="fa fa-th"></i> Edit Columns
+					</button>
+					<div class="dd-column-selector">
+						<li *ngFor='let col of allColumns' class="p-l-5">
+							<input *ngIf="col.name !=''" type='checkbox' [id]="col.name" (click)='toggle(col)' [checked]='col.visible' />
+							<label *ngIf="col.name !=''" [attr.for]="col.name">{{col.name}}</label>
+						</li>
+					</div>
+					<button type="button" class="btn btn-sm mRight" (click)="refreshView();" i18n>
+						<i class="fa fa-refresh"></i> Refresh
+					</button>
+					<button *ngIf="tableData[0] && !tableData[0]['message']" class="btn btn-sm" (click)="exportCSV()">
+						<i class="fa fa-download"></i> CSV</button>
+				</div>
+				<ngx-datatable #myTable class="material striped fixed-header expandable doubleScroll" [rows]="tableData" [loadingIndicator]="loadingIndicator"
+				 [columnMode]="'standard'" [limit]="itemsPerPage" [headerHeight]="120" [footerHeight]="50" [rowHeight]="60" ngx-resize-watcher>
+					<div *ngFor="let col of columns">
+						<ngx-datatable-column *ngIf="col.visible" [name]="col.name" [prop]="col.prop" [width]="col.width" [sortable]="col.sortable">
+							<ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+								<span class="datatable-header-cell-wrapper float-left" style="height: 35px;">
+									<span class="datatable-header-cell-label draggable" (click)="sort()">
+										{{col.name}}
+									</span>
+								</span>
+								<div class="input-group float-right  form-material">
+									<input type='text' [id]="col.prop" class="form-control" style='font-size: 14px;padding-left:2px;' placeholder="Type to search..."
+									 (keyup)='filterData($event)' />
+								</div>
+							</ng-template>
+						</ngx-datatable-column>
+					</div>
+
+					<ngx-datatable-footer>
+						<ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize" let-selectedCount="selectedCount"
+						 let-curPage="curPage" let-offset="offset">
+							<div style="padding: 5px 10px">
+								<div>
+									Total: {{((tableData[0]) && !tableData[0]['message']) ? rowCount : 0}}
+								</div>
+							</div>
+							<datatable-pager [pagerLeftArrowIcon]="'datatable-icon-left'" [pagerRightArrowIcon]="'datatable-icon-right'" [pagerPreviousIcon]="'datatable-icon-prev'"
+							 [pagerNextIcon]="'datatable-icon-skip'" [page]="curPage" [size]="pageSize" [count]="rowCount" [hidden]="!((rowCount / pageSize) > 1)"
+							 (change)="myTable.onFooterPage($event)">
+							</datatable-pager>
+						</ng-template>
+					</ngx-datatable-footer>
+				</ngx-datatable>
+			</div>
+		</div>
+	</div>
+</div>

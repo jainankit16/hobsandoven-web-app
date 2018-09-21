@@ -1,0 +1,37 @@
+<div class="table-responsive scroll-div">
+    <table class="table color-table info-table">
+        <thead>
+            <tr>
+                <th *ngIf="isPricing || (router.url === '/pms/configure/schedule')">Select</th>
+                <th>Quote No</th>
+                <th>Rev</th>
+                <th>Template Name</th>
+                <th>Description</th>
+                <th>Default</th>
+                <th *ngIf="isPricing">Status</th>
+                <th *ngIf="isPricing || isSetDefault">Set as Default</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let quote of quotes, let i = index">
+                <td *ngIf="isPricing || (router.url === '/pms/configure/schedule')">
+                    <input *ngIf="isPricing" type="radio" name="quote" [id]="'quot' + i" [value]="quote.Name" (change)="selectQuoteID($event,quote)" [checked]="quote.Default_Quote__c"> <label [for]="'quot' + i"></label>
+                    <input *ngIf="router.url === '/pms/configure/schedule' && quote.Default_Quote__c" type="radio" name="quote" [id]="'quot' + i" [value]="quote.Name" [checked]="quote.Default_Quote__c"> <label [for]="'quot' + i"></label>
+                </td>
+
+                <td>{{quote.Iron_Quote_Number__c}}</td>
+                <td>{{quote.Quote_Version__c}}</td>
+                <td>{{quote.Template_Name__c}}</td>
+                <td>{{quote.Template_Description__c}}</td>
+                <td> <input [id]="'isDefault' + i" type="checkbox" [checked]="quote.Default_Quote__c" disabled value="quote.Default_Quote__c"><label [for]="'isDefault' + i"></label></td>
+                <td *ngIf="isPricing">{{quote.Quote_Status__c}}</td>
+                <td *ngIf="isPricing || isSetDefault"><a href='javascript:;' (click)='setQuoteDefault(quote)'>Set as Default</a> </td>
+                <td>{{quote.CreatedDate | date:'shortDate'}}</td>
+            </tr>
+            <tr *ngIf="quotes.length ==0" class="alert alert-warning m-t-5">
+                <td colspan="9">{{errorMessage}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

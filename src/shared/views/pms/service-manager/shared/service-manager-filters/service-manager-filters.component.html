@@ -1,0 +1,94 @@
+<div>
+	<div class="row">
+		<div class="col">
+			<label>Account</label>
+			<br/>
+			<select name="accountFilter" class="form-control custom-select" [(ngModel)]="selectedAccount" (change)="onFilterChange('Account')">
+				<option ngValue="All Accounts (Exclude MagicLink)" *ngIf="accounts.length && isInternalUser">All Accounts (Exclude Magiclink)</option>
+				<option ngValue="All Accounts" *ngIf="accounts.length && isInternalUser">All Accounts</option>
+				<option ngValue="--None--" selected *ngIf="accounts.length == 0">--None--</option>
+				<option *ngFor="let account of accounts" [value]="account.sfdcId">{{account.Name}}</option>
+			</select>
+		</div>
+		<div class="col">
+			<label>Program</label>
+			<br/>
+			<select name="programFilter" class="form-control custom-select" [(ngModel)]="selectedProgram" (change)="onFilterChange('Program')">
+				<option ngValue="All Programs" selected *ngIf="programs.length > 0">All Programs</option>
+				<option ngValue="--None--" selected *ngIf="programs.length == 0">--None--</option>
+				<option *ngFor="let program of programs" [value]="program.sfdcId">{{program.Project__c}} {{program.Name}}</option>
+			</select>
+		</div>
+		<div class="col">
+			<label>Region</label>
+			<select name="regionFilter" class="form-control custom-select" [(ngModel)]="selectedRegion" (change)="onFilterChange('Region')">
+				<option ngValue="All Regions" selected>All Regions</option>
+				<option *ngFor="let region of regions" [value]="region.sfdcId">{{region.Name}}</option>
+			</select>
+		</div>
+		<div class="col">
+			<label>Country</label>
+			<select name="countryFilter" class="form-control custom-select" [(ngModel)]="selectedCountry" (change)="onFilterChange('Country')">
+				<option ngValue="All Countries" selected *ngIf="countries.length > 0">All Countries</option>
+				<option ngValue="--None--" selected *ngIf="countries.length == 0">--None--</option>
+				<option *ngFor="let country of countries" [value]="country.Name">{{country.Country__c}} ({{country.Name}})</option>
+			</select>
+		</div>
+		<div class="col">
+			<label>Jobsite</label>
+			<select name="jobsiteFilter" class="form-control custom-select" [(ngModel)]="selectedJobsite" (change)="onFilterChange('Jobsite')">
+				<option ngValue="All Jobsites" selected *ngIf="jobsites.length > 0">All Jobsites</option>
+				<option ngValue="--None--" selected *ngIf="jobsites.length == 0">--None--</option>
+				<option *ngFor="let jobsite of jobsites" [value]="jobsite.sfdcId">{{jobsite.Jobsite_ID__c}} {{jobsite.Name}}</option>
+			</select>
+		</div>
+		<div class="col">
+			<label>Order List Type</label>
+			<select name="orderTypeFilter" class="form-control custom-select" [(ngModel)]="selectedOrderType" (change)="onFilterChange('Order List Type')">
+				<option ngValue="All Orders" selected>All Orders</option>
+				<option *ngFor="let orderType of orderTypes" [value]="orderType.sfdcId">{{orderType.Name}}</option>
+			</select>
+		</div>
+		<div class="col" *ngIf="isInternalUser && page === 'Order'">
+			<label>Case Category</label>
+			<select name="caseCategoryFilter" class="form-control custom-select" [(ngModel)]="selectedCaseCategory" (change)="onFilterChange('Case Category')">
+				<option ngValue="All" selected>All</option>
+				<option *ngFor="let caseCategory of caseCategories" [value]="caseCategory.sfdcId">{{caseCategory.Name}}</option>
+			</select>
+		</div>
+		<div class="col" *ngIf="page === 'Order'">
+			<label>PMS Case Status</label>
+			<select name="caseStatusFilter" class="form-control custom-select" [(ngModel)]="selectedCaseStatus" (change)="onFilterChange('PMS Case Status')">
+				<option ngValue="All" selected>All</option>
+				<option *ngFor="let caseStatus of caseStatuses" [value]="caseStatus.sfdcId">{{caseStatus.Name}}</option>
+			</select>
+		</div>
+	</div>
+	<div class="row m-10" *ngIf="buttonText == 'Less Filters'">
+		<div class="col-sm-12 text-right">
+			<label class="mRight"> Date Range: </label>
+			<label class="mRight">
+				<input class="form-control" [owlDateTimeTrigger]="dt12" [max]="maxDate" placeholder="From" (dateTimeChange)="onDateChange()"
+				 [owlDateTime]="dt12" name="selectedFromData" [(ngModel)]="selectedFromData" readonly="true">
+				<owl-date-time [pickerType]="'calendar'" #dt12></owl-date-time>
+			</label>
+			<label class="mRight">
+				<input class="form-control" [owlDateTimeTrigger]="dt13" [max]="maxDate" placeholder="To" [min]="minDate" [owlDateTime]="dt13"
+				 name="selectedToDate" [(ngModel)]="selectedToDate" readonly="true">
+				<owl-date-time [pickerType]="'calendar'" #dt13></owl-date-time>
+			</label>
+			<button type="button" class="btn btn-sm btn-primary" (click)="search()">Search</button>
+
+		</div>
+	</div>
+	<div class="row m-10">
+		<div class="col-sm-6  text-left">
+			<label>To search, enter value & hit tab</label>
+			<i class="icon-color fa fa-refresh m-l-10" (click)="reset()" aria-hidden="true"></i>
+		</div>
+		<div class="col-sm-6  text-right">
+			<button type="button" class="btn btn-sm btn-primary mRight" (click)="reset()">Reset search filter</button>
+			<button type="button" class="btn btn-sm btn-primary" (click)="toggleFilters()">{{buttonText}}</button>
+		</div>
+	</div>
+</div>

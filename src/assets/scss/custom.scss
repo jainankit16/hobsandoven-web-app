@@ -1,0 +1,137 @@
+$themecolor: #1e88e5;
+$themecolor-dark: #028ee1;
+$topbar: #1e88e5;
+$sidebar:#272c33;
+$sidebar-text: #798699;
+$sidebar-icons: #798699;
+$sidebar-dark: #181c22;
+$themecolor-alt: #26c6da;
+
+.df-block .df-block-heading {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.df-block .df-row .df-label {
+  display: block;
+  font-size: 0.9rem;
+  color: gray;
+  font-weight: 500;
+}
+
+.df-block .df-row .df-value {
+  display: block;
+}
+
+.card-no-border{
+  .sidebar-nav>ul>li>a.active{
+    background: $sidebar-dark;
+  }
+}
+
+.card {
+  border-radius: 0px;
+}
+
+/*******************
+Buttons
+******************/
+.btn{
+  padding: 7px 12px;
+  font-size: 14px;
+  cursor: pointer;
+
+}
+.btn-group{
+  label{
+    color:$white!important;
+    margin-bottom: 0px;
+    &.btn-secondary{
+      color:$bodytext!important;
+    }
+  }
+}
+.btn-lg{
+  padding:.75rem 1.5rem;
+  font-size: 1.25rem;
+}
+.btn-md{
+  padding:12px 55px;
+  font-size: 16px;
+}
+.btn-circle{
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+
+}
+.btn-circle.btn-sm{
+  width: 35px;
+  height: 35px;
+  padding:8px 10px;
+  font-size:14px;
+}
+.btn-circle.btn-lg{
+  width: 50px;
+  height: 50px;
+  padding:14px 15px;
+  font-size:18px;
+}
+.btn-circle.btn-xl{
+  width: 70px;
+  height: 70px;
+  padding:14px 15px;
+  font-size:24px;
+}
+.btn-sm{
+  padding:.25rem .5rem;
+  font-size: 12px;
+}
+.btn-xs{
+  padding:.25rem .5rem;
+  font-size: 10px;
+}
+.button-list button, .button-list a {
+  margin: 5px 12px 5px 0;
+}
+.btn-outline {
+  color: inherit;
+  background-color: transparent;
+  transition: all .5s;
+}
+
+.btn-rounded {
+  border-radius: 60px;
+  padding: 7px 18px;
+
+  &.btn-lg{
+    padding: .75rem 1.5rem;
+  }
+  &.btn-sm{
+    padding: .25rem .5rem;
+    font-size:12px;
+  }
+  &.btn-xs{
+    padding:.25rem .5rem;
+    font-size:10px;
+  }
+  &.btn-md{
+    padding:12px 35px;
+    font-size: 16px;
+  }
+}
+
+.info-list {
+  display: inline;
+  padding-left: 5px;
+  li {
+    display: inline;
+    border-left: 2px solid #BBBBBB;
+    padding: 0 0.3em;
+  }
+
+  li:first-child {
+    border-left: none;
+  }
+}

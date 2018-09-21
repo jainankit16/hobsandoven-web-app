@@ -1,0 +1,33 @@
+<div *ngIf="!initialMessage" class="customWidth">
+    <ngx-datatable #myTable class="material striped" [rows]="tableData" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
+        [limit]="itemsPerPage" [headerHeight]="50" [footerHeight]="50" [rowHeight]="60">
+
+        <ngx-datatable-column name="Jobsite #" prop="Jobsite_ID__c" [minWidth]="100"></ngx-datatable-column>
+        <ngx-datatable-column name="Country" prop="Country__c" [minWidth]="150"></ngx-datatable-column>
+        <ngx-datatable-column name="City" prop="City__c" [minWidth]="200"></ngx-datatable-column>
+
+        <ngx-datatable-column name="Address" prop="Street__c">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <span>{{row.Street__c}}{{row.City__c | comma}}{{row.State__c | comma}}{{row.Country__c | comma}}{{row.Zip__c |
+                    comma}} </span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-footer>
+            <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize" let-selectedCount="selectedCount"
+                let-curPage="curPage" let-offset="offset">
+                <div style="padding: 5px 10px">
+                    <div>
+                        Total: {{rowCount}}
+                    </div>
+                </div>
+                <datatable-pager [pagerLeftArrowIcon]="'datatable-icon-left'" [pagerRightArrowIcon]="'datatable-icon-right'" [pagerPreviousIcon]="'datatable-icon-prev'"
+                    [pagerNextIcon]="'datatable-icon-skip'" [page]="curPage" [size]="pageSize" [count]="rowCount" [hidden]="!((rowCount / pageSize) > 1)"
+                    (change)="myTable.onFooterPage($event)">
+                </datatable-pager>
+            </ng-template>
+        </ngx-datatable-footer>
+    </ngx-datatable>
+</div>
+<div *ngIf="initialMessage" class="alert alert-warning m-t-5">
+    {{initialMessage}}
+</div>

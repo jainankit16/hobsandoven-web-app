@@ -1,0 +1,69 @@
+<div *ngIf="!embeddedView" class="row m-b-15">
+    <div class="col-sm-12 col-md-6 align-self-center">
+        <h3 class="text-themecolor m-b-0 m-t-0">WORKER: {{title}}</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <h4 class="section-title">Worker Details</h4>
+    </div>
+</div>
+
+<div *ngIf="worker" class="card-body">
+    <div class="row">
+        <div class="col-sm-6">
+            <strong class="text-muted">Name</strong>
+            <p>{{worker?.Name}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Available</strong>
+            <p>{{worker?.Available__c == true ? 'Yes' : 'No' }}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Contact</strong>
+            <p>{{worker?.contact?.FullName}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Dispatch Worker Num</strong>
+            <p>{{worker?.Dispatch_Worker_num__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Primary Worker Skill</strong>
+            <p>{{worker?.skilling?.Name }}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Record Type</strong>
+            <p>{{worker?.RecordTypeId}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Vendor Site</strong>
+            <p>{{worker?.vendorsite?.Name }}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Worker Type</strong>
+            <p>{{worker?.Worker_Type__c }}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Worker Rating</strong>
+            <p>{{worker?.Worker_Rating__c }}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Worker Phone Number</strong>
+            <p>{{worker?.Work_Phone_Number__c }}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Created By</strong>
+            <p>{{worker?.user?.FullName}}&nbsp;</p>
+        </div>
+
+        <div class="col-sm-6">
+            <strong class="text-muted">Created On</strong>
+            <p>{{worker?.CreatedDate | date:'short'}}&nbsp;</p>
+        </div>
+    </div>
+</div>
+<div *ngIf="errorMessage">
+    <div class="alert alert-warning m-t-5">
+        {{errorMessage}}
+    </div>
+</div>

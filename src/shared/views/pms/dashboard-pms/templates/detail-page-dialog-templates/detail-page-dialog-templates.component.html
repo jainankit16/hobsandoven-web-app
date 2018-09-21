@@ -1,0 +1,98 @@
+<ng-template #programDetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Program Details</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+        <program-detail [program]="contentData"></program-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<ng-template #quoteDetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Quote Manager</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+        <quote-detail [quote]="contentData"></quote-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<ng-template #workorderdetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Work Order Detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+        <workorder-detail [workorder]="contentData"></workorder-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<ng-template #pricebookdetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Price Book Detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+        <pricebook-detail [pricebook]="contentData"></pricebook-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<ng-template #casedetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Case Detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+        <case-detail [case]="contentData"></case-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<ng-template #jobsitedetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">JobSite Detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+        <jobsite-detail [jobsite]="contentData"></jobsite-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<ng-template #saleorderdetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Sales Order Detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+        <salesorder-detail [saleOrder]="contentData"></salesorder-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>

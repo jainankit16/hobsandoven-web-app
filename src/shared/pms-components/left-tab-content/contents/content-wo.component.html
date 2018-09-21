@@ -1,0 +1,35 @@
+<div class="table-responsive">
+    <table class="table color-table info-table">
+        <thead>
+            <tr style="background-color: #e8d0d0">
+                <th width="30%">Work Order #</th>
+                <th width="30%">Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of workOrders">
+                <td>
+                    <a href="javascript:void(0)" (click)="openDetailPage(workorderdetail,'xl',order)">{{order?.Name}}</a>
+                </td>
+                <td>{{order?.createdAt | date:'shortDate'}}</td>
+                <td>{{order?.Status__c}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #workorderdetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Work Order Details</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+        <workorder-detail [workorder]="contentData"></workorder-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>

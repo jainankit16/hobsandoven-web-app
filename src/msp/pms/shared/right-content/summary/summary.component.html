@@ -1,0 +1,66 @@
+<ngb-accordion #acc="ngbAccordion" activeIds="quoteProgress, jobsiteLocation, quoteHeader, quotePricing, jobLocationMap, serviceProvider, selectedProgram, jobsiteDispatchServiceProfile"
+    [destroyOnHide]="false">
+    <ngb-panel title="Program Information" id="quoteProgress">
+        <ng-template ngbPanelContent>
+            <quote-progress></quote-progress>
+        </ng-template>
+    </ngb-panel>
+    <br>
+    <ngb-panel title="Jobsite Locations Information" id="jobsiteLocation" *ngIf="isQuoteEnabled">
+        <ng-template ngbPanelContent>
+            <app-jobsite-location-information></app-jobsite-location-information>
+        </ng-template>
+    </ngb-panel>
+    <br>
+    <ngb-panel title="Quote Header Information" id="quoteHeader" *ngIf="isQuoteEnabled">
+        <ng-template ngbPanelContent>
+            <quote-header></quote-header>
+        </ng-template>
+    </ngb-panel>
+    <br>
+    <ngb-panel title="Quote Pricing Information" id="quotePricing" *ngIf="isQuoteEnabled">
+        <ng-template ngbPanelContent>
+            <div class="table-responsive scroll-div">
+                <table class="table color-table info-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Service ID</th>
+                            <th>Service Description</th>
+                            <th>PPM hours</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ppj of pricingListPerJobsites, let i = index">
+                            <td>{{i +1}}</td>
+                            <td>{{ppj.Product?.Product_ID__c}}</td>
+                            <td>{{ppj.Product?.Description}}</td>
+                            <td>{{ppj.Order_Quantity__c}}</td>
+                            <td>{{ppj.Price__c}}</td>
+                        </tr>
+                        <tr *ngIf="pricingListPerJobsites.length == 0" class="alert alert-warning m-t-5">
+                            <td colspan="5">No record found.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </ng-template>
+    </ngb-panel>
+    <br>
+    <ngb-panel title="Jobsite Location Map" id="jobLocationMap">
+        <ng-template ngbPanelContent>
+            <jobsite-location-map></jobsite-location-map>
+        </ng-template>
+    </ngb-panel>
+    <ngb-panel title="Service Provider Sites" id="serviceProvider">
+        <ng-template ngbPanelContent>
+            <service-provider-sites></service-provider-sites>
+        </ng-template>
+    </ngb-panel>
+    <ngb-panel *ngIf="isServiceProvider" title="Selected Program Jobsite Dispatch Service Profiles" id="jobsiteDispatchServiceProfile">
+        <ng-template ngbPanelContent>
+            <provider-option [isActive]="true" [isInput]="false"></provider-option>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>

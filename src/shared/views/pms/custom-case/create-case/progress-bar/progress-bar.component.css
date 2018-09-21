@@ -1,0 +1,7 @@
+.disable-step {
+    border-color: #888888 !important;
+    background-color: lightgrey !important;
+    color: #888888 !important;
+    border: 3px solid #888888;
+}
+

@@ -1,0 +1,32 @@
+<div class="border-t">
+    <div class="m-t-5">
+        <!-- Five tabs in Sales Order tab for inner tabset-->
+        <ngb-tabset type="pills" justify="justified" [activeId]="selectedTab">
+            <ngb-tab title="Partner Info" id="partnerinfo">
+                <ng-template ngbTabContent>
+                    <partner-info></partner-info>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Sales Order" id="salesorder">
+                <ng-template ngbTabContent>
+                    <app-sales-order></app-sales-order>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Timecard" id="timecard">
+                <ng-template ngbTabContent>
+                   <app-time-card></app-time-card>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Sales Invoice" id="salesinvoice">
+                <ng-template ngbTabContent>
+                    <p>Sales Invoice</p>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Payment" id="payment">
+                <ng-template ngbTabContent>
+                    <p>Payment</p>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
+    </div>
+</div>

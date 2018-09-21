@@ -1,0 +1,90 @@
+<div class="left-panel-tab">
+	<ngb-tabset type="pills" justify="justified" #tabset1="ngbTabset" *ngIf="isLoaded">
+		<!-- Accounts -->
+		<ngb-tab id="Order List" title="Order List" *ngIf="page=='service-manager-details'">
+			<ng-template ngbTabContent>
+				<div class="row m-t-5 border-t" *ngIf="showSelectedFiltersText">
+					<div class="col-md-12">
+						<label>
+							Filters: {{userState['servicemanager']['account']['accountName']}} > {{userState['servicemanager']['program']['programName']}}
+							> {{userState['servicemanager']['region']['regionName']}} > {{userState['servicemanager']['jobsite']['jobsiteName']}}
+						</label>
+					</div>
+				</div>
+				<div class="m-t-5 scroll-vertical750">
+					<orders-list></orders-list>
+				</div>
+			</ng-template>
+		</ngb-tab>
+		<!-- Accounts -->
+		<ngb-tab id="Accounts1" title="Accounts" *ngIf="page=='service-manager-dashboard'">
+			<ng-template ngbTabContent>
+				<div class="m-t-5 scroll-vertical750">
+					<accounts-list [page]="page"></accounts-list>
+				</div>
+			</ng-template>
+		</ngb-tab>
+		<!-- Filter -->
+		<ngb-tab id="Filters" title="Filters">
+			<ng-template ngbTabContent>
+				<div class="row m-t-5 border-t">
+					<div class="col-md-12 pull-left">
+						<span class="text-primary">
+							<a href="javascript:;" (click)="resetFilters(tabset1, tabset2)">Reset All Filters</a>
+						</span>
+					</div>
+				</div>
+				<div class="row m-t-5" *ngIf="showSelectedFiltersText">
+					<div class="col-md-12">
+						<label>
+							Filters: {{userState['servicemanager']['account']['accountName']}} > {{userState['servicemanager']['program']['programName']}}
+							> {{userState['servicemanager']['region']['regionName']}} > {{userState['servicemanager']['jobsite']['jobsiteName']}}
+						</label>
+					</div>
+				</div>
+				<ngb-tabset type="tabs" justify="justified" #tabset2="ngbTabset">
+					<!-- Accounts -->
+					<ngb-tab id="Accounts2" title="Accounts" *ngIf="page=='service-manager-details'">
+						<ng-template ngbTabContent>
+							<div class="m-t-5 scroll-vertical750">
+								<accounts-list [page]="page"></accounts-list>
+							</div>
+						</ng-template>
+					</ngb-tab>
+					<!-- Programs -->
+					<ngb-tab id="Programs" title="Programs">
+						<ng-template ngbTabContent>
+							<div class="m-t-5 scroll-vertical750">
+								<content-programs [page]="page"></content-programs>
+							</div>
+						</ng-template>
+					</ngb-tab>
+					<!-- Regions -->
+					<ngb-tab id="Regions" title="Regions">
+						<ng-template ngbTabContent>
+							<div class="m-t-5 scroll-vertical750">
+								<regions-list [page]="page"></regions-list>
+							</div>
+						</ng-template>
+					</ngb-tab>
+					<!-- Jobsites -->
+					<ngb-tab id="Jobsites" title="Jobsites">
+						<ng-template ngbTabContent>
+							<div class="m-t-5 scroll-vertical750">
+								<content-jobsite [page]="page"></content-jobsite>
+							</div>
+						</ng-template>
+					</ngb-tab>
+				</ngb-tabset>
+			</ng-template>
+		</ngb-tab>
+		<!-- Search -->
+		<ngb-tab id="Search" title="Search" *ngIf="page=='service-manager-dashboard'">
+			<ng-template ngbTabContent>
+				<div class="m-t-5">
+					<search-panel></search-panel>
+				</div>
+			</ng-template>
+		</ngb-tab>
+	</ngb-tabset>
+</div>

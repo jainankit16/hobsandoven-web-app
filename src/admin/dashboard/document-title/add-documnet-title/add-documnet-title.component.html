@@ -1,0 +1,58 @@
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-6">
+                <h3 class="text-themecolor">
+                    <i _ngcontent-c6="" _ngcontent-c30="" class="fa fa-list-ul"></i> {{headerTxt}} </h3>
+            </div>
+            <div class="col-6 text-right">
+                <button (click)="onButtonClick()" class="btn btn-sm" type="button">
+                    <span class="fa fa-arrow-left"></span> Back to list</button>
+            </div>
+        </div>
+        <form #userForm="ngForm" [formGroup]="documentForm" (ngSubmit)="onClickSave()" class="form-material m-t-10" name='userForm'>
+            <ngb-accordion #acc="ngbAccordion" activeIds="docTitleId" [destroyOnHide]="false">
+
+                <ngb-panel title="Document Title" id="docTitleId">
+                    <ng-template ngbPanelContent>
+
+                        <div class="row m-t-10">
+                            <!-- Title -->
+                            <div class="col-6">
+                                <span class="font-weight-bold">Title
+                                    <span class="text-danger">*</span>
+                                </span>
+                                <input type="text" formControlName="title" class="form-control">
+                                <small *ngIf="formErrors.title" class="help-block text-danger">{{ formErrors.title }}</small>
+                            </div>
+
+                            <!-- Department -->
+                            <div class="col-6">
+                                <span class="font-weight-bold">Document Categories
+                                    <span class="text-danger">*</span>
+                                </span>
+                                <select formControlName="documentCategoryId" class="form-control">
+                                    <option Value="" selected="true">--None--</option>
+                                    <option *ngFor="let type of ddlDepartmentTitle" [value]="type.id">{{type.title}}</option>
+                                </select>
+                                <small *ngIf="formErrors.documentCategoryId" class="help-block text-danger">{{ formErrors.documentCategoryId }}</small>
+                            </div>
+                        </div>
+                        <div class="row m-t-20">
+                            <div class="col-6">
+                                <input type="checkbox" formControlName="isActive" class="filled-in chk-col-light-blue" id="isActive">
+                                <label for="isActive" class="font-weight-bold">Document Title Status</label>
+                            </div>
+                        </div>
+                        <div class="row m-t-20">
+                            <div class="col-12 text-center" *ngIf="viewMode !== 'view'">
+                                <button class="btn btn-primary mRight" [disabled]="!documentForm.valid" type="submit">Save</button>
+                                <button class="btn btn-primary" (click)="resetForm()" type="button">Cancel</button>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion>
+        </form>
+    </div>
+</div>

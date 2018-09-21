@@ -1,0 +1,50 @@
+<div>
+    <section id="wrapper" class="login-register login-sidebar" style="background-image:url(../assets/images/background/login-register.jpg);">
+        <div class="login-box card">
+            <div class="card-body">
+                <app-preloader></app-preloader>
+                <alert></alert>
+                <form novalidate [formGroup]="loginForm" (ngSubmit)="login()" class="form-horizontal form-material">
+                    <div class="form-group m-t-40" [ngClass]="{'has-danger': loginForm.controls['username'].invalid && loginForm.controls['username'].touched}">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="email" placeholder="Email" formControlName="username" required>
+                            <div class="form-control-feedback" *ngIf="loginForm.get('username').invalid && loginForm.get('username').touched">
+                                Email is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group m-t-40" [ngClass]="{'has-danger': loginForm.controls['password'].invalid && loginForm.controls['password'].touched}">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="password" placeholder="Password" formControlName="password">
+                            <div class="form-control-feedback" *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">
+                                Password is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="checkbox checkbox-primary pull-left p-t-0">
+                                <input id="checkbox-signup" type="checkbox" formControlName="rememberMe">
+                                <label for="checkbox-signup"> Remember me </label>
+                            </div>
+                            <a href="javascript:void(0)" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" [routerLink]="['/reset']"
+                                id="to-recover" class="text-dark pull-right">
+                                <i class="fa fa-lock m-r-5"></i>
+                                Forgot password?</a>
+                        </div>
+                    </div>
+
+                    <div class="form-group text-center m-t-20">
+                        <div class="col-xs-12">
+                            <button [disabled]="!loginForm.valid" class="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Log In
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+</div>

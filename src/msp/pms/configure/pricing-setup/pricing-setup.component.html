@@ -1,0 +1,539 @@
+<ngb-accordion #acc="ngbAccordion" activeIds="select-program,select-quote,pre-selected-jobsites,pricing-panel" [destroyOnHide]="false">
+    <!--Select Program type start here-->
+    <ngb-panel id="select-program" title="(1) Select Program">
+        <ng-template ngbPanelContent>
+            <div class="col-md-12">
+                <div *ngIf="successMsg !='' " class="alert alert-success m-t-5">
+                    {{successMsg}}
+                </div>
+                <select-program [page]="page"></select-program>
+            </div>
+        </ng-template>
+    </ngb-panel>
+    <div *ngIf="ProgramIstrue"> 
+    <!--Select Quote type start here-->
+    <ngb-panel id="select-quote" title="(2) Select Quote" >
+        <ng-template ngbPanelContent>
+            <div class="pull-right">
+                <span class="text-primary expanded-view">
+                    <a href="javascript:;" (click)="openExpandedViewModal(quoteExpandedViewTemplate, 'xl', false)">Expanded View</a>
+                </span>
+            </div>
+            <div class="col-md-12">
+                <select-quote [isPricing]="true"></select-quote>
+            </div>
+        </ng-template>
+    </ngb-panel>
+    <!--Select Pre Select Job Sites type start here-->
+    <ngb-panel id="pre-selected-jobsites" title="(3) Pre-selected Jobsites" *ngIf="QuoteIstrue">
+        <ng-template ngbPanelContent>
+            <div class="col-md-12">
+                <selected-jobsites></selected-jobsites>
+            </div>
+        </ng-template>
+    </ngb-panel>
+    <!--Sales pricing per jobsite, Service provider, Profit Analysis-->
+    <ngb-panel id="pricing-panel" title="(4) Sales Pricing per Jobsite , Service Provider & Profit Analysis" *ngIf="showPricing">
+        <ng-template ngbPanelContent>
+            <ngb-tabset #showSelect="ngbTabset" type="pills" justify="justified" [destroyOnHide]="false">
+            <!--Service Providers start here-->
+                <ngb-tab title="Pricing" id="pricing">
+                    <ng-template ngbTabContent>
+                        <br/>
+                        <ngb-accordion #acc="ngbAccordion" activeIds="pricing-jobsite">
+                            <ngb-panel id="pricing-jobsite" title="(5) Sales Pricing per Jobsite">
+                                <ng-template ngbPanelContent>
+                                    <div class="pull-right">
+                                        <span class="text-primary expanded-view">
+                                            <a href="javascript:;" (click)="openExpandedViewModal(pricingExpandedViewTemplate, 'xl', false)">Expanded View</a>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <quote-pricing></quote-pricing>
+                                    </div>
+                                </ng-template>
+                            </ngb-panel>
+                        </ngb-accordion>
+                    </ng-template>
+                </ngb-tab>
+            <!--Service Providers start here-->
+                <ngb-tab id="service"  title="Service Providers" #serviceTab>
+                    <ng-template ngbTabContent>
+                        <br/>
+                        <ngb-accordion #acc="ngbAccordion" activeIds="dispatchPanel1,dispatchPanel2,dispatchPanel3,dispatchPanel4" [destroyOnHide]="false">
+                            <ngb-panel id="dispatchPanel1" title="(6) Select Provider Option">
+                                <ng-template ngbPanelContent>
+                                    <div class="pull-right">
+                                        <span class="text-primary expanded-view">
+                                            <a href="javascript:;" (click)="openExpandedViewModal(serviceProviderExpandedViewTemplate, 'xl', true)">Expanded View</a>
+                                        </span>
+                                    </div>
+                                    <provider-option></provider-option>
+                                </ng-template>
+                            </ngb-panel>
+                            <br>
+                            <ngb-panel id="dispatchPanel2" title="Option: A, Select Iron Service Global Auto Router Profile">
+                                <ng-template ngbPanelContent>
+                                    <provider-iron [canSelect]="true"></provider-iron>
+                                </ng-template>
+                            </ngb-panel>
+                            <br>
+                            <ngb-panel id="dispatchPanel3" title="Option: B, Select Provider of your choice">
+                                <ng-template ngbPanelContent>
+                                    <provider-global [canSelect]="true"></provider-global>
+                                </ng-template>
+                            </ngb-panel>
+                            <ngb-panel id="dispatchPanel4" title="Selected Service Provider's Locations">
+                                <ng-template ngbPanelContent>
+                                    <service-provider-locations></service-provider-locations>
+                                </ng-template>
+                            </ngb-panel>
+                        </ngb-accordion>
+                    </ng-template>
+                </ngb-tab>
+            <!--Profit Analysis start here-->
+                <ngb-tab id="profit" title="Profit Analysis">
+                    <ng-template ngbTabContent>
+                        <br/>
+                        <ngb-accordion #acc="ngbAccordion" activeIds="vendor-costing-jobsite,profilt-analysis">
+                            <!--Vendor costing per jobsite-->
+                            <ngb-panel id="vendor-costing-jobsite" title="(7) Vendor Costing per Jobsite">
+                                <ng-template ngbPanelContent>
+                                    <div class="pull-right">
+                                        <span class="text-primary expanded-view">
+                                            <a href="javascript:;" (click)="openExpandedViewModal(vendorPricingExpandedViewTemplate, 'xl', false)">Expanded View</a>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <vendor-costing></vendor-costing>
+                                    </div>
+                                </ng-template>
+                            </ngb-panel>
+                            <!--Profit Analysis per jobsite-->
+                            <ngb-panel id="profilt-analysis" title="(8) Profit Analysis per Jobsite">
+                                <ng-template ngbPanelContent>
+                                    <div class="pull-right">
+                                        <span class="text-primary expanded-view">
+                                            <a href="javascript:;" (click)="openExpandedViewModal(profitPricingExpandedViewTemplate, 'xl', false)">Expanded View</a>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <profit-analysis></profit-analysis>
+                                    </div>
+                                </ng-template>
+                            </ngb-panel>
+                        </ngb-accordion>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+        </ng-template>
+       </ngb-panel> 
+       </div>
+</ngb-accordion>
+<!--End here-->
+
+<br/>
+<!--Bind all footer button start here-->
+<div class="row button-box">
+    <div *ngIf="errorMsg !='' " class="col-lg-12 ">
+        <div class="alert alert-warning">
+            {{errorMsg}}
+        </div>
+    </div>
+
+    <div class="col-lg-2 text-left">
+        <button [disabled]="!ProgramIstrue || quotes.length == 0" type="submit" class="btn btn-success" (click)="openPricingStepSaveModal(savePricingSetupTemplate, 'lg', '')">Save Price Quote</button>
+    </div>
+    <div class="col-lg-10 text-right">
+        <button [disabled]="!ProgramIstrue" type="submit" (click)="goBack()" class="btn btn-primary mRight">&laquo; Previous </button>
+        <button [disabled]="!ProgramIstrue || quotes.length == 0" type="submit" class="btn btn-primary" (click)="openPricingStepSaveModal(savePricingSetupTemplate,'lg','goNext')">Next &raquo;</button>
+    </div>
+</div>
+<!--End here-->
+
+<!-- quote expanded view modal -->
+<ng-template #quoteExpandedViewTemplate let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Select Quote</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+        <select-quote [isSetDefault]="true"></select-quote>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default mRight" (click)="exportQuotes()">Export</button>
+        <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- pricing expanded view modal Ends -->
+
+<!-- pricing expanded view modal -->
+<ng-template #pricingExpandedViewTemplate let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Sales pricing per Jobsite</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table color-table info-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Jobsite #</th>
+                            <th>Program #</th>
+                            <th>Service Profile</th>
+                            <th>Service ID</th>
+                            <th>Service Description</th>
+                            <th>PPM hours</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ppj of pricingListPerJobsites, let i = index">
+                            <td>{{i +1}}</td>
+                            <td>{{ppj.Jobsite.Name}} </td>
+                            <td>{{userState.program.programName}}</td>
+                            <td>{{(ppj.Service_Engineer_Technical_Level__c) ? (ppj.Service_Engineer_Technical_Level__c +'/'+
+                                ppj.Dispatch_SLA_Priority__c) : ''}}</td>
+                            <td>{{ppj.Product?.Product_ID__c}}</td>
+                            <td>{{ppj.Product?.Description}}</td>
+                            <td>{{ppj.Order_Quantity__c}}</td>
+                            <td>{{ppj.Price__c}}</td>
+                        </tr>
+                        <tr *ngIf="pricingListPerJobsites.length == 0" class="alert alert-warning m-t-5">
+                            <td colspan="8">No record found.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default mRight" (click)="exportPricing()">Export</button>
+        <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- pricing expanded view modal Ends -->
+
+<!-- service provider expanded view modal -->
+<ng-template #serviceProviderExpandedViewTemplate let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Select Provider</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row ">
+                    <label class="form-group col-md-4 font-weight-bold">Service Engineer Talent Type</label>
+                    <div class="col-md-6 ">
+                        <select class="form-control custom-select" [(ngModel)]="searchFilter.talentType">
+                            <option Value="" selected="true">--None--</option>
+                            <option *ngFor="let c of searchFilter.talentTypes" [ngValue]="c">{{c}} </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <label for="Partner" class="form-group col-md-4 font-weight-bold">Service Engineer (Technical level) </label>
+                    <div class="col-md-6 ">
+                        <select class="form-control" [(ngModel)]="searchFilter.serviceEngTechLevel">
+                            <option Value="" selected="true">--None--</option>
+                            <option Value="L1">L1</option>
+                            <option Value="L2">L2</option>
+                            <option Value="NA">Not Applicable</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <label for="jobsite" class="form-group col-md-4 font-weight-bold">Dispatch SLA Priority</label>
+                    <div class="col-md-6 " class="col-md-8">
+                        <select class="form-control" [(ngModel)]="searchFilter.sla">
+                            <option Value="" selected="true">--None--</option>
+                            <option Value="SBD4H">P1 (SBD4H)</option>
+                            <option Value="SBD6H">P2 (SBD6H)</option>
+                            <option Value="NBD">P3 (NBD)</option>
+                            <option Value="2BD">P4 (2BD)</option>
+                            <option Value="3BD">P5 (3BD)</option>
+                            <option Value="5BD">P6 (5BD)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <label class="form-group col-md-4 font-weight-bold">Country</label>
+                    <div class="col-md-6" class="col-md-8">
+                        <select class="form-control custom-select" [(ngModel)]="searchFilter.countryid">
+                            <option Value="" selected="true">--None--</option>
+                            <option *ngFor="let c of searchFilter.countryddl" [ngValue]="c.Name">{{c.Country__c}} ({{c.Name}})</option>
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <label for="jobsite" class="form-group col-md-4 font-weight-bold">Vendor Name</label>
+                    <div class="col-md-6 " class="col-md-8">
+                        <select class="form-control" [(ngModel)]="searchFilter.vendorName">
+                            <option Value="" selected="true">--None--</option>
+                            <option *ngFor="let n of searchFilter.vendorNameList" [ngValue]="n">{{n}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <button type="button" class="btn btn-primary mRight" (click)="filterProviders()"> Search</button>
+                <button type="button" (click)="resetSearchFilter()" class="btn btn-primary"> Reset </button>
+            </div>
+        </div>
+        <br/>
+
+        <div class="table-responsive scroll-div metrovendor">
+            <table class="table color-table info-table">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Vendor Name</th>
+                        <th>Metro Pool #</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Country</th>
+                        <th>Zip</th>
+                        <th>Service Technical Level</th>
+                        <th>Talent Type</th>
+                        <th>SLA</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let provider of globalProfiles, let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{provider.account.Name}}</td>
+                        <td>{{provider.Metro_Pool__c}}</td>
+                        <td>{{provider.account.ShippingCity}}</td>
+                        <td>{{provider.account.ShippingState}}</td>
+                        <td>{{provider.account.ShippingCountry}}</td>
+                        <td>{{provider.account.ShippingPostalCode}}</td>
+                        <td>{{provider.Service_Technical_Level__c}}</td>
+                        <td>{{provider.TalentType.Talent_Type_Name__c}}</td>
+                        <td>{{provider.SLA__c}}</td>
+                        <td>{{provider.Vendor_Rating__c}}</td>
+
+                    </tr>
+                    <tr *ngIf="globalProfiles.length == 0" class="alert alert-warning m-t-5">
+                        <td colspan="11">No record found.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default mRight" (click)="exportProviders()">Export</button>
+        <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- service provider expanded view modal Ends -->
+
+<!-- vendor pricing expanded view modal -->
+<ng-template #vendorPricingExpandedViewTemplate let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Vendor costing per Jobsite</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table color-table info-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Jobsite #</th>
+                            <th>Program #</th>
+                            <th>Service Profile</th>
+                            <th>Service ID</th>
+                            <th>Service Description</th>
+                            <th>PPM hours</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ppj of pricingListPerJobsites, let i = index">
+                            <td>{{i +1}}</td>
+                            <td>{{ppj.Jobsite.Name}} </td>
+                            <td>{{userState.program.programName}}</td>
+                            <td>{{(ppj.Service_Engineer_Technical_Level__c) ? (ppj.Service_Engineer_Technical_Level__c+'/'+ppj.Dispatch_SLA_Priority__c)
+                                : ''}}</td>
+                            <td>{{ppj.Product?.Product_ID__c}}</td>
+                            <td>{{ppj.Product?.Description}}</td>
+                            <td>{{ppj.Order_Quantity__c}}</td>
+                            <td>{{ppj.Vendor_Cost__c}}</td>
+                        </tr>
+                        <tr *ngIf="pricingListPerJobsites.length == 0" class="alert alert-warning m-t-5">
+                            <td colspan="8">No record found.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default mRight" (click)="exportVendorPricing()">Export</button>
+        <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- vendor pricing expanded view modal Ends -->
+
+<!-- profit pricing expanded view modal -->
+<ng-template #profitPricingExpandedViewTemplate let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Profit Analysis per Jobsite</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table color-table info-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Jobsite #</th>
+                            <th>Program #</th>
+                            <th>Service Profile</th>
+                            <th>Service ID</th>
+                            <th>Service Description</th>
+                            <th>PPM hours</th>
+                            <th>Price</th>
+                            <th>Profit (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ppj of pricingListPerJobsites, let i = index">
+                            <td>{{i +1}}</td>
+                            <td>{{ppj.Jobsite.Name}} </td>
+                            <td>{{userState.program.programName}}</td>
+                            <td>{{(ppj.Service_Engineer_Technical_Level__c) ? (ppj.Service_Engineer_Technical_Level__c+'/'+ppj.Dispatch_SLA_Priority__c)
+                                : ''}}</td>
+                            <td>{{ppj.Product?.Product_ID__c}}</td>
+                            <td>{{ppj.Product?.Description}}</td>
+                            <td>{{ppj.Order_Quantity__c}}</td>
+                            <td>{{ppj.Profit_Price__c}}</td>
+                            <td>{{(ppj.Profit_Price__c / ppj.Vendor_Cost__c) | percent:'1.2-2'}}</td>
+                        </tr>
+                        <tr *ngIf="pricingListPerJobsites.length == 0" class="alert alert-warning m-t-5">
+                            <td colspan="8">No record found.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default mRight" (click)="exportProfitPricing()">Export</button>
+        <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- profit pricing expanded view modal Ends -->
+
+<!-- save pricing setup modal starts -->
+<ng-template #savePricingSetupTemplate let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Save Program Setup</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+
+        <div *ngIf="errorMsgModal !='' " class="alert alert-warning m-t-5">
+            {{errorMsgModal}}
+        </div>
+        <div *ngIf="successMsgModal !='' " class="alert alert-success m-t-5">
+            {{successMsgModal}}
+        </div>
+        <div class="form-group row">
+            <label for="example-text-input" class="col-4 col-form-label">Select Action</label>
+            <div class="col-8">
+                <div>
+                    <div class="md-radio md-radio-inline">
+                        <input id="currentRevision" type="radio" name="selectAction" value='currentRevision' (change)="toggleAction($event)" checked>
+                        <label for="currentRevision">Save as Current Revision</label>
+                    </div>
+                    <div class="md-radio md-radio-inline">
+                        <input id="newRevision" type="radio" name="selectAction" value='newRevision' (change)="toggleAction($event)">
+                        <label for="newRevision">Save as new revision</label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-text-input" class="col-4 col-form-label">Save as Default</label>
+            <div class="col-8">
+                <input id="saveAsDefault" name="saveAsDefault" [value]="saveAsDefault" type="checkbox" class="filled-in chk-col-light-blue"
+                    [checked]="selectedQuote.Default_Quote__c" (change)="toggleDefault($event)">
+                <label for="saveAsDefault"> </label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-text-input" class="col-4 col-form-label">Quote Number</label>
+            <div class="col-8">
+                {{selectedQuote.Iron_Quote_Number__c}}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-text-input" class="col-4 col-form-label">Current Revision</label>
+            <div class="col-8">
+                {{selectedQuote.Quote_Version__c}}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-text-input" class="col-4 col-form-label">Status</label>
+            <div class="col-8">
+                {{quoteStatus}}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-search-input" class="col-4 col-form-label">Enter Template Name</label>
+            <div class="col-8">
+                <input class="form-control" type="text" [(ngModel)]="templateName">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="example-email-input" class="col-4 col-form-label">Enter Template Description</label>
+            <div class="col-8">
+                <textarea class="form-control" rows="2" [(ngModel)]="templateDescription"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success mRight" (click)="savePricingStep()">Save</button>
+        <button type="button" class="btn btn-success" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!-- save pricing setup modal Ends -->

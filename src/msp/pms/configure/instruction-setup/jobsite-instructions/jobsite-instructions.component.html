@@ -1,0 +1,16 @@
+<div class="table-responsive scroll-div">
+    <table class="table color-table info-table">
+        <thead>
+            <tr>
+                <th style="width: 10%;" >Jobsite#</th>
+                <th >Jobsite Specific Instruction Step</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let selectedJob of jobSiteInstructions,  let i = index">
+                <td>{{selectedJob.jobsiteNo}}</td>
+                <td> <textarea [(ngModel)]="selectedJob.instruction" name="instruction--{{i}}" class="form-control">{{selectedJob.instruction}}</textarea></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

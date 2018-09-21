@@ -1,0 +1,103 @@
+<div *ngIf="payment">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h4 class="section-title">PAYMENT DETAILS</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <strong class="text-muted">Vendor Name</strong>
+            <p>{{payment?.invoice?.vendor?.Name}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Payment #</strong>
+            <p>{{payment?.Name}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Invoice Number</strong>
+            <p>{{payment?.invoice?.Name}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Vendor Purchase Receipt Number</strong>
+            <p>{{payment?.Vendor_Purchase_Receipt_Number__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Currency</strong>
+            <p>{{payment.CurrencyIsoCode}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Payment Amount</strong>
+            <p>{{payment?.Amount__c | number:'1.2-2'}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Method of Payment</strong>
+            <p>{{payment?.Method_of_Payment__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Payment Date</strong>
+            <p>{{payment?.Payment_Date__c | date:'shortDate'}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Payment Status</strong>
+            <p>{{payment?.Payment_Status__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Remittance Number (If Any)</strong>
+            <p>{{payment?.Remittance_Number__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Promissory Note Number (If Any)</strong>
+            <p>{{payment?.Promissory_Note_Number__c}}&nbsp;</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h4 class="section-title">INVOICE DETAILS</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <strong class="text-muted">Purchase Invoice #</strong>
+            <p>{{payment?.purchaseOrder?.Work_Order_num__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Job ID</strong>
+            <p>{{payment?.purchaseOrder?.job?.Iron_Job_num__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">TimeCard/Timesheet #</strong>
+            <p>{{payment?.invoice?.timecard?.Name}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Grand Total</strong>
+            <p>{{payment?.invoice?.Amount__c | number:'1.2-2'}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">PI Amount (Paid)</strong>
+            <p>{{payment?.invoice?.Total_Paid__c | number:'1.2-2'}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Balance PI Amount</strong>
+            <p>{{payment?.invoice?.Balance__c | number:'1.2-2' }}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Due Date</strong>
+            <p>{{payment?.invoice?.Due_Date__c | date:'shortDate'}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Job Service Resolution Status - FSE</strong>
+            <p>{{payment?.purchaseOrder?.job?.Job_Status__c}}&nbsp;</p>
+        </div>
+    </div>
+
+</div>
+<div *ngIf="errorMessage">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-warning" role="alert">
+                {{errorMessage}}
+            </div>
+        </div>
+    </div>
+</div>

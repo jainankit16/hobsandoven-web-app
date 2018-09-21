@@ -1,0 +1,612 @@
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+body{
+    font-family: "Roboto", sans-serif !important;
+    overflow-y: auto;
+}
+.fix-header .topbar{
+    position: fixed;
+    top: 0px;
+    width: 100%;
+}
+.fix-header .page-wrapper {
+    padding-top: 70px;
+}
+.topbar .top-navbar .navbar-nav > .nav-item > .nav-link{
+    font-size:15px;
+    line-height: 20px;
+}
+.round.round-top {
+    height: 33px;
+    width: 33px;
+    line-height: 35px;
+}
+.divSubNav{
+    margin-top:74px;
+}
+.page-wrapper{
+    background-color: #FFF;
+}
+.vMiddle{
+    vertical-align: middle;
+}
+
+.nav-secondary{
+    background-color: #cccccc;
+}
+.nav-secondary li{
+    display: inline-block;
+    color:#000;
+    margin: 0 0 0 40px;
+}
+
+.scroll-div {
+    max-height: 250px;   
+    overflow: scroll;
+    position: relative;
+}
+
+.scroll-vertical-cost {
+    max-height: 250px;   
+    overflow-y: auto;
+   
+}
+.scroll-vertical-share {
+    max-height: 250px;   
+    overflow-y: auto;   
+}
+.scroll-vertical-share::-webkit-scrollbar {
+    width: .5em;
+}
+ .scroll-vertical-share::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+.scroll-vertical-share::-webkit-scrollbar-thumb {
+  background-color: #0ae;
+  outline: 1px solid #7b9bbd;
+}
+.scroll-vertical-description {
+    max-height: 100px;   
+    overflow-y: auto;
+   
+}
+
+.scroll-vertical740 {
+    max-height: 735px;   
+    overflow-y: auto;
+    overflow-x: hidden;
+   
+}
+
+.scroll-div .table.table-hover, .posRelative {
+    position: relative;
+}
+
+@media (min-width: 1366px) {
+    .modal-xl {
+        max-width: 1024px !important;
+    }
+}
+
+.metrovendor .green,
+.metrovendor .green:hover {
+    background-color: #90EE90;
+}
+
+.metrovendor .blue,
+.metrovendor .blue:hover {
+    background-color: rgb(101, 176, 247);
+}
+
+.metrovendor .grey,
+.metrovendor .grey:hover {
+    background-color: rgb(200, 209, 218);
+}
+
+.nav.nav-tabs {
+    font-size: .9rem;
+}
+
+.nav.nav-tabs a {
+    padding: .69rem;
+}
+
+.accountInfo {
+    padding: .5rem;
+    background-color: #1E88E5;
+    color: #FFF;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.expanded-view {
+    position: absolute;
+    right: 15px;
+    top: 13px;
+}
+
+.expanded-view a{
+   color: #FFF;
+}
+.pricing .red,
+.pricing .red:hover {
+    background-color: red;
+}
+
+.mdi-download {
+    vertical-align: middle;
+    font-size: 1.3rem;
+}
+
+td span a {
+    text-decoration: underline;
+}
+td a {
+    text-decoration: underline;
+}
+.required-field:after {
+    color: #d00;
+    content: "*";
+    
+}
+.errorMessage{
+    color: #d00;
+}
+@media (min-width: 1366px) {
+    .modal-xxl {
+        width: 90% !important;
+        max-width: 1200px !important;
+    }
+    .modal-full {
+        width: 100% !important;
+        max-width: 95% !important;
+    }
+}
+
+.hidepanel{
+    display: none !important;
+}
+.cdk-overlay-container {
+  z-index: 9999 !important;
+}
+
+/* to hide records count in data table */
+.hide-records-count .pagination-range{
+    display: none !important;
+}
+
+.card .card-header {
+    background-color: #1E88E5;
+    margin-bottom: 10px;
+}
+.card-header a, .card-header button {
+    color: #FFF;
+    font-weight: 400;
+    padding: 0;
+    font-family: "Roboto", sans-serif !important;
+}
+.card-header button:hover,.card-header button:focus{
+    text-decoration: none;
+    color: #FFF;
+}
+.card-header a::before, .card-header button::before {
+    content: '\25ba';
+    padding-right: 0.5em;
+}
+     
+.card-header.active a::before, .card-header button.collapsed::before {
+    content: '\25bc';
+}   
+.btn.mRight, .mRight{
+    margin-right: 10px;
+}
+/*for job detail page*/
+.job .card .card-header {
+    background-color:#FFF;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    padding: .75rem 0;
+    margin: 0 1.25rem 10px 1.25rem
+}
+.job .card-header button {
+    color:#0275d8;
+    font-weight: 400;
+}
+
+.blue .card-header{
+    background-color: #63ABED;
+    margin-bottom: 0;
+}
+
+.orange .card-header{
+    background-color: #FFA953;
+    margin-bottom: 0;
+}
+
+.blue .card-body{
+    padding-top: 10px;
+    background-color: #C6E0F9;
+}
+
+.orange .card-body{
+    padding-top: 10px;
+    background-color: #FFE5CC;
+}
+
+.button-box {
+     position: relative;
+     padding:10px 0px; 
+}
+
+.error-body h2 {
+    font-size: 70px;
+    font-weight: 900;
+    line-height: 70px;
+}
+
+.steps li:hover {
+    cursor: pointer;
+}
+
+.text-wrap {
+    word-wrap: break-word; 
+  }
+.text-bold {
+    font-weight: bold;
+}
+
+  .leftScrollDiv{
+    max-height: 1000px !important; 
+    overflow-x: scroll;
+    overflow-y: scroll;     
+  }
+
+  .leftInside-Scroll{      
+    max-height: 1200px ; 
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 600px; 
+     
+  }
+  .leftdiv-HW{
+      width: 600px;
+      padding: 6px;
+  }
+  .tablePosition-pl{
+     position: relative;
+  }
+
+
+  #global-program-instructions-header  {
+    display: none;
+  }
+
+  .accordion .card-header button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+  }
+  /*css for ng-select ddl start here */
+
+  .txtbtn {
+    float: left;
+    }
+    
+    ng-select > div > div.multiple > div.option {
+        flex-shrink: 1 !important;
+    } 
+    .close-icon {
+        position: absolute;
+        top: -8px;
+        right: 1px;
+        font-size: 19px; 
+        cursor: pointer;
+    }
+    .txt-date {
+        padding: 3px 0px 3px 8px;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    .icon-color {
+        color: #1E88E5;
+        cursor: pointer;
+    }
+    .icon-size{
+        font-size: 20px;        
+    } 
+
+    .border-t {
+        border-top: 1px solid gainsboro  !important;
+    }
+    /*End here*/
+    .ql-snow .ql-tooltip{
+        left: 0px !important;
+    }
+    .ngx-charts-tooltip-content .tooltip-content {
+        position: absolute;
+        z-index: 9999;
+        min-width: 200px;
+        width: auto;
+        left: 50%;
+        margin: 0 0 0 -100px;
+        bottom: 100%;
+        padding: 5px;
+        text-align: left;
+        font-size: 14px;
+        line-height: 1.5;
+        box-shadow: -5px -5px 15px rgba(48, 54, 61, 0.2);
+        background: rgba(0,0,0,0.75);
+        opacity: 1;
+        cursor: default;
+        pointer-events: none; }
+
+    .ngx-charts-tooltip-content .tooltip-content::after {
+        content: '';
+        top:auto;
+        left: auto;
+        border:none;
+        height:auto;
+        width:auto;
+        position: absolute;
+        pointer-events: none;
+        border-color: transparent;
+        border-top-color: transparent;
+        border-width: 0;
+        margin-left: 0; }
+    .card-body{ padding-bottom: 2rem !important;}
+
+    .ngx-datatable.fixed-row .datatable-scroll .datatable-body-row .datatable-body-cell {
+        /* removing this because it is truncating extra spaces in between the values */
+        /* white-space: normal !important; */
+         white-space: pre-wrap !important;
+    }
+    .ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
+        white-space: normal !important;
+    }
+  
+    ngx-datatable.vScroll {
+        height: calc(70vh - 110px);        
+    }
+    ngx-datatable.ngxHasData{
+       height: auto;
+    }
+    ngx-datatable.ngxHasData datatable-body{
+       height: auto !important;
+       max-height: calc(70vh - 110px);
+    }
+        
+     .chat-content .discussion p img {
+        max-width: 100% !important;
+        display: block !important;
+    }
+.customWidth .datatable-scroll,.customWidth .datatable-body-row, .datatable-row-center{width: 100% !important;}
+    
+.height-700 ngui-map { height: 100%;}
+
+.jobsite-error-red {
+    border: 1px solid #a94442;
+    background: #f2dede;
+}
+
+.form-hd-jobsite span {
+    width: 19.5%;
+    display: inline-block;
+    padding-left: 1.6%;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.form-hd-jobsite.final span { width: 9.6%; padding-left: 1.6%; }
+      
+.ngx-datatable.fixed-row .datatable-scroll .expand-row{
+    white-space: normal !important;
+}
+
+.mini-sidebar .sidebar-nav #sidebarnav > li:hover > a {
+    background: #000000;
+}
+
+.ql-editor strong {
+    font-weight: bold !important;
+}
+/*freezHeader*/
+.freezeHeader {
+    position: fixed;
+    top: 71px;
+    z-index: 44;
+    background: #1e88e5;
+    width: auto
+}
+
+.freezeFooter {
+    position: fixed;
+    bottom: 0px;
+    z-index: 44;
+    background: #1e88e5;
+}
+.freezeHeader .datatable-header-cell-label , .freezeHeader .input-group input{	
+	color: #ffffff !important;;
+}
+.freezeHeader .input-group input::-webkit-input-placeholder {
+ color:#ffffff !important;
+}
+     
+.freezeHeader .input-group input:-moz-placeholder { /* Firefox 18- */
+ color:#ffffff !important;  
+}
+    
+.freezeHeader .input-group input::-moz-placeholder {  /* Firefox 19+ */
+ color:#ffffff !important;  
+}
+    
+.freezeHeader .input-group input:-ms-input-placeholder {  
+ color: #ffffff !important;  
+}
+/*end freezHeader*/
+.doubleScroll .datatable-header {
+    overflow: auto !important;
+    overflow-y: hidden !important;
+    width: auto !important;
+}
+
+.doubleScroll .datatable-body {
+    overflow: auto !important;   
+}
+
+.singleScroll .datatable-body {
+    overflow: auto !important;   
+}
+
+.dataTable-cross{
+    color: #495057;
+    font-size: 13px;
+}
+
+.dataTable-cross i{
+    margin-top: 12px;
+}
+
+.dataTable-cross:hover{
+    color: #495057;
+}
+
+.btn-circle-small{
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+}
+.dropdown-menu{
+    z-index: 45 !important;
+}       
+
+.dd-column-selector{
+    max-height: 200px !important;
+    overflow-x: scroll; 
+
+}
+.dd-column-selector li label{
+    margin-bottom: 0 !important;
+}
+
+.ng-select .ng-control .ng-value-container .ng-placeholder {
+    overflow: hidden;
+    width: 80%;
+}
+
+.ng-select.ng-multiple .ng-control.ng-has-value .ng-value-container {
+    padding-top: 0px !important;
+    margin-top: 5px !important;
+}
+ .hide-select-overlay {
+	z-index: 1;
+	position: relative;
+}
+
+.scroll-div-activity {
+    max-height: 750px;   
+    overflow: scroll;
+    position: relative;
+}
+ 
+
+@media (min-width: 1024px) {
+    .modal-dialog {
+            max-width: 800px;
+            margin: 1.75rem auto;
+    }
+}
+@media (min-width: 768px) {
+    .modal-dialog {
+            max-width: 700px;
+            margin: 1.75rem auto;
+    }
+}  
+.modal-body{
+    height: 100%;
+    max-height: calc(100vw * (3/7.1));
+    overflow: auto;
+}
+
+.r-space{
+        margin-top: -13px;
+    margin-bottom: -5px;
+}
+
+.t-search-tb{
+    font-size: 14px;padding-left:2px;
+}
+
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-placeholder {
+    position: absolute !important;
+    z-index: 0 !important;
+
+}
+/* for ngx-Table action `dropdown-menu` start here */
+.action-dd-position {
+    top: -8px !important; 
+    left: -56 !important;
+    position: fixed !important; 
+}
+.action-dd-right {
+    left: -56 !important;
+}
+
+button.dropdown-item {
+    padding: 5px 1rem !important;
+}
+
+/*Total rocord and PopPoisition count div in ngx-table*/
+.ngx-datatable .datatable-footer .datatable-footer-inner > div:first-of-type {
+    width: 110px;
+}
+
+.pop-position + ngb-popover-window {
+    position: fixed;
+    top: 15% !important;
+    }
+/*End here*/
+.dd-column-selector li:first-child [type="checkbox"]:checked + label:before,.dd-column-selector li:first-child [type="checkbox"]:checked + label{
+opacity: .6;
+}
+
+.dd-column-selector li:first-child::before {
+    content: "";
+    width: 100%;
+    height: 25px;
+    position: absolute;
+    display: block;
+    z-index: 1000;
+}
+
+.dd-column-selector{display: none !important;}
+.dd-column-selector.show {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    list-style-type: none;
+    text-align: left;
+    padding: 5px;
+    border: 1px solid #CCC;
+    background-color: #FFF;
+}
+.posRelative .dd-column-selector.show{left:0; max-width:250px; overflow-x: visible;}
+.message-img-width img{
+    max-width: 100%;
+}
+
+.no-shadow {
+    box-shadow: none !important;
+}
+
+.cursor-auto{
+    cursor: auto;
+}
+
+.job-list-advsearch .card .card-header {
+    margin-bottom: 0px !important;
+}

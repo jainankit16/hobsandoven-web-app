@@ -1,0 +1,80 @@
+<div class="row">
+    <div class="col-md-12 text-center">
+        <div class="headermsg">
+            <h3>Service Manager (Dispatch FSE) {{pageTitle}}</h3>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <app-smc-top-progress-bar></app-smc-top-progress-bar>
+        </div>
+    </div>
+</div>
+
+<div class="row m-r-0">
+    <div class="col-md-3" [ngClass]="{'hidepanel': isCollapsed}">
+        <service-manager-left-panel page="service-manager-details"></service-manager-left-panel>
+    </div>
+    <div [ngClass]="{'col-md-6': !isCollapsed, 'col-md-9': isCollapsed}">
+        <div class="row">
+            <div class="col-sm-6 align-self-center">
+                <a href="javascript:void(0)" (click)="isCollapsed = !isCollapsed">
+                    <i [ngClass]="{'ti-menu fa-1x': isCollapsed,'ti-close fa-1x': !isCollapsed }" class="ti-menu fa-1x"></i>
+                </a> &nbsp;
+                <a (click)="redirectBack()" href="javascript:void(0)" class="btn btn-sm btn-primary m-b-5"> Back to list</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <ngb-tabset type="pills" justify="justified" [activeId]="selectedTab">
+                    <ngb-tab id="orderDetail" title="Order Details">
+                        <ng-template ngbTabContent>
+                            <order-details page="pmsCase"></order-details>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab id="hardware" title="Hardware">
+                        <ng-template ngbTabContent>
+                            <app-hardware-details [caseId]="caseId" page="hardware"></app-hardware-details>
+                        </ng-template>
+                    </ngb-tab>
+
+                    <ngb-tab id="shipLogistics" title="Ship Logistics">
+                        <ng-template ngbTabContent>
+                            <p>Ship Logistics</p>
+                        </ng-template>
+                    </ngb-tab>
+
+                    <ngb-tab id="serviceContract" title="Service Contract">
+                        <ng-template ngbTabContent>
+                            <app-service-contract [caseId]="caseId" *ngIf="!isInternalUser" page="hardware"></app-service-contract>
+                        </ng-template>
+                    </ngb-tab>
+
+                    <ngb-tab id="billing" title="Billing">
+                        <ng-template ngbTabContent>
+                            <billing-details></billing-details>
+                        </ng-template>
+                    </ngb-tab>
+
+                    <ngb-tab id="worker" title="Worker">
+                        <ng-template ngbTabContent>
+                            <app-worker-details [caseId]="caseId" page="hardware"></app-worker-details>
+                        </ng-template>
+                    </ngb-tab>
+                    <ngb-tab id="messaging" title="Messaging">
+                        <ng-template ngbTabContent>
+                            <messaging></messaging>
+                        </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 card">
+        <h3 class="text-center">Job Manager</h3>
+        <service-manager-right-panel page="details"></service-manager-right-panel>
+    </div>
+</div>

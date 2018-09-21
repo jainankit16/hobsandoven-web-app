@@ -1,0 +1,76 @@
+<div class="card">
+    <div class="p-0">
+        <div class="m-t-30 align-content">
+            <img *ngIf="user?.profileImage" src="{{imgpath}}/Containers/{{user?.id}}/download/{{user?.profileImage}}" class="img-circle"
+                width="150">
+            <div *ngIf="!user?.profileImage" class="user-img">
+                <span class="round round-primary round-profile-left">
+                    {{(user?.firstname) ? (user?.firstname.charAt(0).toUpperCase()) : ''}}{{(user?.lastname) ? (user?.lastname.charAt(0).toUpperCase()):''}}
+                </span>
+                <span class="profile-status away pull-right"></span>
+            </div>
+            <h4 class="card-title m-t-10">{{user?.firstname}} {{user?.lastname}}</h4>
+            <h6 class="card-subtitle">{{deptInfo?.Name}}</h6>
+            <h6 class="card-subtitle">{{accountInfo?.Name}}
+                <br> {{accountInfo?.Service_Global_Ref__c}}</h6>
+            <div class="row text-center justify-content-md-center">
+                <div class="col-6">
+                    <a href="javascript:void(0)" class="link text-info" data-toggle="tooltip" title="Change picture" (click)="open(changeProfile,'lg')">
+                        <i class="icon-picture"></i>
+                        <font class="font-medium"> Upload</font>
+                    </a>
+                </div>
+                <div class="col-6">
+                    <a href="javascript:void(0)" class="link text-info" data-toggle="tooltip" title="Remove picture" (click)="removePicture(user?.id,user?.picture)">
+                        <i class="icon-trash text-danger"></i>
+                        <font class="font-medium text-danger">Remove</font>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="p-10">
+        <small class="text-muted">Email address</small>
+        <h6>{{(user?.email) ? (user?.email) : "NA"}}</h6>
+        <small class="text-muted p-t-20 db">Phone</small>
+        <h6 *ngIf="user?.profile">{{(user?.profile.Phone) ? ("+"+user?.profile.Phone):"NA"}}</h6>
+        <small class="text-muted p-t-20 db">Address</small>
+        <h6 *ngIf="user?.profile">
+            {{ (user?.profile.MailingStreet) ? (user?.profile.MailingStreet) : "" }} {{ (user?.profile.MailingCity) ? (user?.profile.MailingCity)
+            : "" }} {{ (user?.profile.MailingState) ? (", "+user?.profile.MailingState) : "" }} {{ (user?.profile.MailingPostalCode)
+            ? (", "+user?.profile.MailingPostalCode) : "" }} {{ (user?.profile.MailingCountry) ? (user?.profile.MailingCountry)
+            : "" }}
+        </h6>
+        <div class="map-box p-t-10">
+            <ngui-map *ngIf="user?.profile" center="{{user?.profile.MailingStreet}} {{user?.profile.MailingCity}} 
+            {{user?.profile.MailingState}} , {{user?.profile.MailingPostalCode}}, {{user?.profile.MailingCountry}}">
+                <marker position="{{user?.profile.MailingStreet}} {{user?.profile.MailingCity}} {{user?.profile.MailingState}} , 
+                {{user?.profile.MailingPostalCode}} , {{user?.profile.MailingCountry}}" draggable="true" (click)="clicked($event)">
+                </marker>
+                <info-window id="iw">
+                    <div *ngIf="marker.display">
+                        lat: {{(marker.user?.profile.MailingLatitude) ? (marker.user?.profile.MailingLatitude): 0 }}, lng: {{(marker.user?.profile.MailingLongitude)
+                        ? (marker.user?.profile.MailingLongitude) :""}}
+                    </div>
+                </info-window>
+            </ngui-map>
+        </div>
+        <small class="text-muted p-t-20 p-b-10 db">Social Profile</small>
+        <button class="btn btn-circle btn-secondary mRight">
+            <i class="fa fa-facebook"></i>
+        </button>
+        <button class="btn btn-circle btn-secondary mRight">
+            <i class="fa fa-twitter"></i>
+        </button>
+        <button class="btn btn-circle btn-secondary">
+            <i class="fa fa-youtube"></i>
+        </button>
+    </div>
+</div>
+
+<!--modal popup because it mandatory to have ng-template-->
+<ng-template ngbTabContent #changeProfile>
+    <app-profile-picture (pictureUploaded)="pictureUploaded($event)"></app-profile-picture>
+</ng-template>
+<!--end ofmodal popup because it mandatory to have ng-template-->

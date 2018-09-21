@@ -1,0 +1,10 @@
+.nav-justified .nav-item {
+    flex-basis: 1 !important;
+}
+
+.nav.nav-tabs{
+    font-size: 1rem !important;
+}
+img{
+    vertical-align: baseline;
+}

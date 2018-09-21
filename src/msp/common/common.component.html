@@ -1,0 +1,17 @@
+<!--Search document list form start here-->
+<div id="main-wrapper">
+    <app-nav-header></app-nav-header>
+    <app-nav-sidebar></app-nav-sidebar>
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <!-- <breadcrumb></breadcrumb> -->
+            <alert></alert>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <footer class="footer">
+        © 2017-2018 {{webTitle}}
+        <span class="pull-right">App Version: {{appVersion}} ({{buildDate}})</span>
+    </footer>
+    <app-preloader></app-preloader>
+</div>

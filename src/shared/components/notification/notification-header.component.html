@@ -1,0 +1,39 @@
+<ul>
+    <li>
+        <div class="drop-title mega-dropdown">Notifications
+            <span *ngIf="!errorMessage" class="sl-date float-right">
+                <a href="javascript:void(0)" (click)="markAsRead()">
+                    Mark All Read
+                </a>
+            </span>
+        </div>
+    </li>
+    <li *ngIf="!errorMessage">
+        <div class="message-center">
+            <!-- Message -->
+            <div *ngFor="let notification of notificationLists">
+                <a href="javascript:void(0)">
+                    <div class="btn btn-{{notification.alert.type}} btn-circle">
+                        <i class="fa fa-link"></i>
+                    </div>
+                    <div class="mail-contnet px-2" (click)="markAsRead(notification.alert.id , notification.alert.viewUrl)">
+                        <h5>{{notification.alert.modelName | titlecase}}</h5>
+                        <span class="mail-desc">{{notification.alert.message}}</span>
+                        <span class="time">{{notification.alert.createdAt | date: 'short'}}</span>
+                    </div>
+                    <div class="float-right">
+                        <span [ngClass]="(notification.isRead) ? 'fa fa-envelope-open': 'fa fa-envelope-o'" (click)="(notification.isRead) ? false: markAsRead(notification.alert.id); $event.stopPropagation();"></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </li>
+    <div *ngIf="errorMessage">
+        <div class="alert alert-warning m-b-0">{{errorMessage}}</div>
+    </div>
+    <li *ngIf="!errorMessage">
+        <a class="nav-link text-center" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" [routerLink]="['/app/notifications']">
+            <strong>See all notifications</strong>&nbsp;<i class="fa fa-angle-right"></i>
+        </a>
+    </li>
+</ul>

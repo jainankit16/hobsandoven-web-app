@@ -1,0 +1,11 @@
+.ng-select.custom-typeahead-modal {
+    margin-top: -15px !important;
+}
+
+.no-opacity {
+    opacity: 1 !important;
+}
+
+.no-bottom-padding {
+    padding-bottom: 0 !important;
+}

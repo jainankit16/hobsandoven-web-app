@@ -1,0 +1,148 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4">
+            <span *ngIf="!nextStep">
+                <Strong>Step 2/3</Strong>
+            </span>
+            <span *ngIf="nextStep">
+                <Strong>Step 3/3</Strong>
+            </span>
+        </div>
+        <div class="col-md-8">
+            <button type="button" class="btn btn-default mRight" (click)="preStage(nextStep)">Previous</button>
+            <button class="btn btn-primary mRight" *ngIf="nextStep" (click)="submitJobsite()">Upload Jobsite</button>
+            <button class="btn btn-primary mRight" *ngIf="!nextStep" [disabled]="!uploadform.valid" (click)="nextReview()">Next</button>
+            <button class="btn btn-default" (click)="closeModel()">Cancel</button>
+        </div>
+    </div>
+    <hr>
+
+    <div *ngIf="errorMessage" class="row">
+        <div class="alert alert-warning col-md-12">
+            {{errorMessage}}
+        </div>
+    </div>
+
+    <div *ngIf="successMsg" class="row">
+        <div class="alert alert-success col-md-12">
+            {{successMsg}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <span>
+                <Strong>Instruction:</Strong>
+            </span>
+            <ul *ngIf="!nextStep">
+                <li>Please select the nearest Service Zone</li>
+                <li>Please make sure all the address are valid</li>
+                <li>Selecting the Service Zone will display the distence between Jobsite and Service Zone</li>
+            </ul>
+            <ul *ngIf="nextStep">
+                <li>Please review and upload</li>
+            </ul>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <form #jobsiteUploadForm2="ngForm" [formGroup]="uploadform" name='jobsiteUploadForm2'>
+
+                <div class="row">
+                    <div class="container">
+
+                        <div class="table color-table info-table table-responsive scroll-div">
+
+                            <ul class="ul-head">
+                                <li style="width:50px">
+                                    <strong>Sl.No</strong>
+                                </li>
+                                <!-- <span>Address
+            <br>Verification</span> -->
+                                <li style="width:80px">
+                                    <strong>Country*</strong>
+                                </li>
+                                <li style="width:170px">
+                                    <strong>State*</strong>
+                                </li>
+                                <li style="width:90px">
+                                    <strong>Zip*</strong>
+                                </li>
+                                <li style="width:130px">
+                                    <strong>City*</strong>
+                                </li>
+                                <li style="width:175px">
+                                    <strong>Street*</strong>
+                                </li>
+                                <li style="width:285px">
+                                    <strong>Service Zone</strong>
+                                </li>
+                                <li style="width:80px">
+                                    <strong>Distance</strong>
+                                </li>
+                            </ul>
+
+                            <div formArrayName="items" *ngFor="let item of uploadform.get('items')?.controls; let i = index;">
+                                <ul [formGroupName]="i" class="ul-row">
+                                    <li style="width:50px"> {{i+1}} </li>
+                                    <!-- <td>
+                                        Invalid
+
+                                    </td> -->
+
+                                    <li style="width:80px">
+                                        <input type="text" id="Country__c" [attr.readonly]="true" class="form-control" formControlName="Country__c">
+                                    </li>
+                                    <li style="width:170px">
+                                        <input type="text" id="State__c" [attr.readonly]="true" class="form-control" formControlName="State__c">
+                                    </li>
+                                    <li style="width:90px">
+                                        <input type="text" id="Zip__c" [attr.readonly]="true" class="form-control" formControlName="Zip__c">
+                                    </li>
+                                    <li style="width:130px">
+                                        <input type="text" id="City__c" [attr.readonly]="true" class="form-control" formControlName="City__c">
+                                    </li>
+                                    <li style="width:175px">
+                                        <!-- <input type="text" id="Street__c" [attr.readonly]="true" class="form-control" formControlName="Street__c"> -->
+                                        <textarea id="Street__c" [attr.readonly]="true" class="form-control" formControlName="Street__c"></textarea>
+                                    </li>
+                                    <li style="width:285px">
+                                        <select class="form-control" formControlName="GEO_Metro__c">
+                                            <option Value="" selected="selected">--None--</option>
+                                            <option *ngFor="let c of filteredServiceZones[i]" [ngValue]="c.sfdcId">{{c.serviceZone}}</option>
+                                        </select>
+
+                                    </li>
+                                    <li style="width:80px">
+                                        Mi (Km)
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="jobsiteUploadForm2.invalid == true">
+                    <div class="col-md-6 m-b-20">
+                        <p class="jobsite-error-red">
+                            <strong>Please choose Service Zone for all.. </strong>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 m-b-25 text-center">
+                        <button type="button " class="btn btn-default mRight" (click)="preStage(nextStep) ">Previous</button>
+                        <button class="btn btn-primary mRight" *ngIf="nextStep " (click)="submitJobsite() ">Upload Jobsite</button>
+                        <button class="btn btn-primary mRight" *ngIf="!nextStep " [disabled]="!uploadform.valid" (click)="nextReview() ">Next</button>
+                        <button class="btn btn-default " (click)="closeModel() ">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

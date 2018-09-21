@@ -1,0 +1,46 @@
+<div *ngIf="error.length" class="m-b-20">
+	<ul class="list-group">
+		<li class="list-group-item list-group-item-danger" *ngFor="let err of error">{{err}}</li>
+	</ul>
+</div>
+
+<form *ngIf="jobData" novalidate [formGroup]="formAppointmentWorker" (ngSubmit)="updateJob('appointment-worker')" class="form-material">
+	<div class="row">
+		<div class="col-6">
+			<strong class="text-muted">Worker Name</strong>
+			<div class="input-group">{{jobData.worker?.Name}}</div>
+		</div>
+		<div class="col-6">
+			<strong class="text-muted">Worker Phone</strong>
+			<div class="input-group">{{jobData.Dispatch_Worker_Phone__c}}</div>
+		</div>
+	</div>
+	<div class="row m-t-20">
+		<div class="col-6">
+			<strong class="text-muted">Worker Appointment (Start)</strong>
+			<i class="mdi mdi-pencil text-muted"></i>
+			<div class="input-group">
+				<input [owlDateTime]="dt4" [owlDateTimeTrigger]="dt4" class="form-control no-opacity" formControlName="Worker_Arrival_DateTime_Scheduled__c"
+				 readonly="true" (dateTimeChange)="onDateChange()" name="Worker_Arrival_DateTime_Scheduled" [(ngModel)]="Worker_Arrival_DateTime_Scheduled"
+				/>
+				<owl-date-time #dt4></owl-date-time>
+			</div>
+		</div>
+		<div class="col-6">
+			<strong class="text-muted">Worker Appointment (End)</strong>
+			<i class="mdi mdi-pencil text-muted"></i>
+			<div class="input-group">
+				<input [owlDateTime]="dt14" [owlDateTimeTrigger]="dt14" class="form-control no-opacity" formControlName="Worker_End_DateTime_Scheduled__c"
+				 readonly="true" [min]="minEndDate" name="Worker_End_DateTime_Scheduled" [(ngModel)]="Worker_End_DateTime_Scheduled" />
+				<owl-date-time #dt14></owl-date-time>
+			</div>
+		</div>
+	</div>
+	<div class="row m-t-20" *ngIf="hasAppointment && hasWroker">
+		<div class="col-sm-12 text-right">
+			<span class="input-group-btn m-l-15 m-t-15">
+				<button class="btn btn-primary" (click)="updateAppointment()" type="button">Submit</button>
+			</span>
+		</div>
+	</div>
+</form>

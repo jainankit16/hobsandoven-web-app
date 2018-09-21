@@ -1,0 +1,76 @@
+<ul class="nav-secondary menu-align">
+    <li class="nav-item">
+        <a routerLink="/pms" class="nav-link waves-effect waves-dark text-center">
+            <span>PMSA</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a routerLink="/pms" class="nav-link waves-effect waves-dark text-center">
+            <span class="mdi mdi-home-outline fa-1x vMiddle"></span> &nbsp;
+            <span>Home</span>
+        </a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle waves-effect waves-dark text-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>Program Manager</span>
+        </a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" routerLink="./program-manager/programs">Programs Profile</a>
+            <a class="dropdown-item" routerLink="./program-manager/pricelist">Service Catalog (Price List) (PMS)</a>
+            <a class="dropdown-item" routerLink="./coverage-map">IRON Global Service Locator (PMS)</a>
+            <a *ngIf="adminAccessPermission" class="dropdown-item" routerLink="/pms/user-management" >User Management (PMS)</a>
+        </div>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle waves-effect waves-dark text-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>Service Configurator</span>
+        </a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" routerLink="./jobsite-setup">Manage Jobsite (PMS)</a>
+        </div>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle waves-effect waves-dark text-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>Work Order Manager</span>
+        </a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item text-muted">Create Work Order (PMS)</a>
+            <a class="dropdown-item" [routerLink]="['/pms/custom-case','create']">Create Case (Dispatch FSE &mdash; Customer Site)</a>
+            <a class="dropdown-item text-muted">Create Case (Dispatch FSE & FRU – Customer Site)</a>
+            <a class="dropdown-item text-muted">Create Case (Dispatch FSE & FRU – Assetsite)</a>
+            <a class="dropdown-item text-muted">Create Case (Dispatch FSE & FRU – Assetsite Contract)</a>
+            <a class="dropdown-item text-muted">All Cases</a>
+            <a class="dropdown-item text-muted">All Work Orders</a>
+        </div>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle waves-effect waves-dark text-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>Service Manager</span>
+        </a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" routerLink="/pms/service-manager/orders-list">Service Manager (Dispatch FSE) Console (PMS)</a>
+            <a class="dropdown-item" routerLink="/pms/service-manager/feeds-list">Activity Feed Console (PMS)</a>
+            <a class="dropdown-item" routerLink="/pms/service-manager">Service Manager (Dispatch FSE) Dashboard (PMS)</a>
+        </div>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle waves-effect waves-dark text-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>Partner Billing Manager</span>
+        </a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item text-muted">All Time Card</a>
+            <a class="dropdown-item text-muted">All Sales Orders</a>
+            <a class="dropdown-item text-muted">All Invoices</a>
+            <a class="dropdown-item text-muted">All Payments</a>
+            <a class="dropdown-item" routerLink="/pms/billing-manager">PMS Billing (Invoice) Dashboard</a>
+        </div>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle waves-effect waves-dark text-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>File Manager</span>
+        </a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" routerLink="/app/file-manager">File Manager</a>
+        </div>
+    </li>
+</ul>

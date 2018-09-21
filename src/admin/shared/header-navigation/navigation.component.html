@@ -1,0 +1,85 @@
+<header class="topbar">
+    <!-- Navigation header -->
+    <nav class="navbar top-navbar navbar-expand-md navbar-light">
+        <!-- Logo -->
+        <div class="navbar-header">
+            <a class="navbar-brand cursor-auto" href="javascript:void(0)">
+                <b>
+                    <img src="assets/images/svg/logo-icon-white.svg" alt="SF" class="light-logo" width="40" height="40" />
+                </b>
+                <span>
+                    <img src="assets/images/svg/logo-text-white.svg" class="light-logo" alt="{{webTitle}}" width="172" height="45" />
+                </span>
+            </a>
+        </div>
+        <!-- Navigation menu -->
+        <div class="navbar-collapse">
+            <!-- Toggler -->
+            <ul class="navbar-nav mr-auto mt-md-0">
+                <li class="nav-item">
+                    <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)">
+                        <i class="mdi mdi-menu"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)">
+                        <i class="ti-menu fa-2x"></i>
+                    </a>
+                </li>
+            </ul>
+            <!-- Menu -->
+            <ul class="navbar-nav my-lg-0">
+                <!-- Home -->
+                <li class="nav-item">
+                    <a href="/admin" class="nav-link text-muted waves-effect waves-dark text-center">
+                        <span class="text-white mdi mdi-home-outline fa-2x"></span>
+                        <br>
+                        <span class="text-white">Home</span>
+                    </a>
+                </li>
+                <!-- Profile -->
+                <li class="nav-item dropdown" *ngIf="user">
+                    <a class="nav-link dropdown-toggle u-dropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img *ngIf="user?.profileImage" class="round round-top round-img" src="{{imgpath}}/Containers/{{user?.id}}/download/{{user?.profileImage}}">
+                        <span *ngIf="!user?.profileImage" class="round round-primary round-top">{{(user?.firstname) ? (user?.firstname.charAt(0).toUpperCase()) : ''}}{{(user?.lastname) ? (user?.lastname.charAt(0).toUpperCase())
+                            :''}}
+                        </span>
+                        <br>
+                        <span class="profile-status away pull-right">Me&nbsp;
+                            <i class="fa fa-caret-down"></i>
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right scale-up">
+                        <ul class="dropdown-user">
+                            <li>
+                                <div class="row p-10 p-b-0">
+                                    <div class="col-12">
+                                        <div class="pull-left">
+                                            <div *ngIf="user?.profileImage" class="user-img">
+                                                <img class="round round-dropdown round-img" src="{{imgpath}}/Containers/{{user?.id}}/download/{{user?.profileImage}}" alt="user">
+                                            </div>
+                                            <div *ngIf="!user?.profileImage" class="user-img">
+                                                <span class="round round-primary round-dropdown">{{(user?.firstname) ? (user?.firstname.charAt(0).toUpperCase()) : ''}}{{(user?.lastname)
+                                                    ? (user?.lastname.charAt(0).toUpperCase()) :''}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="text-wrap wrap-margin">
+                                            <h4>{{user?.firstname}} {{user?.lastname}}</h4>
+                                            <p class="text-muted">{{user?.email}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="javascript:void(0);" (click)="logout()">
+                                    <i class="fa fa-power-off"></i> Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

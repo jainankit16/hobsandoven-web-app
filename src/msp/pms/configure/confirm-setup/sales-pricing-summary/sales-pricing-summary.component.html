@@ -1,0 +1,34 @@
+<div class="table-responsive m-2">
+    <table class="table color-table info-table">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Jobsite#</th>
+                <th>Service Type</th>
+                <th>Service Engineer Talent Type</th>
+                <th>Service Engineer (Technical Level)</th>
+                <th>Dispatch SLA Priority</th>
+                <th>Coverage Hours</th>
+                <th>Service ID</th>
+                <th>Service Description</th>
+                <th>PPM Hours</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td>{{selectedPricing.Jobsite.Jobsite_ID__c}}</td>
+                <td>{{selectedPricing.Service_Type__c}}</td>
+                <td>{{selectedPricing.TalentType.Name}}</td>
+                <td>{{selectedPricing.Service_Engineer_Technical_Level__c}}</td>
+                <td>{{selectedPricing.Dispatch_SLA_Priority__c}}</td>
+                <td>{{selectedPricing.CoverageHour__c}}</td>
+                <td>{{selectedPricing.Product?.Product_ID__c}}</td>
+                <td>{{selectedPricing.Product?.Description}}</td>
+                <td>{{selectedPricing.Order_Quantity__c}}</td>
+                <td>{{selectedPricing.Price__c}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

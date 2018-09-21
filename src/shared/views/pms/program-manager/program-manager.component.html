@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <top-wizard-panel [headTitle]="headTitle"></top-wizard-panel>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header text-center text-white">
+                    <b class="">Account</b>
+                </div>
+                <div class="card-body content-padding leftScrollDiv posRelative">
+                    <content-account></content-account>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,144 @@
+<!-- Left Sidebar -->
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- VMS Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                <li class="nav-divider"></li>
+                <li class="nav-small-cap">MSP MENU</li>
+                <li>
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/vms">
+                        <i class="mdi mdi-gauge"></i>
+                        <span class="hide-menu" i18n>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/app/feeds">
+                        <i class="mdi mdi-history"></i>
+                        <span class="hide-menu" i18n>Activity Feed</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/vms/calendar">
+                        <i class="mdi mdi-calendar"></i>
+                        <span class="hide-menu" i18n>Calendar</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/app/file-manager">
+                        <i class="mdi mdi-file"></i>
+                        <span class="hide-menu" i18n>File Manager</span>
+                    </a>
+                </li>
+                <li *ngIf="adminAccessPermission">
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/vms/edi-transaction">
+                        <i class="mdi mdi-file-chart"></i>
+                        <span class="hide-menu" i18n>EDI Transaction</span>
+                    </a>
+                </li>
+                <li *ngIf="adminAccessPermission">
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/vms/user-management">
+                        <i class="mdi mdi-file-chart"></i>
+                        <span class="hide-menu" i18n>User Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+                        <i class="mdi mdi-clipboard-text"></i>
+                        <span class="hide-menu">Job Manager</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/vms/jobs">
+                                <i class="mdi mdi-chevron-right"></i>All Jobs</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/vms/jobs/invited">
+                                <i class="mdi mdi-chevron-right"></i>Invited</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/vms/jobs/accepted">
+                                <i class="mdi mdi-chevron-right"></i>Accepted</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/vms/jobs/assigned">
+                                <i class="mdi mdi-chevron-right"></i>Assigned</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/vms/jobs/started">
+                                <i class="mdi mdi-chevron-right"></i>Started</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/vms/jobs/pending">
+                                <i class="mdi mdi-chevron-right"></i>Pending Approval</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/vms/jobs/invoiced">
+                                <i class="mdi mdi-chevron-right"></i>Invoiced</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/vms/jobs/paid">
+                                <i class="mdi mdi-chevron-right"></i>Paid</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/vms/jobs/closed">
+                                <i class="mdi mdi-chevron-right"></i>Closed</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+                        <i class="mdi mdi-cash-usd"></i>
+                        <span class="hide-menu">Billing</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" [routerLink]="['/vms/orders']">
+                                <i class="mdi mdi-chevron-right"></i>Purchase Orders</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" [routerLink]="['/vms/timecards']">
+                                <i class="mdi mdi-chevron-right"></i>Timecards</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" [routerLink]="['/vms/invoices']">
+                                <i class="mdi mdi-chevron-right"></i>Purchase Invoices</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" [routerLink]="['/vms/payments']">
+                                <i class="mdi mdi-chevron-right"></i>Payments</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/vms/projects">
+                        <i class="mdi mdi-city"></i>
+                        <span class="hide-menu" i18n>Projects</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/vms/accounts">
+                        <i class="mdi mdi-clipboard-account"></i>
+                        <span class="hide-menu" i18n>Accounts</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/vms/workers">
+                        <i class="mdi mdi-contacts"></i>
+                        <span class="hide-menu" i18n>Workers</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/vms/pricebook">
+                        <i class="mdi mdi-format-list-bulleted"></i>
+                        <span class="hide-menu" i18n>Price Book</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>
+<!-- End Left Sidebar -->

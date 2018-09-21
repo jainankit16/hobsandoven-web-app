@@ -1,0 +1,46 @@
+<form novalidate #newCommentForm="ngForm" name='newCommentForm' (ngSubmit)="saveComment()">
+    <div class="row">
+        <div class=" col-md-3">
+            <label>Select Case/Job</label>
+        </div>
+        <div class="form-group col-md-3">
+            <select class="form-control" name="caseNumber" name="caseId" [(ngModel)]="comment.caseId" required>
+                <option [ngValue]="null">--None--</option>
+                <option *ngFor="let item of caseList" [ngValue]="item">{{item.Name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label>Created By</label>
+        </div>
+        <div class="form-group col-md-3">
+            <span class="strong"> {{user?.firstname}} {{user?.lastname}} </span>
+        </div>
+        <div class="form-group col-md-1" *ngIf="isInternalUser">
+            <input id="isPublish" type="checkbox" class="form-control" name="isPublish" [(ngModel)]="comment.isPublish">
+            <label for="isPublish"></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-10">
+            <label class="center-block">Enter Message
+                <br /> Text Only ({{comment.commentText | countChar: 1000}} characters remaining)
+            </label>
+            <textarea required class="form-control" maxlength="1000" rows="4" (keyup)="desText = comment.commentText" noWhiteSpace [(ngModel)]="comment.commentText" name="commentText"></textarea>
+            <br>
+            <div>
+                <br>
+                <span class="alert alert-success m-t-5" *ngIf="successMessage">{{successMessage}}</span>
+                <span class="alert alert-warning m-t-5" *ngIf="errorMessage">{{errorMessage}}</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-10 offset-md-4">
+            <button type="submit" [disabled]="newCommentForm.invalid == true || hasErrorInName" class="btn btn-success mRight" >Submit Case Comment</button> &nbsp;
+            <button class="btn btn-success" (click)="resetComment()">Reset</button>
+        </div>
+    </div>
+</form>

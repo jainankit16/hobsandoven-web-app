@@ -1,0 +1,22 @@
+<div class="card-body">
+    <div class="row">
+        <div class="col-sm-6">
+            <strong class="font-weight-bold">Appointment Schedule:</strong>
+            <p>{{appointment?.scheduleType}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6" *ngIf="appointment.isPrescheduled">
+            <strong class="font-weight-bold">	
+            Pre-Schedule Customer Appointment Schedule (Start) Date: </strong>
+            <p>{{appointment?.startDate | date:'shortDate' }}&nbsp;</p>
+        </div>
+        <div class="col-sm-6" *ngIf="appointment.isPrescheduled">
+            <strong class="font-weight-bold">Pre-Schedule Customer Appointment Schedule (Start) Hour:</strong>
+            <p>{{appointment?.startHour}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6" *ngIf="appointment.isPrescheduled">
+            <strong class="font-weight-bold">Pre-Schedule Customer Appointment Schedule (Start) Minute:</strong>
+            <p>{{appointment?.startMin}}&nbsp;</p>
+        </div>
+
+    </div>
+</div>

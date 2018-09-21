@@ -1,0 +1,160 @@
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-6">
+                <h3 class="text-themecolor">
+                    <i _ngcontent-c6="" _ngcontent-c30="" class="fa fa-list-ul"></i> {{headerTxt}} </h3>
+            </div>
+            <div class="col-6 text-right">
+                <button (click)="onButtonClick()" class="btn btn-sm" type="button">
+                    <span class="fa fa-arrow-left"></span> Back to list</button>
+            </div>
+        </div>
+        <form #userForm="ngForm" [formGroup]="documentForm" (ngSubmit)="onClickSave()" class="form-material m-t-10" name='userForm'>
+            <ngb-accordion #acc="ngbAccordion" activeIds="docCategoriesId,docAccessPermissionId" [destroyOnHide]="false">
+
+                <ngb-panel title="Document Category Information" id="docCategoriesId">
+                    <ng-template ngbPanelContent>
+
+                        <div class="row m-t-10">
+                            <!-- Title -->
+                            <div class="col-6">
+                                <span class="font-weight-bold">Title
+                                    <span class="text-danger">*</span>
+                                </span>
+                                <input type="text" formControlName="title" class="form-control">
+                                <small *ngIf="formErrors.title" class="help-block text-danger">{{ formErrors.title }}</small>
+                            </div>
+                            <!-- Display Order -->
+                            <div class="col-6">
+                                <span class="font-weight-bold">Number Of Display Order. </span>
+                                <input type="number" formControlName="displayOrder" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <!-- Model Name -->
+                            <div class="col-6">
+                                <span class="font-weight-bold">Model name </span>
+                                <select formControlName="modelName" class="form-control">
+                                    <option value="" selected="true">All Models</option>
+                                    <option *ngFor="let type of ddlModel" [value]="type.value">{{type.label}}</option>
+                                </select>
+                            </div>
+                            <!-- Department -->
+                            <div class="col-6">
+                                <span class="font-weight-bold">Department
+                                    <span class="text-danger">*</span>
+                                </span>
+                                <select formControlName="departmentId" class="form-control">
+                                    <option Value="" selected="true">--None--</option>
+                                    <option *ngFor="let type of ddlDepartment" [value]="type.id">{{type?.Department_Acronym__c}} - {{type?.Department_Name__c}}</option>
+                                </select>
+                                <small *ngIf="formErrors.departmentId" class="help-block text-danger">{{ formErrors.departmentId }}</small>
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <!-- Allowed File Types -->
+                            <div class="col-6">
+                                <span class="font-weight-bold">Allowed File Types
+                                </span>
+                                <ng-select [items]="ddlFiltFormate" bindLabel="label" bindValue="value" formControlName="allowedFileTypes" placeholder="Select file type"
+                                    [multiple]="true" highlightColor="#1E88E5"> </ng-select>
+                                <small *ngIf="formErrors.allowedFileTypes" class="help-block text-danger">{{ formErrors.allowedFileTypes }}</small>
+                            </div>
+                        </div>
+
+                        <div class="row m-t-10">
+                            <!-- Description -->
+                            <div class="col-12">
+                                <span class="font-weight-bold">Description
+                                </span>
+                                <textarea rows="3" class="form-control" formControlName="description"></textarea>
+                                <small *ngIf="formErrors.description" class="help-block text-danger">{{ formErrors.description }}</small>
+                            </div>
+                        </div>
+
+                    </ng-template>
+                </ngb-panel>
+
+                <ngb-panel title="Document Category Access Permission" id="docAccessPermissionId">
+                    <ng-template ngbPanelContent>
+                        <div class="row">
+                            <div class="col-3">
+                                <span class="font-weight-bold">Document Category Staff</span>
+                            </div>
+                            <div class="col-3">
+                                <input type="checkbox" formControlName="staffRead" class="filled-in chk-col-light-blue" id="staffRead">
+                                <label for="staffRead">Read</label> &nbsp; &nbsp;
+                                <input type="checkbox" formControlName="staffUpload" class="filled-in chk-col-light-blue" id="staffUpload">
+                                <label for="staffUpload">Upload</label>
+                            </div>
+                            <div class="col-3">
+                                <span class="font-weight-bold">Document Category Vendor</span>
+                            </div>
+                            <div class="col-3">
+                                <input type="checkbox" formControlName="vendorRead" class="filled-in chk-col-light-blue" id="vendorRead">
+                                <label for="vendorRead">Read</label> &nbsp; &nbsp;
+                                <input type="checkbox" formControlName="vendorUpload" class="filled-in chk-col-light-blue" id="vendorUpload">
+                                <label for="vendorUpload">Upload</label>
+                            </div>
+                        </div>
+                        <div class="row m-t-5">
+                            <div class="col-3">
+                                <span class="font-weight-bold">Document Category Partner</span>
+                            </div>
+                            <div class="col-3">
+                                <input type="checkbox" formControlName="partnerRead" class="filled-in chk-col-light-blue" id="partnerRead">
+                                <label for="partnerRead">Read</label> &nbsp; &nbsp;
+                                <input type="checkbox" formControlName="partnerUpload" class="filled-in chk-col-light-blue" id="partnerUpload">
+                                <label for="partnerUpload">Upload</label>
+                            </div>
+                            <div class="col-3">
+                                <span class="font-weight-bold">Document Category Customer</span>
+                            </div>
+                            <div class="col-3">
+                                <input type="checkbox" formControlName="customerRead" class="filled-in chk-col-light-blue" id="customerRead">
+                                <label for="customerRead">Read</label> &nbsp; &nbsp;
+                                <input type="checkbox" formControlName="customerUpload" class="filled-in chk-col-light-blue" id="customerUpload">
+                                <label for="customerUpload">Upload</label>
+                            </div>
+                        </div>
+                        <div class="row m-t-5">
+                            <div class="col-3">
+                                <span class="font-weight-bold">Document Category Deliverable
+                                </span>
+                            </div>
+                            <div class="col-3">
+                                <input type="checkbox" formControlName="isDeliverable" class="filled-in chk-col-light-blue" id="isDeliverableActive">
+                                <label for="isDeliverableActive">Active</label>
+                            </div>
+
+                            <div class="col-3">
+                                <span class="font-weight-bold">Document Category Status
+                                </span>
+                            </div>
+                            <div class="col-3">
+                                <input type="checkbox" formControlName="isActive" class="filled-in chk-col-light-blue" id="statusActive">
+                                <label for="statusActive">Active</label>
+                            </div>
+                        </div>
+                        <div class="row m-t-5">
+                            <div class="col-3">
+                                <span class="font-weight-bold">Document Category Contain Senstive Data</span>
+                            </div>
+                            <div class="col-3">
+                                <input type="checkbox" formControlName="containSenstiveData" class="filled-in chk-col-light-blue" id="containSenstiveDataActive">
+                                <label for="containSenstiveDataActive">Active</label>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion>
+            <div class="row mt-4">
+                <div class="col-12 text-center" *ngIf="viewMode !== 'view'">
+                    <button class="btn btn-primary mRight" [disabled]="!documentForm.valid" type="submit">Save</button>
+                    <button class="btn btn-primary" (click)="resetForm()" type="button">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

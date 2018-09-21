@@ -1,0 +1,8 @@
+.ng-select.custom-typeahead {
+    width: 75% !important;
+    margin-top: -15px !important;
+}
+
+.ng-select.custom-typeahead-modal {
+    width: 88% !important;
+}

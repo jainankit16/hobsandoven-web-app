@@ -1,0 +1,20 @@
+<div class="table-responsive">
+  <table class="table color-table info-table">
+    <thead>
+      <tr>
+        <th>Order Line Number</th>
+        <th>Sales Order Number</th>
+        <th width="350">Product</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let saleOrder of soLineData">
+        <td>{{saleOrder?.orderItems?.OrderItemNumber}}</td>
+        <td>{{saleOrder?.OrderNumber}}</td>
+        <td>{{saleOrder?.orderItems?.product?.Name}}</td>
+        <td>{{saleOrder?.orderItems?.ListPrice}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

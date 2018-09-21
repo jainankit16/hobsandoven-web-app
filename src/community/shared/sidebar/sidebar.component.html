@@ -1,0 +1,91 @@
+<!-- ============================================================== -->
+<!-- Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                <li class="nav-divider"></li>
+                <li *ngIf="accessType !== 'partner'">
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/vms">
+                        <i class="mdi mdi-gauge"></i>
+                        <span class="hide-menu" i18n>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/app/feeds">
+                        <i class="mdi mdi-file"></i>
+                        <span class="hide-menu" i18n>Feed</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/app/file-manager">
+                        <i class="mdi mdi-file"></i>
+                        <span class="hide-menu" i18n>File Manager</span>
+                    </a>
+                </li>
+                <li *ngIf="adminAccessPermission">
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/vms/user-management">
+                        <i class="mdi mdi-file-chart"></i>
+                        <span class="hide-menu" i18n>User Management</span>
+                    </a>
+                </li>
+                <li *ngIf="accessType !== 'partner'">
+                    <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+                        <i class="mdi mdi-clipboard-text"></i>
+                        <span class="hide-menu">Job Manager</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" [routerLink]="['/vms/jobs']">
+                                <i class="mdi mdi-chevron-right"></i>All Jobs</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" [routerLink]="['/vms/jobs','myjob']">
+                                <i class="mdi mdi-chevron-right"></i>My Jobs</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" [routerLink]="['/vms/jobs','invited']">
+                                <i class="mdi mdi-chevron-right"></i>Invited</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" [routerLink]="['/vms/jobs','accepted']">
+                                <i class="mdi mdi-chevron-right"></i>Accepted</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" [routerLink]="['/vms/jobs','assigned']">
+                                <i class="mdi mdi-chevron-right"></i>Assigned</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" [routerLink]="['/vms/jobs','started']">
+                                <i class="mdi mdi-chevron-right"></i>Started</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" [routerLink]="['/vms/jobs','pending']">
+                                <i class="mdi mdi-chevron-right"></i>Pending Approval</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" [routerLink]="['/vms/jobs','invoiced']">
+                                <i class="mdi mdi-chevron-right"></i>Invoiced</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" [routerLink]="['/vms/jobs','paid']">
+                                <i class="mdi mdi-chevron-right"></i>Paid</a>
+                        </li>
+                        <li>
+                            <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" [routerLink]="['/vms/jobs','closed']">
+                                <i class="mdi mdi-chevron-right"></i>Closed</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <!-- End Sidebar scroll-->
+
+</aside>
+<!-- ============================================================== -->
+<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->

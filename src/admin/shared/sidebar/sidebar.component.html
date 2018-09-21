@@ -1,0 +1,43 @@
+<!-- ============================================================== -->
+<!-- Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                <li class="nav-divider"></li>
+                <li class="nav-small-cap">Admin Menu</li>
+                <li>
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/admin">
+                        <i class="mdi mdi-gauge"></i>
+                        <span class="hide-menu">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/admin/department">
+                        <i class="mdi mdi-file"></i>
+                        <span class="hide-menu" i18n>Department</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/admin/document-categories">
+                        <i class="mdi mdi-clipboard-text"></i>
+                        <span class="hide-menu" i18n>Document Category</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/admin/document-title">
+                        <i class="mdi mdi-file-document"></i>
+                        <span class="hide-menu" i18n>Document Title</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>
+<!-- ============================================================== -->
+<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->

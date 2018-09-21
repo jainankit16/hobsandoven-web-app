@@ -1,0 +1,21 @@
+<div class="table-responsive scroll-div">
+    <table class="table color-table info-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Jobsite</th>
+                <th>Jobsite Project</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let jobLoc of selectedJobsite, let i = index">
+                <td>{{(i+1)}}</td>
+                <td>{{jobLoc.Jobsite.Name+' ('+jobLoc.Jobsite.Jobsite_ID__c+')'}}</td>
+                <td>{{jobLoc.Jobsite.Name +' ('+ programID +')'}}</td>
+            </tr>
+            <tr *ngIf="selectedJobsite.length === 0" class="alert alert-warning m-t-5">
+                <td colspan="3">No record found</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,19 @@
+<div class="card-body">
+	<div class="row">
+		<div class="col-lg-3 col-md-6" *ngFor="let data of dashboardData">
+			<div class="card">
+				<div class="card-body point">
+					<div class="d-flex flex-row">
+						<div class="round round-lg align-self-center {{data.iconColor}}">
+							<i class="mdi {{data.iconClass}}"></i>
+						</div>
+						<div class="m-l-10 align-self-center">
+							<h3 class="m-b-0 font-light">{{data.count}}</h3>
+							<h5 class="text-muted m-b-0">{{data.title}}</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

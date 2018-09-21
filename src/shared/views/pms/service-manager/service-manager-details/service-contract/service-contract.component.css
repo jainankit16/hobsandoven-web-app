@@ -1,0 +1,43 @@
+.btn-group-ver button {
+    background-color: #CCC; 
+    border: 1px solid #bdb9b9;    
+    padding: 4px 8px; 
+    cursor: pointer; 
+    width: 100%; 
+    display: block; 
+    text-align: left;
+}
+
+.btn-group-ver button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group-ver button:hover {
+    background-color:#d8d6d6;
+}
+
+.active-button {
+    background-color: #fff !important;
+}
+.active-button:hover {
+    background-color: #1e88e5 !important;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.noborder div{
+    padding: 0% !important
+} 
+.noborder h5  {
+    background-color: #666;
+    border: 1px solid #bdb9b9;
+    padding: 8px 8px;
+    width: 100%; color: #000; margin: 0;
+    display: block;
+    text-align: center;
+    color: #fff !important;
+    
+ }

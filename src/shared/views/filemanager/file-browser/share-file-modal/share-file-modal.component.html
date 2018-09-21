@@ -1,0 +1,109 @@
+<div class="modal-header ">
+    <h3 class="modal-title">Share</h3>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body scroll-vertical740">
+
+    <form class="form-material">
+        <div class="form-group">
+            <label>
+                <i *ngIf="rowData?.type" class="fa fa-file"></i>
+                <i *ngIf="!rowData?.type" class="fa fa-folder"></i>&nbsp;
+                <span class="help" [textContent]="rowData.Name"></span>
+            </label>
+
+        </div>
+
+        <div class="form-group ">
+            <ng-select [items]="users" bindLabel="email" [addTag]="addTag" [multiple]="true" [hideSelected]="true" [loading]="usersLoading"
+                [typeahead]="usersTypeahead" [(ngModel)]="selectedUsers" [ngModelOptions]="{standalone: true}" placeholder="Enter Email Address"
+                [appendTo]="'body'" (add)="onAdd($event)">
+            </ng-select>
+        </div>
+        <div class="form-group">
+            <ng-select [items]="groups" bindLabel="name" [multiple]="true" [hideSelected]="true" [loading]="groupsLoading" [typeahead]="groupsTypeahead"
+                [(ngModel)]="selectedGroups" [ngModelOptions]="{standalone: true}" placeholder="Select Group" [appendTo]="'body'">
+            </ng-select>
+        </div>
+        <div class="form-group">
+            <ng-select [items]="teams" bindLabel="name" [multiple]="true" [hideSelected]="true" [loading]="teamsLoading" [typeahead]="teamsTypeahead"
+                [(ngModel)]="selectedTeams" [ngModelOptions]="{standalone: true}" placeholder="Select team" [appendTo]="'body'">
+            </ng-select>
+        </div>
+        <div class="form-group">
+            <label>Shared with</label>
+            <div class="table-responsive scroll-vertical-share" >
+                <table class="table" *ngIf="selectedUsers.length">
+                    <thead>
+                        <tr>
+                            <th colspan="4">
+                                <b>Users ({{selectedUsers.length}})</b>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let usr of selectedUsers">
+                            <td>
+                                <span *ngIf="usr.firstname || usr.lastname">{{usr.firstname}} {{usr.lastname}} </span>
+                                <span *ngIf="!usr.firstname && !usr.lastname">
+                                    <i class="fa fa-minus"></i>
+                                </span>
+                            </td>
+                            <td [textContent]="usr.email"></td>
+                            <td>
+                                <span *ngIf="!usr.accessType">
+                                    <i class="fa fa-minus"></i>
+                                </span>
+                                <span *ngIf="usr.accessType== 'partner'" class="label label-primary">PMS</span>
+                                <span *ngIf="usr.accessType== 'vendor'" class="label label-warning">VMS</span>
+                                <span *ngIf="usr.accessType== 'customer'" class="label label-success">Customer</span>
+                                <span *ngIf="usr.accessType== 'internal'" class="label label-danger">Internal</span>
+                            </td>
+                            <td>
+                                <a style="cursor:pointer;" (click)="clearUser(usr)">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table" *ngIf="selectedGroups.length">
+                    <thead>
+                        <tr>
+                            <th>
+                                <b>Groups ({{selectedGroups.length}})</b>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let group of selectedGroups">
+                            <td [textContent]="group.name"> </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table" *ngIf="selectedTeams.length">
+                    <thead>
+                        <tr>
+                            <th>
+                                <b>Teams ({{selectedTeams.length}})</b>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let team of selectedTeams">
+                            <td [textContent]="team.name"> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+        <button class="btn btn-default mRight" type="button" (click)="closeModal()">Cancel</button>
+        <button class="btn btn-primary" type="submit" [disabled]="selectedUsers.length == 0 && selectedGroups.length == 0 && selectedTeams.length ==0" (click)="share()">Share</button>
+</div>

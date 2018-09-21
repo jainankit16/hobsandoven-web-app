@@ -1,0 +1,19 @@
+<form novalidate (ngSubmit)="updateUserProfile()" class="form-horizontal form-material">
+
+    <div class="form-group col-md-6">
+        <label>Time Zone</label>
+        <div>
+            <select class="form-control form-control-line" name="timezone" [(ngModel)]="preferences.timezone">
+                <option *ngFor="let zone of timeZones" [value]="zone.value">
+                    {{zone.name}}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            <button class="btn btn-info waves-effect waves-light">Update Preferences</button>
+        </div>
+    </div>
+</form>

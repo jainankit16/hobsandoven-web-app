@@ -1,0 +1,19 @@
+.search-filter{
+    padding: 10px 0px 25px 50px !important;
+}
+
+.price-list{
+    padding: 10px 15px 10px 25px !important;
+}
+
+.pricelist-pagination{
+    margin-top: 15px;
+}
+
+.service-cost-list{
+    height: calc(100vh - 550px);
+}
+
+.export-price-list{
+    margin-bottom: 15px;
+}

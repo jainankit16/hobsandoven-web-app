@@ -1,0 +1,3 @@
+<ngui-map [zoom]="zoom" [ngClass]="{'ngui-map-model': modal}" [center]="centerPoint">
+    <marker *ngFor="let m of positions" [position]="m.position" (click)="markerZoom($event)" [icon]="m.icon"></marker>
+</ngui-map>

@@ -1,0 +1,31 @@
+<div class="border-t">
+  <div class="m-t-5">
+    <ngb-tabset type="pills" justify="justified" [activeId]="selectedTab">
+      <ngb-tab title="Vendor Info" id="vendorinfo">
+        <ng-template ngbTabContent>
+          <app-vendor-info></app-vendor-info>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Purchase Order" id="purchaseorder">
+        <ng-template ngbTabContent>
+         <app-purchase-order></app-purchase-order>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Timecard" id="timecard">
+        <ng-template ngbTabContent>
+          <app-time-card-info></app-time-card-info>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Purchase Invoice" id="purchaseinvoice">
+        <ng-template ngbTabContent>
+          <app-purchase-invoice></app-purchase-invoice>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Payment" id="payment">
+        <ng-template ngbTabContent>
+         <app-payment></app-payment>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+</div>

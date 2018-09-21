@@ -1,0 +1,58 @@
+<ngb-accordion #acc="ngbAccordion" activeIds="jobSummary" [destroyOnHide]="false">
+    <ngb-panel title="Job Summary" id="jobSummary">
+        <ng-template ngbPanelContent>
+            <div class="row">
+                <div class="col-6 font-weight-bold">Jobsite Name:</div>
+                <div class="col-6">{{jobsiteData?.Name}}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Type:</div>
+                <div class="col-6"> {{jobsiteData?.Type__c}}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Account Name:</div>
+                <div class="col-6">{{jobsiteData?.account?.Name}}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Jobsite Id:</div>
+                <div class="col-6"> {{jobsiteData?.Jobsite_ID__c}}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Street:</div>
+                <div class="col-6">{{jobsiteData?.Street__c}}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">City:</div>
+                <div class="col-6">{{jobsiteData?.City__c}}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">State:</div>
+                <div class="col-6">{{jobsiteData?.State__c}}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Country:</div>
+                <div class="col-6">{{jobsiteData?.Country__c}}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Zip:</div>
+                <div class="col-6">{{jobsiteData?.Zip__c }}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Jobsite Request Status:</div>
+                <div class="col-6">{{jobsiteData?.Jobsite_Status__c}}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Service Zone:</div>
+                <div class="col-6">{{jobsiteData?.GeoMetro?.Name}}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Jobsite Approval Status:</div>
+                <div class="col-6">{{jobsiteData?.Jobsite_Approval_Status__c}}</div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-6 font-weight-bold">Jobsite key Contact:</div>
+                <div class="col-6">{{jobsiteData?.jobsiteKeyContact?.Name}}</div>
+            </div>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>

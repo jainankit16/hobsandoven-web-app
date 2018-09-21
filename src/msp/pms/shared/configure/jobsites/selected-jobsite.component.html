@@ -1,0 +1,41 @@
+<div class="table-responsive scroll-div">
+    <table class="table color-table info-table">
+        <thead>
+            <tr>
+                <th *ngIf="!isProgram">Select</th>
+                <th *ngIf="isProgram">Deselect</th>
+                <th>Program#</th>
+                <th>Jobsite#</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Address</th>
+                <th>Service Zone</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let jobLoc of selectedJobsite, let i = index">
+                <td *ngIf="!isSchedule">
+                    <input [id]="'selJobL' + i" type="checkbox" checked [disabled]="!isProgram" value="jobLoc.Jobsite.Jobsite_ID__c" (change)="removeSelectedJobsite(jobLoc, i)">
+                    <label [for]="'selJobL' + i"></label>
+                </td>
+                <td *ngIf="isSchedule">
+                    <input [id]="'selJobL' + i" name="scheduleJobsites" type="radio" [checked]="i === 0" value="jobLoc.Jobsite.Jobsite_ID__c" (change)="setDataForSelectedJobsite(jobLoc)">
+                    <label [for]="'selJobL' + i"></label>
+                </td>
+                <td>{{programID}}</td>
+                <td>{{jobLoc.Jobsite?.Jobsite_ID__c}}</td>
+                <td>{{jobLoc.Jobsite?.Country__c}}</td>
+                <td>{{jobLoc.Jobsite?.City__c}}</td>
+                <td>{{jobLoc.Jobsite?.Street__c}}</td>
+                <td>{{jobLoc.Jobsite?.GeoMetro?.Name}}</td>
+                <td>{{jobLoc.Jobsite?.Jobsite_Status__c}}</td>
+
+            </tr>
+            <tr *ngIf="errorMessage" class="alert alert-warning m-t-5">
+                <td colspan="8">{{errorMessage}}</td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,110 @@
+<h3 class="text-themecolor ml-3">
+    <i class="fa fa-list-ul"></i> {{Title}}
+</h3>
+<div class="row mr-1">
+    <div class="col-12 text-right m-b-5">
+        <button type="button" class="btn btn-sm mRight editColumn" i18n>
+            <i class="fa fa-th"></i> Edit Columns
+        </button>
+        <div class="dd-column-selector">
+            <li *ngFor='let col of allColumns' class="p-l-5">
+                <input *ngIf="col.name !=''" type='checkbox' [id]="col.name" (click)='toggle(col)' [checked]='col.visible' />
+                <label *ngIf="col.name !=''" [attr.for]="col.name">{{col.name}}</label>
+            </li>
+        </div>
+        <button type="button" class="btn btn-sm mRight" (click)="refreshView();" i18n>
+            <i class="fa fa-refresh"></i> Refresh
+        </button>
+        <button *ngIf="tableData[0] && !tableData[0]['message']" class="btn btn-sm" (click)="exportCSV()">
+            <i class="fa fa-download"></i> CSV</button>
+    </div>
+</div>
+<div class="card-body form-material">
+
+    <ngx-datatable #myTable class="material striped fixed-header expandable doubleScroll" [ngClass]="(tableData && tableData.length) < 8 ? 'ngxHasData' : ''"
+        [rows]="tableData" [loadingIndicator]="loadingIndicator" [columnMode]="'standard'" [limit]="itemsPerPage" [headerHeight]="120"
+        [footerHeight]="50" [rowHeight]="60" [scrollbarH]="false" ngx-resize-watcher>
+        <div *ngFor="let col of columns">
+            <ngx-datatable-column *ngIf="col.visible" [name]="col.name" [prop]="col.prop" [width]="col.width" [sortable]="col.sortable">
+                <ng-template *ngIf="col.prop == 'Name'" let-row="row" ngx-datatable-cell-template>
+                    <span *ngIf="!IsActiveLink">{{row.Name}}</span>
+                    <span *ngIf="IsActiveLink">
+                        <a *ngIf="row.sfdcId" href="javascript:;" (click)="openDetails(paymentDetailsTemplate, 'xl', row)">
+                            <span class="job-title">{{row.Name}}</span>
+                        </a>
+                        <span *ngIf="tableData[0]['message']">{{row.Name}}</span>
+                    </span>
+
+                </ng-template>
+
+                <ng-template *ngIf="col.prop == 'Amount__c'" let-row="row" ngx-datatable-cell-template>
+                    <span>{{row?.Amount__c | number:'1.2-2'}}</span>
+                </ng-template>
+                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    <span class="datatable-header-cell-wrapper float-left">
+                        <span class="datatable-header-cell-label draggable" (click)="sort()">
+                            {{col.name}}
+                        </span>
+                    </span>
+                    <div class="input-group float-right form-material" *ngIf="col.type !='date'">
+                        <input type="text" class="form-control t-search-tb" [id]="col.prop" placeholder="Type to search..." name="col.prop" [(ngModel)]="filterObj[col.prop]"
+                            (keyup)='filterData($event,"text")' [ngModelOptions]="{standalone: true}">
+                        <span class="input-group-btn">
+                            <a class="dataTable-cross" (click)="clearSearch(col.prop);" href="javascript:void(0);">
+                                <i class="fa fa-times suffex"></i>
+                            </a>
+                        </span>
+                    </div>
+                    <div class="input-group float-right form-material" *ngIf="col.type =='date'">
+                        <input [owlDateTimeTrigger]="dt" class="form-control t-search-tb" placeholder="Select to search..." [id]="col.prop" [owlDateTime]="dt"
+                            (dateTimeChange)='filterData($event,"date")' readonly="true" [(ngModel)]="col.value" [ngModelOptions]="{standalone: true}">
+                        <owl-date-time #dt [pickerType]="'calendar'"></owl-date-time>
+                        <span class="input-group-btn">
+                            <a class="dataTable-cross" (click)="clearSearch(col.prop); col.value='';" href="javascript:void(0);">
+                                <i class="fa fa-times suffex"></i>
+                            </a>
+                        </span>
+                    </div>
+                </ng-template>
+
+            </ngx-datatable-column>
+        </div>
+        <ngx-datatable-footer>
+            <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize" let-selectedCount="selectedCount"
+                let-curPage="curPage" let-offset="offset">
+                <div style="padding: 5px 10px">
+                    <div>
+                        Total: {{((tableData[0]) && !tableData[0]['message']) ? rowCount : 0}}
+                    </div>
+                </div>
+                <datatable-pager [pagerLeftArrowIcon]="'datatable-icon-left'" [pagerRightArrowIcon]="'datatable-icon-right'" [pagerPreviousIcon]="'datatable-icon-prev'"
+                    [pagerNextIcon]="'datatable-icon-skip'" [page]="curPage" [size]="pageSize" [count]="rowCount" [hidden]="!((rowCount / pageSize) > 1)"
+                    (change)="myTable.onFooterPage($event)">
+                </datatable-pager>
+                <div style="padding: 5px 10px" [hidden]="!((rowCount / pageSize) > 1) || noRecords">
+                    <div>
+                        <button type="button" class="btn btn-sm" (click)="loadMoreRecords()">Load More</button>
+                    </div>
+                </div>
+            </ng-template>
+        </ngx-datatable-footer>
+    </ngx-datatable>
+
+</div>
+
+<!-- expanded view modal -->
+<ng-template #paymentDetailsTemplate let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title" [textContent]="modelTitle"></h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-pay-detail modelName='invoice' modelId={{currentExpandViewId}}></app-pay-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+<!--  expanded view modal Ends -->

@@ -1,0 +1,20 @@
+<div class="table-responsive">
+  <table class="table color-table info-table">
+    <thead>
+      <tr>
+        <th>Service ID</th>
+        <th width="450">Service Description</th>
+        <th>PPM Hours</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let workorder of woLineData">
+        <td>{{workorder?.Product?.Product_ID__c}}</td>
+        <td>{{workorder?.Product?.Description}}</td>
+        <td>{{workorder?.Order_Quantity__c}}</td>
+        <td>{{workorder?.Total_Price_Customer_Pre_Tax_Auto__c}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

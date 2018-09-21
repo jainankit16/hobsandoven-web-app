@@ -1,0 +1,78 @@
+<ngb-accordion #acc="ngbAccordion" activeIds="searchFilter" [destroyOnHide]="false">
+    <ngb-panel class="pull-left" id="searchFilter" title="Search Filter" class="Cards-header">
+        <ng-template ngbPanelContent>
+            <div class="row">
+                <div class="col-md-12">
+                    <label>
+                        Filters: {{userState['servicemanager']['account']['accountName']}} > {{userState['servicemanager']['program']['programName']}}
+                        > {{userState['servicemanager']['region']['regionName']}} > {{userState['servicemanager']['jobsite']['jobsiteName']}}
+                    </label>
+                </div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-md-5">
+                    <label>Case Number</label>
+                </div>
+                <div class="col-md-7">
+                    <input type="text" class="form-control" [(ngModel)]="caseNumber">
+                </div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-md-5">
+                    <label>Partner Case Number</label>
+                </div>
+                <div class="col-md-7">
+                    <input type="text" class="form-control" [(ngModel)]="partnerCaseNumber">
+                </div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-md-5">
+                    <label>Dispatch Service Resolution Status - FSE</label>
+                </div>
+                <div class="col-md-7">
+                    <select name="serviceStatusFilter" class="form-control custom-select" [(ngModel)]="selectedServiceStatus">
+                        <option ngValue="--None--" selected>--None--</option>
+                        <option *ngFor="let serviceStatus of serviceStatuses" [value]="serviceStatus.sfdcId">{{serviceStatus.Name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-md-5">
+                    <label>Country</label>
+                </div>
+                <div class="col-md-7">
+                    <select name="countryFilter" class="form-control custom-select" [(ngModel)]="selectedCountry">
+                        <option ngValue="--None--" selected>--None--</option>
+                        <option *ngFor="let country of countries" [value]="country.Name">{{country.Country__c}} ({{country.Name}})</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-md-5">
+                    <label>Date Range</label>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" [owlDateTimeTrigger]="dt12" [max]="maxDate" placeholder="From" (dateTimeChange)="onDateChange()"
+                        [owlDateTime]="dt12" [(ngModel)]="selectedFromData" readonly="true">
+                    <owl-date-time [pickerType]="'calendar'" #dt12></owl-date-time>
+                </div>
+            </div>
+            <div class="row m-t-10">
+                <div class="col-md-5">
+                    <label></label>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" [owlDateTimeTrigger]="dt13" [max]="maxDate" placeholder="To" [min]="minDate" [owlDateTime]="dt13"
+                        [(ngModel)]="selectedToDate" readonly="true">
+                    <owl-date-time [pickerType]="'calendar'" #dt13></owl-date-time>
+                </div>
+            </div>
+            <div class="row m-t-20">
+                <div class="col-sm-12 text-center">
+                    <button type="button" class="btn btn-sm btn-primary mRight" (click)="search()">Search</button>
+                    <button type="button" class="btn btn-sm btn-primary" (click)="reset()">Reset</button>
+                </div>
+            </div>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>

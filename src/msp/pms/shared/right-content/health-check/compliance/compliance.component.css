@@ -1,0 +1,10 @@
+.containerSetting{
+     height: 427px;
+     display: flex;
+     overflow: auto;
+}
+
+.text-style{
+    font-size: 16px; 
+    font-weight: normal;
+}

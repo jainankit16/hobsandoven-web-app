@@ -1,0 +1,16 @@
+.leftSearch{
+    width: 400px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    z-index: 0;
+    margin:0 ;
+    background: #fff;
+    box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .scroll-sidebar{
+    overflow: visible !important;
+  }

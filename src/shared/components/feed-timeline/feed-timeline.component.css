@@ -1,0 +1,6 @@
+.timeline > li > .timeline-panel {
+    padding: 15px !important;
+}
+.timeline > li {
+    margin-bottom: 5px;
+}

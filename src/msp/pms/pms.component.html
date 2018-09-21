@@ -1,0 +1,19 @@
+<div id="main-wrapper">
+    <app-nav-header></app-nav-header>
+    <div class="divSubNav">
+        <div class="p-1 mb-1 padding-bottom-sm">
+            <button class="btn btn-default mRight" (click)="backClicked()">Go Back</button>
+            <button class="btn btn-default pull-right" (click)="refreshClicked()">Refresh</button>
+            <br>
+        </div>
+        <msp-menu *ngIf="userType === 'internal'"></msp-menu>
+        <pmsa-menu *ngIf="userType === 'internal'"></pmsa-menu>
+        <pms-menu *ngIf="userType === 'partner' || userType === 'internal'"></pms-menu>
+    </div>
+    <router-outlet></router-outlet>
+    <footer class="footer">
+        © 2017-2018 {{webTitle}}
+        <span class="pull-right">App Version: {{appVersion}} ({{buildDate}})</span>
+    </footer>
+    <app-preloader></app-preloader>
+</div>

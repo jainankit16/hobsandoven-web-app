@@ -1,0 +1,30 @@
+.discussion {
+    display: block !important;
+    overflow-wrap: break-word !important;
+    text-align: left;
+}
+ .scrollMsg{   
+    max-height: 400px !important; 
+    overflow-y: auto !important; 
+    position: relative !important;
+    overflow-x: hidden
+}
+
+.squareImg{
+    border-radius: 0 !important; 
+     height: 55px !important; 
+    width: 55px !important; 
+    line-height: 55px !important; 
+    border-radius: 5px !important;
+}
+ 
+.chat-img {
+    padding-top: 0px;
+    display: inline-block;
+    width: 46px;
+    vertical-align: top;
+}
+
+.chat-list{
+    padding-top: 0px !important;
+}

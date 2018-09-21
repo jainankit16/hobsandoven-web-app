@@ -1,0 +1,29 @@
+<div class="table-responsive scroll-div">
+    <table class="table color-table info-table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Service Profile No</th>
+                <th>Service ID</th>
+                <th>Service Description</th>
+                <th>PPM hours</th>
+                <th>Price</th>
+                <th>Profit(%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ppj of profitAnaysisPerJobsites, let i = index">
+                <td>{{i +1}}</td>
+                <td>{{(ppj.Service_Engineer_Technical_Level__c) ? (ppj.Service_Engineer_Technical_Level__c+'/'+ppj.Dispatch_SLA_Priority__c) : ''}}</td>
+                <td>{{ppj?.Product?.Product_ID__c}}</td>
+                <td>{{ppj?.Product?.Description}}</td>
+                <td>{{ppj.Order_Quantity__c}}</td>
+                <td>{{ppj.Profit_Price__c}}</td>
+                <td>{{ppj.profitPercent | percent:'1.2-2'}}</td>
+            </tr>
+            <tr *ngIf="profitAnaysisPerJobsites.length == 0" class="alert alert-warning m-t-5">
+                <td colspan="7">No record found.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

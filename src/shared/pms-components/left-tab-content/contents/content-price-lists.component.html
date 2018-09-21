@@ -1,0 +1,64 @@
+<table class="table color-table info-table tablePosition-pl">
+    <thead>
+        <tr style="background-color: #e8d0d0">
+            <th>Select</th>
+            <th>Program</th>
+            <th>Price Book</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="!errorMessage">
+        <tr *ngFor="let program of programs, let i = index">
+            <td>
+                <input type="radio" name="priceBook" [id]="'rdoPB' + i" [value]="program.sfdcId" [checked]="program.isSelected" (change)="onSelectPriceBook(program)">
+                <label [for]="'rdoPB' + i"></label>
+            </td>
+            <td>{{program.Name}} ({{program.Project__c}})</td>
+            <td>{{program.PriceBookName}}</td>
+        </tr>
+    </tbody>
+    <tbody *ngIf="errorMessage">
+        <tr class="alert alert-warning m-t-5">{{errorMessage}}</tr>
+    </tbody>
+</table>
+
+
+<div *ngIf="isSelected">
+    <table class="table color-table info-table">
+        <thead>
+            <tr style="background-color: #e8d0d0">
+                <th>View</th>
+                <th>Service ID</th>
+                <th>Product Name</th>
+                <th>Service Description</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="!errorMessagePDetail">
+            <tr *ngFor="let product of productData, let i = index">
+                <td>
+                    <a href="javascript:void(0)" (click)="openDetailPage(pricebookdetail, 'xxl', product)">View</a>
+                </td>
+                <td>{{product.Product_ID__c}}</td>
+                <td>{{product.Name}}</td>
+                <td>{{product.Description}}</td>
+            </tr>
+        </tbody>
+        <tbody *ngIf="errorMessagePDetail">
+            <tr class="alert alert-warning m-t-5">{{errorMessagePDetail}}</tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #pricebookdetail let-c="close" let-d="dismiss">
+    <div class="modal-header ">
+        <h4 class="modal-title">Price Book Detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body scroll-vertical740">
+        <pricelist-item-detail page="content-price-lists" [programId]="selectedProgramId"></pricelist-item-detail>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>

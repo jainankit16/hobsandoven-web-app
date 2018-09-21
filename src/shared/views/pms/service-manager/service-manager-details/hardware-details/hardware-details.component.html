@@ -1,0 +1,41 @@
+<div class="border-t">
+    <div class="m-t-5">
+        <ngb-tabset justify="justified" type="pills">
+            <ngb-tab *ngIf="isInternalUser" title="List">
+                <ng-template ngbTabContent>
+                    <hardware-list></hardware-list>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Assest">
+                <ng-template ngbTabContent>
+                    <p>&nbsp;</p>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Parts Dispatch">
+                <ng-template ngbTabContent>
+                    <p>&nbsp;</p>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab *ngIf="isInternalUser" title="Asset Recovery">
+                <ng-template ngbTabContent>
+                    <hardware-asset-recovery></hardware-asset-recovery>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Asset Returns">
+                <ng-template ngbTabContent>
+                    <app-pms-hardware-asset-returns [caseId]="caseId" *ngIf="!isInternalUser" page="hardware"></app-pms-hardware-asset-returns>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab *ngIf="isInternalUser" title="Depot FSL">
+                <ng-template ngbTabContent>
+                    <hardware-depot-fsl></hardware-depot-fsl>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="All">
+                <ng-template ngbTabContent>
+                    <app-pms-hardware-all [caseId]="caseId" page="hardware"></app-pms-hardware-all>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
+    </div>
+</div>

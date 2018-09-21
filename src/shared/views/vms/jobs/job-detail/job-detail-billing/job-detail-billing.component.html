@@ -1,0 +1,42 @@
+<div class="card-body" *ngIf="errorMessage">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-warning" role="alert">
+                {{errorMessage}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="m-t-15" *ngIf="jobId">
+    <ngb-accordion [closeOthers]="false" activeIds="BillingPOPanel, BillingInvoicePanel, BillingPaymentPanel, SendBillingMessagePanel" class="no-bottom-border"
+        [destroyOnHide]="false">
+        <!-- Orders -->
+        <ngb-panel id="BillingPOPanel" title="PURCHASE ORDER">
+            <ng-template ngbPanelContent class="m-t-0">
+                <div class="px-4">
+                    <app-order-details modelName="Job" modelId="{{jobId}}"></app-order-details>
+                </div>
+            </ng-template>
+        </ngb-panel>
+        <!-- Invoices -->
+        <ngb-panel id="BillingInvoicePanel" title="PURCHASE INVOICE">
+            <ng-template ngbPanelContent>
+                <div class="px-4">
+                    <app-invc-detail modelName="Job" modelId="{{jobId}}"></app-invc-detail>
+                </div>
+            </ng-template>
+        </ngb-panel>
+        <!-- Payments -->
+        <ngb-panel id="BillingPaymentPanel" title="PAYMENT">
+            <ng-template ngbPanelContent>
+                    <app-invc-payment-list modelName="Job" modelId="{{jobId}}"></app-invc-payment-list>
+            </ng-template>
+        </ngb-panel>
+         <!-- Send Message -->
+         <ngb-panel id="SendBillingMessagePanel" title="Send Message">
+                <ng-template ngbPanelContent>
+                    <app-message-post modelName="Job" modelId="{{job?.id}}" messageType="billing" showMessageTypes= "false"></app-message-post>
+                </ng-template>
+            </ngb-panel>
+    </ngb-accordion>
+</div>

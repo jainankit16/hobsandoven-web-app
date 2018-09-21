@@ -1,0 +1,63 @@
+.btn-group-ver button {
+  background-color: #ccc;
+  padding: 4px 8px;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  text-align: left; 
+  border:0;
+}
+
+.btn-group-ver button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group-ver button:hover {
+  background-color: #d8d6d6;
+  color: #fff;
+}
+
+.active-button {
+  background-color: #fff !important;
+}
+.active-button:hover {
+  background-color: #1e88e5 !important;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.error-Icon {
+  font-size: 23px;
+  color: red;
+}
+.succes-Icon {
+  font-size: 23px;
+  color: green;
+}
+.noborder div{
+  padding: 0% !important;
+}
+.noborder h5 {
+  background-color: #ccc;
+  /* border: 1px solid #bdb9b9; */
+  padding: 8px 8px;
+  width: 100%;
+  color: #000;
+  margin: 0;
+  display: block;
+  text-align: left;
+}
+.table td,
+.table th {
+  padding: 0% !important;
+  border: 2px solid #bdb9b9;
+}
+.table td.noborder{
+  padding: 2% !important;
+  border: 0px solid #bdb9b9;
+}
+
+

@@ -1,0 +1,93 @@
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h4 class="section-title">TIMECARD DETAILS</h4>
+        </div>
+    </div>
+    <div *ngIf="timecard">
+       <div class="row">
+           <div class="col-sm-6">
+               <strong class="text-muted">Vendor Name</strong>
+               <p>{{timecard?.vendor?.Name}}&nbsp;</p>
+           </div>
+           <div class="col-sm-6">
+               <strong class="text-muted">Timecard/Timesheet #</strong>
+               <p>{{timecard?.Name}}&nbsp;</p>
+           </div>
+           <div class="col-sm-6">
+               <strong class="text-muted">Iron PO #</strong>
+               <p>{{timecard?.purchaseOrder?.Work_Order_num__c}}&nbsp;</p>
+           </div>
+           <div class="col-sm-6">
+               <strong class="text-muted">Job ID</strong>
+               <p>{{timecard?.job?.Iron_Job_num__c}}&nbsp;</p>
+           </div>
+           <div class="col-sm-6">
+               <strong class="text-muted">Final Visit</strong>
+               <p>{{(timecard?.Final_Timecard__c) ? 'Yes' : 'No'}}&nbsp;</p>
+           </div>
+           <div class="col-sm-6">
+               <strong class="text-muted">Timecard/Timesheet Approval Status</strong>
+               <p>{{timecard?.Customer_Approval_Status__c}}&nbsp;</p>
+           </div>
+           <div class="col-sm-6">
+               <strong class="text-muted">Visit Number</strong>
+               <p>{{timecard?.Visit_Number_Calc__c}}&nbsp;</p>
+           </div>
+           <div class="col-sm-6">
+               <strong class="text-muted">Incurred Date</strong>
+               <p>{{timecard?.Incurred_Date__c | date: 'short'}}&nbsp;</p>
+           </div>
+           <div class="col-sm-6">
+               <strong class="text-muted">Worker Site Check-in Time</strong>
+               <p>{{timecard?.Vendor_Time_Card_Time_in_Actual__c | date: 'short'}}&nbsp;</p>
+           </div>
+           <div class="col-sm-6">
+               <strong class="text-muted">Worker Site Check-Out Time</strong>
+               <p>{{timecard?.Vendor_Time_Card_Time_Out_Actual__c | date: 'short'}}&nbsp;</p>
+           </div>
+           <div class="col-sm-6">
+               <strong class="text-muted">Timecard Increment</strong>
+               <p>{{timecard?.vendor?.Timesheet_Offset__c}}&nbsp;</p>
+           </div>
+           <div class="col-sm-6">
+               <strong class="text-muted">Hours per Visit</strong>
+               <p>{{timecard?.Total_Worked_Hours_Without_Offset__c}}&nbsp;</p>
+           </div>
+           <div class="col-sm-6">
+               <strong class="text-muted">Overtime Hours</strong>
+               <p>{{timecard?.Overtime_Hours__c}}&nbsp;</p>
+           </div>
+           <div class="col-sm-6">
+               <strong class="text-muted">Weekend Hours</strong>
+               <p>{{timecard?.Weekend_Hours_Worked__c}}&nbsp;</p>
+           </div>
+           <div class="col-sm-6">
+               <strong class="text-muted">Worker Name</strong>
+               <p>{{timecard?.worker?.Name}}&nbsp;</p>
+           </div>
+           <div class="col-sm-6">
+               <strong class="text-muted">Customer Site Sign-off Name (POD)</strong>
+               <p>{{timecard?.Customer_Site_Signoff_Name__c}}&nbsp;</p>
+           </div>
+           <div class="col-sm-6">
+               <strong class="text-muted">Visit Task(s) Performed</strong>
+               <p>{{timecard?.Vendor_Time_Card_Notes_Tasks_Performed__c}}&nbsp;</p>
+           </div>
+           <div class="col-sm-6">
+               <strong class="text-muted">Visit Oberservation/Suggestion</strong>
+               <p>{{timecard?.Any_Observation_or_Suggestions_Notes__c}}&nbsp;</p>
+           </div>
+   
+   
+       </div>
+   </div>
+<div *ngIf="errorMessage">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-warning" role="alert">
+                {{errorMessage}}
+            </div>
+        </div>
+    </div>
+</div>

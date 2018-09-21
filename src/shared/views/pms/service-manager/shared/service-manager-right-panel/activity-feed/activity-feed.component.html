@@ -1,0 +1,66 @@
+<div class="border-t">
+    <div class="m-t-5">
+        <ngb-tabset justify="justified">
+            <ngb-tab title="All Activity List ({{ countData?.allActivityCount }})">
+                <ng-template ngbTabContent>
+
+                    <div class="scroll-div-activity">
+                        <div class="row border-t m-t-10" *ngFor="let al of allActivityData, let i = index">
+                            <div class="col-12">{{al.createdAt | date: 'short'}}</div>
+                            <div class="col-12">{{al.context?.activityByName}}</div>
+                            <div class="col-12">
+                                <span class="font-weight-bold">{{al.type}} :</span> {{al.description}}</div>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Filter List">
+                <ng-template ngbTabContent>
+                    <ngb-tabset justify="justified" orientation="vertical" type="pills">
+                        <ngb-tab title="PMS Case - {{caseRelatedData?.pmsCaseNumber}} ({{countData?.allPmsCaseCount}})">
+                            <ng-template ngbTabContent>
+                                <div class="row border-t m-t-5" *ngFor="let pmsData of pmsCaseActivityData, let i = index">
+                                    <div class="col-12">{{pmsData.createdAt | date: 'short'}}</div>
+                                    <div class="col-12">{{pmsData.context?.activityByName}}</div>
+                                    <div class="col-12">
+                                        <span class="font-weight-bold">{{pmsData.type}} :</span> {{pmsData.description}}</div>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="Icc Case - {{caseRelatedData?.iccCaseNumber}} ({{countData?.allIccCaseCount}})">
+                            <ng-template ngbTabContent>
+                                <div class="row border-t m-t-5" *ngFor="let iccData of iccCaseActivityData, let i = index">
+                                    <div class="col-12">{{iccData.createdAt | date: 'short'}}</div>
+                                    <div class="col-12">{{iccData.context?.activityByName}}</div>
+                                    <div class="col-12">
+                                        <span class="font-weight-bold">{{iccData.type}} :</span> {{iccData.description}}</div>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="Work Order - {{caseRelatedData?.workOrderNo}} ({{ countData?.allworkOrderCount }})">
+                            <ng-template ngbTabContent>
+                                <div class="row border-t m-t-5" *ngFor="let wl of workOrderActivityData, let i = index">
+                                    <div class="col-12">{{wl.createdAt | date: 'short'}}</div>
+                                    <div class="col-12">{{wl.context?.activityByName}}</div>
+                                    <div class="col-12">
+                                        <span class="font-weight-bold">{{wl.type}} :</span> {{wl.description}}</div>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="job - {{caseRelatedData?.jobId}} ({{ countData?.allJobCount }})">
+                            <ng-template ngbTabContent>
+                                <div class="row border-t m-t-5" *ngFor="let jl of jobActivityData, let i = index">
+                                    <div class="col-12">{{jl.createdAt | date: 'short'}}</div>
+                                    <div class="col-12">{{jl.context?.activityByName}}</div>
+                                    <div class="col-12">
+                                        <span class="font-weight-bold">{{jl.type}} :</span> {{jl.description}}</div>
+                                </div>
+                            </ng-template>
+
+                        </ngb-tab>
+                    </ngb-tabset>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
+    </div>
+</div>

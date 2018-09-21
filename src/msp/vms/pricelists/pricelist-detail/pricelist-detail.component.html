@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <h4 class="section-title">Price Book Details</h4>
+    </div>
+</div>
+
+<div *ngIf="pricelist">
+    <div class="row card-body">
+        <div class="col-sm-6">
+            <strong class="text-muted">Price Book Name</strong>
+            <p>
+                <b>{{pricelist?.Name}}&nbsp;</b>
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Type</strong>
+            <p>
+                <b>{{pricelist?.Type__c}}&nbsp;</b>
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Status </strong>
+            <p>
+                <b>{{(pricelist?.IsActive) ? "Yes" : "No"}}&nbsp;</b>
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Is Standard?</strong>
+            <p>
+                <b>{{(pricelist?.IsStandard) ? "Yes" :"No"}}&nbsp;</b>
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Date</strong>
+            <p>
+                <b>{{pricelist?.CreatedDate | date:'short'}}&nbsp;</b>
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Last Modified Date</strong>
+            <p>
+                <b>{{pricelist?.updatedAt | date:'short'}}&nbsp;</b>
+            </p>
+        </div>
+        <div class="col-sm-12">
+            <strong class="text-muted">Description</strong>
+            <p>
+                <b>{{pricelist?.Description}}&nbsp;</b>
+            </p>
+        </div>
+    </div>
+    <app-pricelistitems modelName="pricelist" IsActiveLink="false" [modelId]="pricelist?.sfdcId" (loadItemDetail)="pricelistItemDetail($event)"></app-pricelistitems>
+</div>
+<div *ngIf="errorMessage">
+    <div class="alert alert-warning m-t-5">
+        {{errorMessage}}
+    </div>
+</div>

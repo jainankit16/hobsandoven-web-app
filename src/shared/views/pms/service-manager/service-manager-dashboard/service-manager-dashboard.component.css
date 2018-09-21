@@ -1,0 +1,8 @@
+.leftScrollDiv {
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+}
+
+.set-min-height {
+    min-height: 1050px !important;
+}

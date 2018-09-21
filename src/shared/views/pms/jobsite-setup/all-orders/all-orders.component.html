@@ -1,0 +1,128 @@
+<!-- Jobsite Setup Main structure -->
+<!-- Select Program start here-->
+<div>
+    <ngb-accordion #acc="ngbAccordion" activeIds="ngbpanel1" [destroyOnHide]="false">
+        <ngb-panel id="ngbpanel1" title="(1) Select Program">
+            <ng-template ngbPanelContent>
+                <div>
+                    <div class="col-md-12">
+                        <select-program stop='true' (selectedProject)='onProjectSelected($event)'></select-program>
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-panel>
+        <br>
+    </ngb-accordion>
+</div>
+<!--End here-->
+
+<!-- Select Jobsite Location start here -->
+<div>
+    <ngb-accordion #acc="ngbAccordion" activeIds="createprogrampanel1,existpanel1" [destroyOnHide]="false">
+        <ngb-panel id="existpanel1" title="(2) Manage Jobsites: Select Action">
+            <ng-template ngbPanelContent>
+                <div class="p-11">
+                    <div class="col-md-12">
+                        <input id="rdoViewJob" type="radio" name="joblocation" [(ngModel)]="jobTypeSelection" value="jobsiteList" selected='true'>
+                        <label for="rdoViewJob">Jobsite List (view only)</label>
+                    </div>
+                    <div class="col-md-12">
+                        <input id="rdoExisting" type="radio" name="joblocation" (change)="setJobsiteSelection($event.target.value)" [(ngModel)]="jobTypeSelection"
+                            value="useExisting">
+                        <label for="rdoExisting">Update Existing Jobsite Location</label>
+                    </div>
+                    <div class="col-md-12">
+                        <input id="rdoNewJob" type="radio" name="joblocation" (change)="setJobsiteSelection($event.target.value)" [(ngModel)]="jobTypeSelection"
+                            value="createNew">
+                        <label for="rdoNewJob">Create New Jobsite Location (Select Nearby Service Zone)</label>
+                    </div>
+                    <div class="col-md-12">
+                        <input id="rdoUploadJob" disabled type="radio" name="joblocation" (change)="setJobsiteSelection($event.target.value)" [(ngModel)]="jobTypeSelection"
+                            value="uploadJob">
+                        <label for="rdoUploadJob">Create New Jobsite Location (Upload the Jobsite List)</label>
+                    </div>
+                    <br>
+                </div>
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
+</div>
+<!-- End here  -->
+
+
+<!-- Jobsite List Table List  Start-->
+<div *ngIf="jobTypeSelection === 'jobsiteList'">
+    <ngb-accordion #acc="ngbAccordion" activeIds="createprogrampanel1,existpanel1" [destroyOnHide]="false">
+        <ngb-panel id="existpanel1">
+            <ng-template ngbPanelTitle>
+                <div class="row" style="margin-top: -25px; margin-left: 10px;">
+                    <div class="col-md-6">All Jobsites</div>
+                    <div class="col-md-6 text-right">Total Number of Jobsites :{{jobsiteCount}}</div>
+                </div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <jobsite-list-modal (jobsiteCount)="updateJobsiteCount($event)"></jobsite-list-modal>
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
+</div>
+<!-- Jobsite List Table List  End-->
+
+
+<!-- Default Profile Table List  Start-->
+<div *ngIf="jobTypeSelection === 'useExisting'">
+    <default-profile [project]='selectedProgram'></default-profile>
+</div>
+<!-- Default Profile Table List  End-->
+
+
+
+<!-- For Existing Jobsites -->
+<!-- List of All Available Jobsites Start Here -->
+<div *ngIf="jobTypeSelection === 'useExisting'">
+    <jobsite-list></jobsite-list>
+</div>
+<!-- List of All Available Jobsites End Here -->
+
+<!-- For Create New Jobsite start -->
+<div *ngIf="jobTypeSelection === 'createNew'">
+    <ngb-accordion #acc1="ngbAccordion" activeIds="createJobsite, servicezone" [destroyOnHide]="false">
+        <ngb-panel id="createJobsite" title="Create New Jobsite">
+            <ng-template ngbPanelContent>
+                <create-jobsite (changeFilters)="updateZones($event)"></create-jobsite>
+                <div *ngIf="searchedEmpty">
+                    <div class="row">
+                        <div class="col-md-12 alert alert-warning m-t-5">
+                            <span>Unrecognized Address. Please input valid address!
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+            </ng-template>
+        </ngb-panel>
+        <div *ngIf="serviceZones.length > 0">
+            <ngb-panel id="servicezone" title="Select Service Zone Location">
+                <ng-template ngbPanelContent>
+                    <service-zone class="col-md-12" [serviceZones]="serviceZones" (changeZone)="setSelectedZone($event)"></service-zone>
+                    <br/>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 alert alert-warning m-t-5" *ngIf="errorMsg">
+                                <span>{{errorMsg}} </span>
+                            </div>
+                            <div class="col-md-12 alert alert-success m-t-5" *ngIf="successMsg">
+                                <span class="">{{successMsg}} </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <button type="button" (click)="createJobsite()" class="btn btn-primary btn-block">Create Jobsite</button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-panel>
+        </div>
+    </ngb-accordion>
+</div>

@@ -1,0 +1,53 @@
+<div class="m-2">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <label for="Partner" class="col-md-2 font-weight-bold">Partner: </label>
+                <div class="col-md-10 ">MagicLink Bank Corporation Client Demo </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <label for="program" class="col-md-4 font-weight-bold">Program: </label>
+                <div class="col-md-6 " class="col-md-8">{{userState?.program['programName'] }} </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <label for="programcode" class="col-md-4 font-weight-bold">Program Code: </label>
+                <div class="col-md-6" class="col-md-8">{{userState?.program['programReferCode']}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <label for="quote" class="col-md-4 font-weight-bold">Quote#: </label>
+                <div class="col-md-8 "> {{userState?.quote['quoteNo']}} (Rev- {{userState?.quote['revision']}})</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <label for="quotecreateddate" class="col-md-4 font-weight-bold">Quote Created Date: </label>
+                <div class="col-md-8 ">10/27/2017 04:29AM</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <label for="jobsite" class="col-md-4 font-weight-bold">Jobsite #: </label>
+                <div class="col-md-8 ">{{selectedJobsite?.Jobsite['Name']}} ({{selectedJobsite?.Jobsite['Jobsite_ID__c']}})</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <label for="jobsiteproject" class="col-md-4 font-weight-bold">Jobsite Project: </label>
+                <div class="col-md-8"> job project </div>
+            </div>
+        </div>
+    </div>
+</div>

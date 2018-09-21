@@ -1,0 +1,121 @@
+<div *ngIf="order">
+    <!-- Order Details -->
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="section-title">Order Details</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <strong class="text-muted">Vendor Name</strong>
+            <p>{{order?.vendor?.Name}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Iron PO #</strong>
+            <p>{{order?.Work_Order_num__c}}</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">PO Status</strong>
+            <p>{{order?.Status}}</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">PO Start Date</strong>
+            <p>{{order?.Start_Date__c | date:'short'}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Currency(PO)</strong>
+            <p>{{order?.CurrencyIsoCode}}</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Count of Line items(PO)</strong>
+            <p>{{order?.LineItemCount}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">PPE Hour(s)</strong>
+            <p>{{order?.Roll_up_PPE_Hours__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">PPE Hour(s) Cost (PO)</strong>
+            <p>{{order?.List_Price_Total_from_Line_Items__c | number:'1.2-2'}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Additional Hourse Cost</strong>
+            <p>{{order?.Roll_up_Additional_Rate__c | number:'1.2-2'}}</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Helpdesk Cost</strong>
+            <p>{{order?.lineItems[0]?.Admin_Price__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">VAT/GST Country</strong>
+            <p>{{order?.lineItems[0]?.VAT_GST}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">VAT(%)</strong>
+            <p>{{(order?.Roll_up_VAT_Percent__c)? order?.Roll_up_VAT_Percent__c + '%':''}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">VAT Amount</strong>
+            <p>{{order?.lineItems[0]?.VAT_Tax__c | number:'1.2-2' }}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Discount</strong>
+            <p>{{order?.Roll_up_Discount__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Grand Total</strong>
+            <p>{{order?.Grand_Total_Total_From_Line_Items__c | number:'1.2-2' }}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Closed Date</strong>
+            <p>{{order?.EndDate | date:'short'}}&nbsp;</p>
+        </div>
+    </div>
+
+    <!-- Job Details -->
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="section-title">Job Details</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <strong class="text-muted">Job Service Resolution Status - FSE</strong>
+            <p>{{order?.job?.Job_Status__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Job ID</strong>
+            <p>{{order?.job?.Iron_Job_num__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Jobsite Name</strong>
+            <p>{{order?.job?.Jobsite_Name__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Job Service Type</strong>
+            <p>{{order?.job?.Customer_Service_Type_From_Program__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Job SLA Priority</strong>
+            <p>{{order?.job?.Service_Dispatch_SLA_Priority_FrmProgram__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Service Engineer (Technical Level)</strong>
+            <p>{{order?.job?.Technical_Level__c}}&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <strong class="text-muted">Created Date</strong>
+            <p>{{order?.job?.CreatedDate | date:'short'}}&nbsp;</p>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="errorMessage">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-warning" role="alert">
+                {{errorMessage}}
+            </div>
+        </div>
+    </div>
+</div>

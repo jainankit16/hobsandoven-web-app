@@ -1,0 +1,7 @@
+.pointer{
+    cursor: pointer
+}
+
+.ngx-datatable.vScroll{
+    height: auto !important;
+}

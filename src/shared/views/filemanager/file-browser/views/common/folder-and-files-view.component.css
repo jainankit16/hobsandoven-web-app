@@ -1,0 +1,16 @@
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    width: auto;
+    max-width: 300px;
+    overflow-x: hidden;
+}
+
+.dropdown-position {
+    top: -8px !important; 
+    position: fixed !important; 
+}
+
+button.dropdown-item {
+    padding: 2px 1rem !important;
+}

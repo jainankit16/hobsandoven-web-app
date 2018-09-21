@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <h4 class="modal-title">Upload Picture</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body p-b-30">
+    <div *ngIf="error" class="alert alert-danger alert-dismissable">
+        {{error}}
+    </div>
+    <div class="row">
+        <div class="col-7">
+            <div class="upload-popup">
+                <div class="popup-container">
+                    <div class="drop-container" ngFileDrop [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput"
+                        [ngClass]="{ 'is-drop-over': dragOver }">
+                        <p>
+                            <span>Drop your file here or </span>
+                            <label class="upload-button">
+                                <input type="file" name="files" id="files" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput"> browse
+                            </label>
+                            &nbsp;to upload.
+                        </p>
+                    </div>
+                    <div class="uploads" *ngIf="files?.length">
+                        <div class="upload-item" *ngFor="let f of files; let i = index;">
+                            <div class="upload-item-top">
+                                <span class="filename">{{ f.name }}</span>
+                                <!-- <span class="progress-data">
+                                    {{ f.progress.data.percentage }}% at {{ f.progress.data.speedHuman }} eta {{ f.progress.data.eta }}s
+                                </span> -->
+                            </div>
+                            <div class="progress-bar-container" *ngIf="f.progress.data.percentage>0">
+                                <div class="bar" [style.width]="f.progress.data.percentage + '%'" [class.green]="f.progress.data.percentage === 100">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-5" *ngIf="imagePreview">
+            <img [src]="imagePreview" width="225" height="225" class="img-circle">
+        </div>
+    </div>
+</div>
+<div class="modal-footer" *ngIf="files.length">
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn-info btn pull-right" [disabled]="error !== ''" (click)="startUpload()">Set as profile picture</button>
+        </div>
+    </div>
+</div>

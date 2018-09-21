@@ -1,0 +1,15 @@
+.round-img {
+    background: #ffffff !important;
+}
+
+.wrap-margin {
+    margin-left: 3.5rem !important;
+}
+
+.wrap-margin .text-muted { 
+    margin-bottom: 5px !important;
+}
+
+.wrap-margin h4 {
+    margin-bottom: 0px !important;
+}

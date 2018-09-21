@@ -1,0 +1,46 @@
+@media (min-width: 1024px) {
+    .page-wrapper {
+        margin-left: 0;
+    }
+}
+
+.covrg-map-row{
+    height: calc(100vh - 400px) !important;
+    margin-top: 30px;
+}
+
+.covrg-map-legends{
+    margin-bottom: 10px;
+}
+
+.covrg-map-sec{
+    margin-top: 5px;
+}
+
+ngui-map {
+    height: 518px !important;
+}
+
+.scroll-div-map{
+    max-height: 563px;    
+}
+
+.data-list-align{
+    margin: 15px 15px 0px 15px !important;
+}
+
+.header-background{
+    background-color: #ffffff !important;
+}
+  
+.content-padding{
+    padding: 0.25rem !important;
+}
+
+.covrg-map-loc-label{
+    text-align: center;
+}
+
+a:hover {
+    text-decoration: underline;
+}
