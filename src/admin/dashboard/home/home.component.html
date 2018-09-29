@@ -1,19 +1,68 @@
-<div class="card-body">
-	<div class="row">
-		<div class="col-lg-3 col-md-6" *ngFor="let data of dashboardData">
-			<div class="card">
-				<div class="card-body point">
-					<div class="d-flex flex-row">
-						<div class="round round-lg align-self-center {{data.iconColor}}">
-							<i class="mdi {{data.iconClass}}"></i>
+<div class="jumbotron text-center">
+	<div class="container">
+		<h3>Authentic food delivered to you</h3>
+		<div class="input-group home-search-wrap">
+			<button class="btn btn-default home-search-btn" type="button">Current Location
+				&nbsp;&nbsp;<span class="fa fa-location-arrow"></span>
+			</button>
+			<div class="vl ml-2"></div>
+			<input type="text" class="form-control border-0 ml-2 home-search-btn" placeholder="Search food">
+			<button class="btn btn-danger home-search-btn ml-2 bg-red" type="button" id="button-addon2">
+				<span class="fa fa-search"></span>
+			</button>
+		</div>
+	</div>
+</div>
+<div class="album py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="card mb-4 shadow-sm">
+					<img class="card-img-top" height="400" src="../../../assets/images/background/socialbg.jpg" alt="Card image cap">
+					<div class="card-body">
+						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
+							This content is a little bit longer.</p>
+						<div class="d-flex justify-content-between align-items-center float-right">
+							<div class="btn-group">
+								<button type="button" class="btn btn-danger home-content-btn">Home Cooked
+									&nbsp;<span class="fa fa-chevron-right"></span>
+								</button>
+							</div>
 						</div>
-						<div class="m-l-10 align-self-center">
-							<h3 class="m-b-0 font-light">{{data.count}}</h3>
-							<h5 class="text-muted m-b-0">{{data.title}}</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card mb-4 shadow-sm">
+					<img class="card-img-top" height="400" src="../../../assets/images/background/socialbg.jpg" alt="Card image cap">
+					<div class="card-body">
+						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
+							This content is a little bit longer.</p>
+						<div class="d-flex justify-content-between align-items-center float-right">
+							<div class="btn-group">
+								<button type="button" class="btn btn-danger home-content-btn">Daily Meals
+									&nbsp;<span class="fa fa-chevron-right"></span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card mb-4 shadow-sm">
+					<img class="card-img-top" height="400" src="../../../assets/images/background/socialbg.jpg" alt="Card image cap">
+					<div class="card-body">
+						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
+							This content is a little bit longer.</p>
+						<div class="d-flex justify-content-between align-items-center float-right">
+							<div class="btn-group">
+								<button type="button" class="btn btn-danger home-content-btn">Restaurants
+									&nbsp;<span class="fa fa-chevron-right"></span>
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>

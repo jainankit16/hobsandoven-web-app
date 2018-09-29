@@ -1418,14 +1418,17 @@ ul#themecolors {
  Footer
 *******************/
 .footer {
-  bottom: 0;
   color: #67757c;
-  left: 0px;
-  padding: 17px 15px;
-  position: absolute;
-  right: 0;
+  padding: 10px 10px;
+  position: relative;
   border-top: 1px solid rgba(120, 130, 140, 0.13);
-  background: #ffffff; }
+  background: #67757c;
+  color: white; 
+}
+
+body {
+  padding-top: 3.5rem !important;
+}
 
 /*******************
  Card title
@@ -5697,16 +5700,12 @@ File: scss
 @media (min-width: 1024px) {
   .page-wrapper {
     margin-left: 240px; }
-
-  .footer {
-    left: 240px; } }
+}
+    
 @media (max-width: 1023px) {
   .page-wrapper {
     margin-left: 60px;
     transition: 0.2s ease-in; }
-
-  .footer {
-    left: 60px; }
 
   .widget-app-columns {
     column-count: 1; }
@@ -5731,8 +5730,6 @@ File: scss
 
   .mini-sidebar .page-wrapper {
     margin-left: 60px; }
-  .mini-sidebar .footer {
-    left: 60px; }
 
   .flex-wrap {
     flex-wrap: nowrap !important;

@@ -1,7 +1,4 @@
-# serviceo pro
-
-serviceo pro is web application that power's both VMS (Vendor Management System) and PMS (Partner Management 
-System). It is built on Angular 2 framework and utilizes number of libraries.
+# Frontend Application
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.2.
 

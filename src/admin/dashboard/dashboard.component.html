@@ -1,16 +1,10 @@
-<div id="main-wrapper">
-  <app-admin-header></app-admin-header>
-  <app-admin-sidebar></app-admin-sidebar>
-  <div class="page-wrapper">
-      <div class="container-fluid">
-          <alert></alert>
-          <confirm-dialog></confirm-dialog>
-          <app-preloader></app-preloader>
-          <router-outlet></router-outlet>
-      </div>
-  </div>
-  <footer class="footer">
-      © 2017-2018 {{webTitle}}
-      <span class="pull-right">App Version: {{appVersion}} ({{buildDate}})</span>
-  </footer>
-</div>
+<app-header-navigation></app-header-navigation>
+<main role="main">
+    <alert></alert>
+    <app-preloader></app-preloader>
+    <router-outlet></router-outlet>
+</main>
+<footer class="footer">
+    © 2018-2019 {{webTitle}}
+    <span class="pull-right">App Version: {{appVersion}} ({{buildDate}})</span>
+</footer>

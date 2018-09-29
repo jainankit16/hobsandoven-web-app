@@ -7,7 +7,7 @@ import { LoopBackAuth } from './../sdk/services/core/auth.service';
 import { UsersApi } from './../sdk/services/custom/Users';
 
 @Injectable()
-export class AppResolver implements Resolve<any> {
+export class RouteResolverService implements Resolve<any> {
 
     constructor(
         private _auth: LoopBackAuth,

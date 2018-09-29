@@ -6,9 +6,10 @@ import { APP_VERSION, BUILD_DATE } from '../version';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
 export class DashboardComponent implements AfterContentInit {
 
-  webTitle = 'ServiceO';
+  webTitle = 'Hobs&Oven.com';
   buildDate = BUILD_DATE;
   appVersion = APP_VERSION;
 

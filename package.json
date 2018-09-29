@@ -1,10 +1,8 @@
 {
-  "name": "serviceo-web",
+  "name": "hobsandoven-web-app",
   "version": "0.1.3",
-  "description": "Serviceo Web App",
-  "author": "Serviceo Inc.",
-  "url": "https://serviceo.com",
-  "copyright": "Copyright 2018 serviceo.com",
+  "license": "UNLICENSED",
+  "description": "HobsAndOven Web App",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

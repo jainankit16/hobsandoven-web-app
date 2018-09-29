@@ -1,3 +1,3 @@
-export const APP_VERSION = '0.1.3';
-export const BUILD_DATE = '20180207-2052';
+export const APP_VERSION = '1.0.0';
+export const BUILD_DATE = '20180921-0001';
 

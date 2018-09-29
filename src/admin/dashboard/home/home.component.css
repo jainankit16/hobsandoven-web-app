@@ -1,3 +1,40 @@
 .point {
     cursor: pointer;
 }
+
+.jumbotron{
+    margin-bottom: 1rem !important;
+}
+
+.home-search-wrap {
+    background: #fff;
+    border-radius: 50px;
+    padding: 7px;
+    box-shadow: 0 0 40px rgba(0,0,0,.43);
+}
+
+.home-search-btn {
+    border: none !important;
+    background: white;
+    border-radius: 50px !important;
+}
+
+.bg-red {
+    background-color: #dc3545 !important;
+}
+
+.custom-padding {
+    padding: .75rem !important;
+}
+
+.home-content-btn {
+    border: none !important;
+    background-color: #dc3545 !important;
+    border-radius: 50px !important;
+    box-shadow: 0 0 25px rgba(0,0,0,.43);
+}
+
+.vl {
+    border-left: 1px solid grey;
+    height: 38px;
+}

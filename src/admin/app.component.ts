@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { LoopBackConfig } from './../shared/sdk/lb.config';
-import { environment } from '../environments/environment';
 import { APP_VERSION, BUILD_DATE } from './version';
+import { environment } from '../environments/environment';
 
 @Component({
     selector: 'app-root',
@@ -26,14 +26,11 @@ export class AppComponent implements OnInit {
         LoopBackConfig.setApiVersion(environment.apiVersion);
     }
 
-    ngOnInit() {
-
-    }
+    ngOnInit() { }
 
     disableAppLogs() {
         if (window.console) {
             window['console']['log'] = function () { };
         }
     };
-
 }
