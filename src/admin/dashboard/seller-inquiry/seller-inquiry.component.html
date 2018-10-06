@@ -1,0 +1,105 @@
+<div class="card-body">
+    <div class="row">
+        <div class="col">
+            <h3>
+                <i class="fa fa-list-ul"></i> Restaurant Enquiry Form
+            </h3>
+        </div>
+    </div>
+    <form #userForm="ngForm" [formGroup]="registrationForm" (ngSubmit)="onClickSave()" class="form-material" name="userForm">
+        <div class="m-t-20 p-3">
+            <div class="row">
+                <div class="col-6">
+                    <span class="font-weight-bold">First Name
+                        <span class="text-danger">*</span>
+                    </span>
+                    <input type="text" formControlName="fname" name="fname" maxlength="80" class="form-control">
+                    <small *ngIf="formErrors.fname" class="help-block text-danger">{{ formErrors.fname }}</small>
+                </div>
+                <div class="col-6">
+                    <span class="font-weight-bold">Last Name
+                        <span class="text-danger">*</span>
+                    </span>
+                    <input type="text" formControlName="lname" name="lname" maxlength="80" class="form-control">
+                    <small *ngIf="formErrors.lname" class="help-block text-danger">{{ formErrors.lname }}</small>
+                </div>
+            </div>
+            <div class="row m-t-20">
+                <div class="col-6">
+                    <span class="font-weight-bold">Restaurant Name
+                        <span class="text-danger">*</span>
+                    </span>
+                    <input type="text" formControlName="rname" name="rname" maxlength="80" class="form-control">
+                    <small *ngIf="formErrors.rname" class="help-block text-danger">{{ formErrors.rname }}</small>
+                </div>
+                <div class="col-6">
+                    <span class="font-weight-bold">Email
+                        <span class="text-danger">*</span>
+                    </span>
+                    <input type="text" formControlName="email" name="email" maxlength="80" class="form-control">
+                    <small *ngIf="formErrors.email" class="help-block text-danger">{{ formErrors.email }}</small>
+                </div>
+            </div>
+            <div class="row m-t-20">
+                <div class="col-6">
+                    <span class="font-weight-bold">Phone
+                        <span class="text-danger">*</span>
+                    </span>
+                    <input type="text" formControlName="phone" name="phone" maxlength="80" class="form-control">
+                    <small *ngIf="formErrors.phone" class="help-block text-danger">{{ formErrors.phone }}</small>
+                </div>
+                <div class="col-6">
+                    <span class="font-weight-bold">Address
+                        <span class="text-danger">*</span>
+                    </span>
+                    <input type="text" formControlName="address" name="address" maxlength="80" class="form-control">
+                    <small *ngIf="formErrors.address" class="help-block text-danger">{{ formErrors.address }}</small>
+                </div>
+            </div>
+            <div class="row m-t-20">
+                <div class="col-6">
+                    <span class="font-weight-bold">Country
+                        <span class="text-danger">*</span>
+                    </span>
+                    <select formControlName="country" class="form-control">
+                        <option value="" selected="true">--Select Country--</option>
+                        <option *ngFor="let type of countries" [value]="type.name">{{type.name}}</option>
+                    </select>
+                    <small *ngIf="formErrors.country" class="help-block text-danger">{{ formErrors.country }}</small>
+                </div>
+                <div class="col-6">
+                    <span class="font-weight-bold">State
+                        <span class="text-danger">*</span>
+                    </span>
+                    <select formControlName="state" class="form-control">
+                        <option value="" selected="true">--Select State--</option>
+                        <option *ngFor="let type of states" [value]="type.name">{{type.name}}</option>
+                    </select>
+                    <small *ngIf="formErrors.state" class="help-block text-danger">{{ formErrors.state }}</small>
+                </div>
+            </div>
+            <div class="row m-t-20">
+                <div class="col-6">
+                    <span class="font-weight-bold">Locality
+                        <span class="text-danger">*</span>
+                    </span>
+                    <input formControlName="locality" type="text" class="form-control">
+                    <small *ngIf="formErrors.locality" class="help-block text-danger">{{ formErrors.locality }}</small>
+                </div>
+                <div class="col-6">
+                    <span class="font-weight-bold">Zip Code
+                        <span class="text-danger">*</span>
+                    </span>
+                    <input formControlName="zip" type="text" class="form-control">
+                    <small *ngIf="formErrors.zip" class="help-block text-danger">{{ formErrors.zip }}</small>
+                </div>
+            </div>
+            <div class="row m-t-30">
+                <div class="col-12 text-center">
+                    <button class="btn btn-danger mRight" [disabled]="!registrationForm.valid" type="submit">Save</button>
+                    <button class="btn btn-secondary" type="button" (click)="reset()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
