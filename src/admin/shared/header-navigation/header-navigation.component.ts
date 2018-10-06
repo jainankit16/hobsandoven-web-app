@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-header-navigation',
@@ -12,7 +13,9 @@ export class HeaderNavigationComponent implements OnInit {
     // user: any;
     // imgpath: any;
 
-    constructor() { }
+    constructor(
+        private _router: Router,
+    ) { }
 
     ngOnInit() {
         // this.imgpath = environment.baseUrl + '/' + environment.apiVersion;
@@ -20,6 +23,10 @@ export class HeaderNavigationComponent implements OnInit {
         // if (this.user && this.user['id']) {
         //     this.getProfileImage();
         // }
+    }
+
+    onHomeClick() {
+        this._router.navigate(['/']);
     }
 
     // getProfileImage() {

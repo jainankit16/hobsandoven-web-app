@@ -4,12 +4,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { HeaderNavigationComponent } from './header-navigation/header-navigation.component';
-import { SidebarNavigationComponent } from './sidebar/sidebar-navigation.component';
 
 @NgModule({
     declarations: [
-        HeaderNavigationComponent,
-        SidebarNavigationComponent
+        HeaderNavigationComponent
     ],
     imports: [
         NgbModule,
@@ -17,8 +15,7 @@ import { SidebarNavigationComponent } from './sidebar/sidebar-navigation.compone
         RouterModule
     ],
     exports: [
-        HeaderNavigationComponent,
-        SidebarNavigationComponent
+        HeaderNavigationComponent
     ]
 })
 

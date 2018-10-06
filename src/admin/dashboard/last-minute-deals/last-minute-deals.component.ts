@@ -4,12 +4,12 @@ import { Router } from '@angular/router';
 import { PreloaderService } from '../../../shared/services/preloader.service';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+    selector: 'app-last-minute-deals',
+    templateUrl: './last-minute-deals.component.html',
+    styleUrls: ['./last-minute-deals.component.css']
 })
 
-export class HomeComponent implements OnInit {
+export class LastMinuteDealsComponent implements OnInit {
 
     constructor(
         private _router: Router,
@@ -17,8 +17,4 @@ export class HomeComponent implements OnInit {
     ) { }
 
     ngOnInit() { }
-
-    lastMinuteDeals() {
-        this._router.navigate(['/last-minute-deals']);
-    }
 }

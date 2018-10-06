@@ -16,11 +16,13 @@ import { PreloaderService } from '../../shared/services/preloader.service';
 import { DashboardRoutingModule } from './dashboard.routes';
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './home/home.component';
+import { LastMinuteDealsComponent } from './last-minute-deals/last-minute-deals.component';
 
 @NgModule({
     declarations: [
         DashboardComponent,
-        HomeComponent
+        HomeComponent,
+        LastMinuteDealsComponent
     ],
     imports: [
         NgbModule,
