@@ -1,95 +1,75 @@
-<header class="topbar">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark top-navbar">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="javascript:void(0)" (click)="onHomeClick()">
-                <b><i class="fa fa-cutlery logo-size"></i></b>
-                <span>&nbsp;<b>Hobs&Oven.com</b></span>
-            </a>
-        </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark bg-color header-navbar">
+        <a class="navbar-brand" href="javascript:void(0);" (click)="onHomeClick()">
+            <i class="text-white fa fa-cutlery icon-size"></i>
+            <span class="text-white">&nbsp;Hobs&Oven.com</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto mt-md-0"></ul>
-            <ul class="navbar-nav my-lg-0">
-                <li class="nav-item">
-                    <a href="javascript:void(0);" (click)="onHomeClick()" class="nav-link text-muted waves-effect waves-dark text-center">
-                        <span class="text-white mdi mdi-home fa-2x"></span>
-                        <br>
+            <!-- <form class="form-inline mt-2 mt-md-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form> -->
+            <ul class="navbar-nav mt-md-0 my-lg-0">
+                <li class="nav-item text-center">
+                    <a class="nav-link" href="javascript:void(0);" (click)="onHomeClick()">
+                        <span class="text-white fa fa-home icon-size"></span>
+                        <br />
                         <span class="text-white">Home</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="/home" class="nav-link text-muted waves-effect waves-dark text-center">
-                        <span class="text-white mdi mdi-cookie fa-2x"></span>
-                        <br>
+                <li class="nav-item text-center">
+                    <a class="nav-link" href="javascript:void(0);" (click)="onHomeClick()">
+                        <span class="text-white fa fa-handshake-o icon-size"></span>
+                        <br />
                         <span class="text-white">Sell With Us</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="/home" class="nav-link text-muted waves-effect waves-dark text-center">
-                        <span class="text-white mdi mdi-phone fa-2x"></span>
-                        <br>
-                        <span class="text-white">Contact Us</span>
+                <li class="nav-item text-center">
+                    <a class="nav-link" href="javascript:void(0);" (click)="onHomeClick()">
+                        <span class="text-white fa fa-phone icon-size"></span>
+                        <br />
+                        <span class="text-white">Contact</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="/home" class="nav-link text-muted waves-effect waves-dark text-center">
-                        <span class="text-white mdi mdi-shopping fa-2x"></span>
-                        <br>
+                <li class="nav-item text-center">
+                    <a class="nav-link" href="javascript:void(0);" (click)="onHomeClick()">
+                        <span class="text-white fa fa-shopping-cart icon-size"></span>
+                        <br />
                         <span class="text-white">Cart</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="/home" class="nav-link text-muted waves-effect waves-dark text-center">
-                        <span class="text-white mdi mdi-account-circle fa-2x"></span>
-                        <br>
-                        <span class="text-white">Account</span>
+                <li class="nav-item text-center">
+                    <a class="nav-link" href="javascript:void(0);" (click)="onHomeClick()">
+                        <span class="text-white fa fa-user-circle icon-size"></span>
+                        <br />
+                        <span class="text-white">Sign In</span>
                     </a>
                 </li>
-                <!-- Profile -->
-                <!-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle u-dropdown" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img *ngIf="user?.profileImage" class="round round-top round-img" src="{{imgpath}}/Containers/{{user?.id}}/download/{{user?.profileImage}}">
-                                <span *ngIf="!user?.profileImage" class="round round-primary round-top">{{(user?.firstname) ? (user?.firstname.charAt(0).toUpperCase()) : ''}}{{(user?.lastname) ? (user?.lastname.charAt(0).toUpperCase())
-                                    :''}}
-                                </span>
-                                <br>
-                                <span class="profile-status away pull-right">Me&nbsp;
-                                    <i class="fa fa-caret-down"></i>
-                                </span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right scale-up">
-                                <ul class="dropdown-user">
-                                    <li>
-                                        <div class="row p-10 p-b-0">
-                                            <div class="col-12">
-                                                <div class="pull-left">
-                                                    <div *ngIf="user?.profileImage" class="user-img">
-                                                        <img class="round round-dropdown round-img" src="{{imgpath}}/Containers/{{user?.id}}/download/{{user?.profileImage}}" alt="user">
-                                                    </div>
-                                                    <div *ngIf="!user?.profileImage" class="user-img">
-                                                        <span class="round round-primary round-dropdown">{{(user?.firstname) ? (user?.firstname.charAt(0).toUpperCase()) : ''}}{{(user?.lastname)
-                                                            ? (user?.lastname.charAt(0).toUpperCase()) :''}}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="text-wrap wrap-margin">
-                                                    <h4>{{user?.firstname}} {{user?.lastname}}</h4>
-                                                    <p class="text-muted">{{user?.email}}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li>
-                                        <a href="javascript:void(0);" (click)="logout()">
-                                            <i class="fa fa-power-off"></i> Logout
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> -->
+                <li class="nav-item text-center dropdown">
+                    <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="text-white fa fa-user-circle icon-size"></span>
+                        <br />
+                        <span class="text-white">Account</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-left" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="javascript:void(0);">
+                            <span class="fa fa-user"></span> Profile
+                        </a>
+                        <a class="dropdown-item" href="javascript:void(0);">
+                            <span class="fa fa-shopping-bag"></span> My Orders
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="javascript:void(0);">
+                            <span class="fa fa-power-off"></span> Logout
+                        </a>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>

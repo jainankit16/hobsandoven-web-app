@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { LoopBackConfig } from './../shared/sdk/lb.config';
-import { APP_VERSION, BUILD_DATE } from './version';
+import { LoopBackConfig } from './../shared/sdk';
 import { environment } from '../environments/environment';
 
 @Component({
@@ -12,12 +10,8 @@ import { environment } from '../environments/environment';
 
 export class AppComponent implements OnInit {
 
-    version = APP_VERSION;
-    buildDate = BUILD_DATE;
-
     constructor(
     ) {
-        console.log('Application Version: ' + this.version + '(' + this.buildDate + ')');
         // disables console.logs for production
         if (environment.production) {
             this.disableAppLogs();

@@ -1,24 +1,16 @@
-.round-img {
-    background: #ffffff !important;
-}
-
-.logo-size {
-    font-size: 25px !important;
-}
-
-.wrap-margin {
-    margin-left: 3.5rem !important;
-}
-
-.wrap-margin .text-muted { 
-    margin-bottom: 5px !important;
-}
-
-.wrap-margin h4 {
-    margin-bottom: 0px !important;
-}
-
-
-.bg-dark {
+.bg-color {
     background-color: #dc3545 !important
+}
+
+.header-navbar {
+    line-height: 20px !important;
+    padding: 0px 15px 0px 15px !important;
+}
+
+.icon-size {
+    font-size: 20px !important;
+}
+
+.dropdown-left {
+    left: -75px !important;
 }
