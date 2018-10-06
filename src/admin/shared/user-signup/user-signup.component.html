@@ -1,0 +1,60 @@
+<div class="p-3">
+    <form #userForm="ngForm" [formGroup]="signupForm" (ngSubmit)="onSignupClick()" class="form-material" name="userForm">
+        <div class="row">
+            <div class="col">
+                <span class="font-weight-bold">First Name
+                    <span class="text-danger">*</span>
+                </span>
+                <input type="text" formControlName="fname" name="fname" maxlength="80" class="form-control">
+                <small *ngIf="formErrors.fname" class="help-block text-danger">{{ formErrors.fname }}</small>
+            </div>
+            <div class="col">
+                <span class="font-weight-bold">Last Name
+                    <span class="text-danger">*</span>
+                </span>
+                <input type="text" formControlName="lname" name="lname" maxlength="80" class="form-control">
+                <small *ngIf="formErrors.lname" class="help-block text-danger">{{ formErrors.lname }}</small>
+            </div>
+        </div>
+        <div class="row m-t-30">
+            <div class="col">
+                <span class="font-weight-bold">Email
+                    <span class="text-danger">*</span>
+                </span>
+                <input type="text" formControlName="email" name="email" maxlength="80" class="form-control">
+                <small *ngIf="formErrors.email" class="help-block text-danger">{{ formErrors.email }}</small>
+            </div>
+            <div class="col">
+                <span class="font-weight-bold">Phone
+                    <span class="text-danger">*</span>
+                </span>
+                <input type="text" formControlName="phone" name="phone" maxlength="80" class="form-control">
+                <small *ngIf="formErrors.phone" class="help-block text-danger">{{ formErrors.phone }}</small>
+            </div>
+        </div>
+        <div class="row m-t-30">
+            <div class="col">
+                <span class="font-weight-bold">Password
+                    <span class="text-danger">*</span>
+                </span>
+                <input type="password" formControlName="password" name="password" maxlength="80" class="form-control">
+                <small *ngIf="formErrors.password" class="help-block text-danger">{{ formErrors.password }}</small>
+            </div>
+        </div>
+        <div class="row m-t-30">
+            <div class="col">
+                <div class="checkbox">
+                    <input type="checkbox" name="agree" id="agree" formControlName="agree">
+                    <label for="agree">I agree to the following terms & conditions.<span class="text-danger">*</span></label>
+                </div>
+                <small *ngIf="formErrors.agree" class="help-block text-danger">{{ formErrors.agree }}</small>
+            </div>
+        </div>
+        <div class="row m-t-30">
+            <div class="col text-center">
+                <button class="btn btn-danger mRight" [disabled]="!signupForm.valid" type="submit">Register</button>
+                <button class="btn btn-secondary" type="button" (click)="onClose()">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>

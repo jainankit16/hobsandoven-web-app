@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li class="nav-item text-center">
-                    <a class="nav-link" href="javascript:void(0);" (click)="onHomeClick()">
+                    <a class="nav-link" href="javascript:void(0);" (click)="onLoginClick(userLogin, 'lg')">
                         <span class="text-white fa fa-user-circle icon-size"></span>
                         <br />
                         <span class="text-white">Sign In</span>
@@ -74,3 +74,15 @@
         </div>
     </nav>
 </header>
+
+<ng-template #userLogin let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Login/Sign up</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-user-login></app-user-login>
+    </div>
+</ng-template>
