@@ -4,10 +4,9 @@ declare var Object: any;
 export interface ActivityInterface {
   "modelName": string;
   "modelId": string;
-  "sfMeta"?: any;
   "context"?: any;
   "log"?: Array<any>;
-  "type": string;
+  "type"?: string;
   "description"?: string;
   "title"?: string;
   "id"?: any;
@@ -18,7 +17,6 @@ export interface ActivityInterface {
 export class Activity implements ActivityInterface {
   "modelName": string;
   "modelId": string;
-  "sfMeta": any;
   "context": any;
   "log": Array<any>;
   "type": string;
@@ -67,10 +65,6 @@ export class Activity implements ActivityInterface {
         "modelId": {
           name: 'modelId',
           type: 'string'
-        },
-        "sfMeta": {
-          name: 'sfMeta',
-          type: 'any'
         },
         "context": {
           name: 'context',

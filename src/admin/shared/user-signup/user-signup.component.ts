@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { PreloaderService } from '../../../shared/services/preloader.service';
@@ -13,9 +13,13 @@ import { ModalService } from '../../../shared/services/modal.service';
 
 export class UserSignupComponent implements OnInit {
 
+    @Output() onCancelClick: EventEmitter<any> = new EventEmitter();
+
     signupForm: FormGroup;
-    formErrors: any;
+    formErrors = {};
     validationMessages = {};
+
+    agree = false;
 
     constructor(
         private _fb: FormBuilder,
@@ -39,16 +43,14 @@ export class UserSignupComponent implements OnInit {
             'lname': '',
             'email': '',
             'phone': '',
-            'password': '',
-            'agree': ''
+            'password': ''
         };
         this.validationMessages = {
             'fname': { 'required': 'First Name is required.' },
             'lname': { 'required': 'Last Name is required.' },
             'email': { 'required': 'Email is required.' },
             'password': { 'required': 'Password is required.' },
-            'phone': { 'required': 'Phone is required.' },
-            'agree': { 'required': 'Please tick the checkbox.' }
+            'phone': { 'required': 'Phone is required.' }
         };
     }
 
@@ -58,8 +60,7 @@ export class UserSignupComponent implements OnInit {
             lname: ['', [Validators.required]],
             email: ['', [Validators.required]],
             password: ['', [Validators.required]],
-            phone: ['', [Validators.required]],
-            agree: ['', [Validators.required]]
+            phone: ['', [Validators.required]]
         });
         this.signupForm.valueChanges.subscribe(data => this.onFormChanged(data));
     }
@@ -86,7 +87,7 @@ export class UserSignupComponent implements OnInit {
 
     }
 
-    onClose() {
-        this._modalService.closed();
+    onCancel() {
+        this.onCancelClick.emit();
     }
 }

@@ -95,6 +95,7 @@ export class UserLoginComponent implements OnInit {
     }
 
     onCancel() {
+        this.email = '';
         this.showForgotPassword = false;
         this.showUserSignup = false;
     }

@@ -44,16 +44,16 @@
         <div class="row m-t-30">
             <div class="col">
                 <div class="checkbox">
-                    <input type="checkbox" name="agree" id="agree" formControlName="agree">
+                    <input type="checkbox" name="agree" id="agree" [(ngModel)]="agree" [ngModelOptions]="{standalone: true}">
                     <label for="agree">I agree to the following terms & conditions.<span class="text-danger">*</span></label>
                 </div>
-                <small *ngIf="formErrors.agree" class="help-block text-danger">{{ formErrors.agree }}</small>
+                <small *ngIf="!agree && userForm.submitted" class="help-block text-danger">Please accept the terms & conditions.</small>
             </div>
         </div>
         <div class="row m-t-30">
             <div class="col text-center">
                 <button class="btn btn-danger mRight" [disabled]="!signupForm.valid" type="submit">Register</button>
-                <button class="btn btn-secondary" type="button" (click)="onClose()">Cancel</button>
+                <button class="btn btn-secondary" type="button" (click)="onCancel()">Cancel</button>
             </div>
         </div>
     </form>

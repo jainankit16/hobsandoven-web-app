@@ -47,12 +47,12 @@
     </div>
     <div class="row m-t-30">
         <div class="col text-center">
-            <button class="btn btn-danger mRight" type="button" (click)="onSendPasswordClick()">Send</button>
+            <button class="btn btn-danger mRight" type="button" [disabled]="!email" (click)="onSendPasswordClick()">Send</button>
             <button class="btn btn-secondary" type="button" (click)="onCancel()">Cancel</button>
         </div>
     </div>
 </div>
 
 <div class="p-3" *ngIf="showUserSignup">
-    <app-user-signup></app-user-signup>
+    <app-user-signup (onCancelClick)="onCancel()"></app-user-signup>
 </div>
