@@ -10,6 +10,7 @@ export class PreloaderService {
     getShowLoader() {
         return this.showLoaderFull.asObservable();
     }
+
     showPreloader(preloaderType = 'full'): void {
         if (preloaderType === 'full') {
             this.showLoaderFull.next(true);
@@ -17,6 +18,7 @@ export class PreloaderService {
             this.showLoaderSmall.next(true)
         }
     }
+
     hidePreloader(preloaderType = 'full'): void {
         if (preloaderType === 'full') {
             this.showLoaderFull.next(false);

@@ -5,6 +5,8 @@ import { PreloaderService } from '../../../shared/services/preloader.service';
 import { AlertService } from '../../../shared/services/alert.service';
 import { ModalService } from '../../../shared/services/modal.service';
 
+import { UsersApi } from '../../../shared/sdk';
+
 @Component({
     selector: 'app-user-signup',
     templateUrl: './user-signup.component.html',
@@ -13,19 +15,21 @@ import { ModalService } from '../../../shared/services/modal.service';
 
 export class UserSignupComponent implements OnInit {
 
-    @Output() onCancelClick: EventEmitter<any> = new EventEmitter();
+    @Output() onButtonClick: EventEmitter<any> = new EventEmitter();
 
     signupForm: FormGroup;
     formErrors = {};
     validationMessages = {};
 
     agree = false;
+    error = '';
 
     constructor(
         private _fb: FormBuilder,
         private _modalService: ModalService,
         private _preloaderService: PreloaderService,
-        private _alertService: AlertService
+        private _alertService: AlertService,
+        private _userApi: UsersApi
     ) { }
 
     ngOnInit() {
@@ -33,6 +37,8 @@ export class UserSignupComponent implements OnInit {
     }
 
     initialLoad() {
+        this.agree = false;
+        this.error = '';
         this.setFormErrors();
         this.createForms();
     }
@@ -84,10 +90,30 @@ export class UserSignupComponent implements OnInit {
     }
 
     onSignupClick() {
-
+        if (this.agree) {
+            this._preloaderService.showPreloader();
+            const reqObj = {
+                'firstname': this.signupForm.value['fname'],
+                'lastname': this.signupForm.value['lname'],
+                'email': this.signupForm.value['email'],
+                'phone': this.signupForm.value['phone'],
+                'password': this.signupForm.value['password']
+            };
+            this._userApi.create(reqObj).subscribe(
+                res => {
+                    this.onButtonClick.emit(res);
+                    this._preloaderService.hidePreloader();
+                },
+                err => {
+                    this.error = 'Something went wrong!';
+                    console.log(err.message);
+                    this._preloaderService.hidePreloader();
+                }
+            )
+        }
     }
 
     onCancel() {
-        this.onCancelClick.emit();
+        this.onButtonClick.emit();
     }
 }

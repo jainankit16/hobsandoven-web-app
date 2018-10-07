@@ -20,6 +20,7 @@ export class UserLoginComponent implements OnInit {
     email = '';
     showForgotPassword = false;
     showUserSignup = false;
+    message = '';
 
     constructor(
         private _fb: FormBuilder,
@@ -33,6 +34,7 @@ export class UserLoginComponent implements OnInit {
     }
 
     initialLoad() {
+        this.message = '';
         this.setFormErrors();
         this.createForms();
     }
@@ -98,5 +100,12 @@ export class UserLoginComponent implements OnInit {
         this.email = '';
         this.showForgotPassword = false;
         this.showUserSignup = false;
+    }
+
+    onButtonClick(event) {
+        if (event && event.id) {
+            this.message = 'User created successfully, please login to continue.';
+        }
+        this.onCancel();
     }
 }

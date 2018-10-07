@@ -3,6 +3,7 @@ import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-boo
 
 @Injectable()
 export class ModalService {
+
     private modalRef: NgbModalRef;
     closeModal: string;
 
@@ -17,6 +18,7 @@ export class ModalService {
             this.closeModal = `Dismissed ${this.getDismissReason(reason)}`;
         });
     }
+
     private getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {
             return 'by pressing ESC';

@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
-import { Observable ,  Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+
 @Injectable()
 export class ConfirmDialogService {
+
     private subject = new Subject<any>();
-    constructor() {}
+    constructor() { }
     /**
      * @param message
      * @param okFn
@@ -23,6 +25,7 @@ export class ConfirmDialogService {
     confirmThis(message: any, okFn: () => void, noFn: () => void) {
         this.setConfirmation(message, okFn, noFn);
     }
+
     setConfirmation(message: any, okFn: () => void, noFn: () => void) {
         const that = this;
         this.subject.next({
@@ -36,11 +39,11 @@ export class ConfirmDialogService {
             obtnTitleClass: (message.obtnTitleClass) ? message.obtnTitleClass : 'btn btn-primary',
             isClosedIcon: (message.isClosed === false && message.isClosed !== 'undefined') ? false : true,
             okFn:
-            function(){
-                that.subject.next(); // this will close the modal
-                okFn();
-            },
-            noFn: function(){
+                function () {
+                    that.subject.next(); // this will close the modal
+                    okFn();
+                },
+            noFn: function () {
                 that.subject.next();
                 noFn();
             }

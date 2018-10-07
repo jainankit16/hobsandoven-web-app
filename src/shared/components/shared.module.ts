@@ -8,15 +8,12 @@ import { QuillModule } from 'ngx-quill';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
-import { NavigationModule } from './header-navigation/navigation.module';
 import { AlertModule } from './alert/alert.module';
 import { PreloaderModule } from './preloader/preloader.module';
 
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-import { ToolbarModule } from './toolbar/toolbar.module';
 @NgModule({
     declarations: [
-        BreadcrumbComponent
+
     ],
     imports: [
         CommonModule,
@@ -29,17 +26,12 @@ import { ToolbarModule } from './toolbar/toolbar.module';
         QuillModule,
         OwlDateTimeModule,
         OwlNativeDateTimeModule,
-        NavigationModule,
         AlertModule,
-        PreloaderModule,
-        ToolbarModule
+        PreloaderModule
     ],
     exports: [
-        NavigationModule,
         AlertModule,
-        PreloaderModule,
-        BreadcrumbComponent,
-        ToolbarModule
+        PreloaderModule
     ]
 })
 

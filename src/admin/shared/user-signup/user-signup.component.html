@@ -50,10 +50,15 @@
                 <small *ngIf="!agree && userForm.submitted" class="help-block text-danger">Please accept the terms & conditions.</small>
             </div>
         </div>
-        <div class="row m-t-30">
+        <div class="row m-t-20">
             <div class="col text-center">
                 <button class="btn btn-danger mRight" [disabled]="!signupForm.valid" type="submit">Register</button>
                 <button class="btn btn-secondary" type="button" (click)="onCancel()">Cancel</button>
+            </div>
+        </div>
+        <div class="row m-t-10" *ngIf="error">
+            <div class="col text-center">
+                <small class="help-block text-danger">{{error}}</small>
             </div>
         </div>
     </form>
